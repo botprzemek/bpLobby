@@ -1,4 +1,14 @@
 fill:
-  material: green concrete
-  amout: 1
-  name: Essa
+  material: "gray stained glass pane"
+  amount: 1
+  name: " "
+
+center:
+  material: "compass"
+  amount: 1
+  name: "Lobby"
+
+inventory:
+  size: 27
+  name: "Wybierz serwer"
+  sound: "block chest open"
