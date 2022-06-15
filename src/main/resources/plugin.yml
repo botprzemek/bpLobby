@@ -7,11 +7,11 @@ description: botprzemek's Lobby plugin
 website: www.botprzemek.pl
 commands:
   fly:
-    aliases: [f, latanie]
     description: Pozwala graczowi na latanie
     usage: /fly
     permission: bpLobby.latanie
     permission-message: Nie masz permisji!
+    aliases: [f, latanie]
   bplobby:
     aliases: [bpl]
     usage: /bplobby

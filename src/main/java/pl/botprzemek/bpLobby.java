@@ -5,8 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.commands.Fly;
 import pl.botprzemek.commands.Lobby;
 import pl.botprzemek.handlers.JoinQuitHandler;
-import pl.botprzemek.handlers.PlayerHandler;
 
+import java.util.List;
 import java.util.Objects;
 
 public final class bpLobby extends JavaPlugin {
@@ -15,13 +15,14 @@ public final class bpLobby extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Bukkit.getLogger().info("Loading bpLobby");
+
+        Bukkit.getLogger().info("Starting bpLobby by botprzemek");
 
         this.saveDefaultConfig();
         plugin = this;
 
-        Objects.requireNonNull(getCommand("bplobby")).setExecutor(new Lobby());
-        Objects.requireNonNull(getCommand("fly")).setExecutor(new Fly());
+        Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
+        Objects.requireNonNull(this.getCommand("fly")).setExecutor(new Fly());
 
         new JoinQuitHandler(this);
     }

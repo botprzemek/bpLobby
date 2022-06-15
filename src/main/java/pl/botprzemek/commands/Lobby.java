@@ -1,5 +1,6 @@
 package pl.botprzemek.commands;
 
+import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -47,14 +48,18 @@ public class Lobby implements CommandExecutor, TabCompleter {
 
         Player player = (Player) sender;
 
+        String prefix = bpLobby.plugin.getConfig().getString("prefix");
+        String configFalse = bpLobby.plugin.getConfig().getString("messages.config.false");
+        String configReload = bpLobby.plugin.getConfig().getString("messages.config.reload");
+
         if (args.length == 0) {
-            player.sendMessage("Złe użycie komendy!");
+            player.sendMessage(IridiumColorAPI.process(prefix + configFalse));
             return false;
         }
 
         if (Objects.equals(args[0], "reload")) {
             bpLobby.plugin.reloadConfig();
-            player.sendMessage("Pomyślnie przeładowano plik konfiguracyjny!");
+            player.sendMessage(IridiumColorAPI.process(prefix + configReload));
         }
 
 //        if (sender instanceof Player) {

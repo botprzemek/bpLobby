@@ -1,11 +1,13 @@
 package pl.botprzemek.commands;
 
+import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import pl.botprzemek.bpLobby;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,20 +33,29 @@ public class Fly implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String [] args) {
+
+        String prefix = bpLobby.plugin.getConfig().getString("prefix");
+        String notPlayer = bpLobby.plugin.getConfig().getString("messages.fly.not-player");
+
         if(!(sender instanceof Player)){
-            sender.sendMessage("Tylko gracz może latać!");
+            sender.sendMessage(IridiumColorAPI.process(prefix + notPlayer));
             return true;
         }
+
+        String playerOn = bpLobby.plugin.getConfig().getString("messages.fly.player.on");
+        String playerOff = bpLobby.plugin.getConfig().getString("messages.fly.player.off");
+        String selfOn = bpLobby.plugin.getConfig().getString("messages.fly.self.on");
+        String selfOff = bpLobby.plugin.getConfig().getString("messages.fly.self.off");
 
         Player player = (Player) sender;
 
         if(args.length == 0){
             if(player.getAllowFlight()){
-                player.sendMessage("Wyłączyłeś latanie dla gracza" + player.getName() + "!");
+                player.sendMessage(IridiumColorAPI.process(prefix + selfOff));
                 player.setAllowFlight(false);
             }
             else{
-                player.sendMessage("Włączyłeś latanie dla gracza " + player.getName() + "!");
+                player.sendMessage(IridiumColorAPI.process(prefix + selfOn));
                 player.setAllowFlight(true);
             }
         }
@@ -53,12 +64,16 @@ public class Fly implements CommandExecutor, TabCompleter {
             Player target = Bukkit.getPlayer(args[0]);
 
             if(player.getAllowFlight()){
-                player.sendMessage("Wyłączyłeś latanie dla gracza " + target.getName() + "!");
-                target.setAllowFlight(false);
+                assert playerOff != null;
+                assert target != null;
+                player.sendMessage(IridiumColorAPI.process(prefix + playerOff.replace("%player%", target.getName())));
+                player.setAllowFlight(false);
             }
             else{
-                player.sendMessage("Włączyłeś latanie dla gracza " + target.getName() + "!");
-                target.setAllowFlight(true);
+                assert playerOn != null;
+                assert target != null;
+                player.sendMessage(IridiumColorAPI.process(prefix + playerOn.replace("%player%", target.getName())));
+                player.setAllowFlight(true);
             }
         }
 

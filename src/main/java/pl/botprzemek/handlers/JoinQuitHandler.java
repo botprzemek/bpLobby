@@ -7,7 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.Inventory;
 import pl.botprzemek.bpLobby;
 
 public class JoinQuitHandler implements Listener {
@@ -22,7 +21,12 @@ public class JoinQuitHandler implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
 
         Player player = event.getPlayer();
-        event.setJoinMessage(IridiumColorAPI.process(bpLobby.plugin.getConfig().getString("prefix") + player.getDisplayName() + bpLobby.plugin.getConfig().getString("messages.welcome")));
+
+        String prefix = bpLobby.plugin.getConfig().getString("prefix");
+        String welcome = bpLobby.plugin.getConfig().getString("messages.welcome");
+
+        assert welcome != null;
+        event.setJoinMessage(IridiumColorAPI.process(prefix + welcome.replace("%player%", player.getName())));
 
     }
 
@@ -32,8 +36,12 @@ public class JoinQuitHandler implements Listener {
     public void onPlayerJoin(PlayerQuitEvent event) {
 
         Player player = event.getPlayer();
-        event.setQuitMessage(IridiumColorAPI.process(bpLobby.plugin.getConfig().getString("prefix") + player.getDisplayName() + bpLobby.plugin.getConfig().getString("messages.bye")));
 
+        String prefix = bpLobby.plugin.getConfig().getString("prefix");
+        String bye = bpLobby.plugin.getConfig().getString("messages.bye");
+
+        assert bye != null;
+        event.setQuitMessage(IridiumColorAPI.process(prefix + bye.replace("%player%", player.getName())));
 
     }
 }

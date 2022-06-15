@@ -1,7 +1,19 @@
-prefix: "Nazwa.pl"
+prefix: "<GRADIENT:FF80F6>&lbpLobby >>&r "
+
 messages:
-  welcome: "dołączył na serwer!"
-  bye: "wyszedł z serwera!"
+  welcome: "%player% dołączył na serwer!</GRADIENT:FFCC70>"
+  bye: "%player% wyszedł z serwera!</GRADIENT:FFCC70>"
+  config:
+    false: "Złe użycie komendy!</GRADIENT:FFCC70>"
+    reload: "Pomyślnie przeładowano konfigurację!</GRADIENT:FFCC70>"
+  fly:
+    not-player: "Użycie komendy dozwolone tylko dla graczy!</GRADIENT:FFCC70>"
+    player:
+      on: "Włączyłeś latanie dla %player%!</GRADIENT:FFCC70>"
+      off: "Wyłączyłeś latanie dla %player%!</GRADIENT:FFCC70>"
+    self:
+      on: "Włączyłeś latanie!</GRADIENT:FFCC70>"
+      off: "Wyłączyłeś latanie!</GRADIENT:FFCC70>"
 
 fill:
   material: "gray stained glass pane"

@@ -42,9 +42,9 @@
                         <configuration>
                             <filters>
                                 <filter>
-                                    <artifact>pl.botprzemek:bpLobby</artifact>
+                                    <artifact>*:*</artifact>
                                     <excludes>
-                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                        <exclude>META-INF/*.MF</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
