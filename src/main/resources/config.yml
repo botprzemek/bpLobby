@@ -1,3 +1,8 @@
+prefix: "Nazwa.pl"
+messages:
+  welcome: "dołączył na serwer!"
+  bye: "wyszedł z serwera!"
+
 fill:
   material: "gray stained glass pane"
   amount: 1
