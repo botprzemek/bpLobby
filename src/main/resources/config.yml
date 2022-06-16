@@ -17,23 +17,24 @@ join-quit:
 
 messages:
   config:
-    false: "Złe użycie komendy!"
+    false: "Złe użycie komendy! Poprawne użycie:"
     reload: "Pomyślnie przeładowano konfigurację!"
     sound: "entity experience_orb pickup"
   fly:
     not-player: "Użycie komendy dozwolone tylko dla graczy!"
+    not-correct: "Złe użycie komendy! Użyj <GRADIENT:FF80F6>&lnazwy gracza</GRADIENT:FFCC70>&r lub <GRADIENT:FF80F6>&lprędkości</GRADIENT:FFCC70>&r"
     player:
       on: "Włączyłeś latanie dla %player%!"
       off: "Wyłączyłeś latanie dla %player%!"
     self:
       on: "Włączyłeś latanie!"
       off: "Wyłączyłeś latanie!"
-      speed: "Ustawiłeś prędkość lotu na %speed%"
+      speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
     sound: "entity bat takeoff"
 
 commands-aliases:
   lobby:
-    reload: "przeladuj"
+    - "przeladuj|<GRADIENT:FF80F6>&l » Przeładuj</GRADIENT:FFCC70>&r przeładowuje konfigurację pluginu"
 
 super-pick:
   ores:

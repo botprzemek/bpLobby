@@ -18,6 +18,7 @@ public class Fly implements CommandExecutor, TabCompleter {
 
     String prefix = bpLobby.plugin.getConfig().getString("prefix");
     String notPlayer = bpLobby.plugin.getConfig().getString("messages.fly.not-player");
+    String notCorrect = bpLobby.plugin.getConfig().getString("messages.fly.not-correct");
     String playerOn = bpLobby.plugin.getConfig().getString("messages.fly.player.on");
     String playerOff = bpLobby.plugin.getConfig().getString("messages.fly.player.off");
     String selfOn = bpLobby.plugin.getConfig().getString("messages.fly.self.on");
@@ -47,7 +48,8 @@ public class Fly implements CommandExecutor, TabCompleter {
 
         Player player = (Player) sender;
 
-        if(!(sender instanceof Player)){
+        if(sender == null){
+            assert false;
             sender.sendMessage(IridiumColorAPI.process(prefix + notPlayer));
             return true;
         }
@@ -82,19 +84,22 @@ public class Fly implements CommandExecutor, TabCompleter {
 
                 Player target = Bukkit.getPlayer(args[0]);
 
-                assert target != null;
-                if(target.getAllowFlight()){
-                    assert playerOff != null;
-                    player.sendMessage(IridiumColorAPI.process(prefix + playerOff.replace("%player%", target.getName())));
-                    player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-                    player.setAllowFlight(false);
+                if(target == null){
+                    player.sendMessage(IridiumColorAPI.process(prefix + notCorrect));
                 }
 
                 else{
-                    assert playerOn != null;
-                    player.sendMessage(IridiumColorAPI.process(prefix + playerOn.replace("%player%", target.getName())));
-                    player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-                    player.setAllowFlight(true);
+                    if(target.getAllowFlight()){
+                        player.sendMessage(IridiumColorAPI.process(prefix + playerOff.replace("%player%", target.getName())));
+                        player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+                        player.setAllowFlight(false);
+                    }
+
+                    else{
+                        player.sendMessage(IridiumColorAPI.process(prefix + playerOn.replace("%player%", target.getName())));
+                        player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+                        player.setAllowFlight(true);
+                    }
                 }
             }
         }

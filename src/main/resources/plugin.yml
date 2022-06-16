@@ -8,11 +8,9 @@ website: www.botprzemek.pl
 commands:
   fly:
     description: Pozwala graczowi na latanie
-    usage: /fly
     permission: bpLobby.latanie
     permission-message: Nie masz permisji!
     aliases: [f, latanie]
   bplobby:
     aliases: [bpl]
-    usage: /bplobby
 
