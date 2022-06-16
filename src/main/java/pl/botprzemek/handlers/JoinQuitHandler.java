@@ -9,6 +9,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.botprzemek.bpLobby;
 
+import java.util.Objects;
+
 public class JoinQuitHandler implements Listener {
 
     public JoinQuitHandler(bpLobby plugin) {
@@ -24,10 +26,17 @@ public class JoinQuitHandler implements Listener {
 
         String prefix = bpLobby.plugin.getConfig().getString("prefix");
         String welcome = bpLobby.plugin.getConfig().getString("messages.welcome");
+        String title = bpLobby.plugin.getConfig().getString("messages.title.title");
+        String subtitle = bpLobby.plugin.getConfig().getString("messages.title.subtitle");
+        int titleTime = 20 * Integer.parseInt(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("messages.title.time")));
+        int titleFade = 20 * Integer.parseInt(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("messages.title.fade")));
 
+        assert prefix != null;
+        assert title != null;
+        assert subtitle != null;
         assert welcome != null;
         event.setJoinMessage(IridiumColorAPI.process(prefix + welcome.replace("%player%", player.getName())));
-        player.sendTitle("Hello!", "This is a test.", 1, 20, 1);
+        player.sendTitle(IridiumColorAPI.process(title), IridiumColorAPI.process(subtitle.replace("%player%", player.getName())), titleFade, titleTime, titleFade);
 
     }
 

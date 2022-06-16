@@ -1,19 +1,24 @@
-prefix: "<GRADIENT:FF80F6>&lbpLobby >>&r "
+prefix: "<GRADIENT:FF80F6>&lbpLobby »</GRADIENT:FFCC70>&r "
 
 messages:
-  welcome: "%player% dołączył na serwer!</GRADIENT:FFCC70>"
-  bye: "%player% wyszedł z serwera!</GRADIENT:FFCC70>"
+  title:
+    title: "<GRADIENT:FF80F6>&lbpLobby</GRADIENT:FFCC70>"
+    subtitle: "%player% witaj na serwerze!"
+    time: 3
+    fade: 1
+  welcome: "%player% dołączył na serwer!"
+  bye: "%player% wyszedł z serwera!"
   config:
-    false: "Złe użycie komendy!</GRADIENT:FFCC70>"
-    reload: "Pomyślnie przeładowano konfigurację!</GRADIENT:FFCC70>"
+    false: "Złe użycie komendy!"
+    reload: "Pomyślnie przeładowano konfigurację!"
   fly:
-    not-player: "Użycie komendy dozwolone tylko dla graczy!</GRADIENT:FFCC70>"
+    not-player: "Użycie komendy dozwolone tylko dla graczy!"
     player:
-      on: "Włączyłeś latanie dla %player%!</GRADIENT:FFCC70>"
-      off: "Wyłączyłeś latanie dla %player%!</GRADIENT:FFCC70>"
+      on: "Włączyłeś latanie dla %player%!"
+      off: "Wyłączyłeś latanie dla %player%!"
     self:
-      on: "Włączyłeś latanie!</GRADIENT:FFCC70>"
-      off: "Wyłączyłeś latanie!</GRADIENT:FFCC70>"
+      on: "Włączyłeś latanie!"
+      off: "Wyłączyłeś latanie!"
 
 super-pick:
   ores:

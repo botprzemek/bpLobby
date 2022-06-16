@@ -54,6 +54,7 @@ public class Fly implements CommandExecutor, TabCompleter {
                 player.sendMessage(IridiumColorAPI.process(prefix + selfOff));
                 player.setAllowFlight(false);
             }
+
             else{
                 player.sendMessage(IridiumColorAPI.process(prefix + selfOn));
                 player.setAllowFlight(true);
@@ -61,14 +62,24 @@ public class Fly implements CommandExecutor, TabCompleter {
         }
 
         if(args.length == 1){
+
             Player target = Bukkit.getPlayer(args[0]);
 
-            if(player.getAllowFlight()){
+            if(args[0].length() == 1){
+                if(Integer.parseInt(args[0]) > 0 && Integer.parseInt(args[0]) < 6){
+                    float speed = (float) (0.1 * Integer.parseInt(args[0]));
+                    player.sendMessage(IridiumColorAPI.process(prefix + speed));
+                    player.setFlySpeed(speed);
+                }
+            }
+
+            else if(target.getAllowFlight()){
                 assert playerOff != null;
                 assert target != null;
                 player.sendMessage(IridiumColorAPI.process(prefix + playerOff.replace("%player%", target.getName())));
                 player.setAllowFlight(false);
             }
+
             else{
                 assert playerOn != null;
                 assert target != null;
