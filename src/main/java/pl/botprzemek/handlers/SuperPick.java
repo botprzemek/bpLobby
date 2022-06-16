@@ -51,15 +51,19 @@ public class SuperPick implements Listener {
                 Block b8 = new Location(world, x-1, y, z+1).getBlock();
                 Block b9 = new Location(world, x+1, y, z+1).getBlock();
 
+                //world.strikeLightning(location);
+
                 b1.breakNaturally();
                 if(ores.contains(b2.getType()))b2.breakNaturally();
                 if(ores.contains(b3.getType()))b3.breakNaturally();
                 if(ores.contains(b4.getType()))b4.breakNaturally();
                 if(ores.contains(b5.getType()))b5.breakNaturally();
-                if(ores.contains(b6.getType()))b6.breakNaturally();
-                if(ores.contains(b7.getType()))b7.breakNaturally();
-                if(ores.contains(b8.getType()))b8.breakNaturally();
-                if(ores.contains(b9.getType()))b9.breakNaturally();
+                Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> {
+                    if(ores.contains(b6.getType()))b6.breakNaturally();
+                    if(ores.contains(b7.getType()))b7.breakNaturally();
+                    if(ores.contains(b8.getType()))b8.breakNaturally();
+                    if(ores.contains(b9.getType()))b9.breakNaturally();
+                }, 20L);
             }
 
             else if(Objects.equals(facing, "NORTH") || Objects.equals(facing, "SOUTH")){
@@ -73,15 +77,19 @@ public class SuperPick implements Listener {
                 Block b8 = new Location(world, x-1, y-1, z).getBlock();
                 Block b9 = new Location(world, x-1, y+1, z).getBlock();
 
+                //world.strikeLightning(location);
+
                 b1.breakNaturally();
                 if(ores.contains(b2.getType()))b2.breakNaturally();
                 if(ores.contains(b3.getType()))b3.breakNaturally();
                 if(ores.contains(b4.getType()))b4.breakNaturally();
                 if(ores.contains(b5.getType()))b5.breakNaturally();
-                if(ores.contains(b6.getType()))b6.breakNaturally();
-                if(ores.contains(b7.getType()))b7.breakNaturally();
-                if(ores.contains(b8.getType()))b8.breakNaturally();
-                if(ores.contains(b9.getType()))b9.breakNaturally();
+                Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> {
+                    if(ores.contains(b6.getType()))b6.breakNaturally();
+                    if(ores.contains(b7.getType()))b7.breakNaturally();
+                    if(ores.contains(b8.getType()))b8.breakNaturally();
+                    if(ores.contains(b9.getType()))b9.breakNaturally();
+                }, 20L);
             }
 
             else if(Objects.equals(facing, "EAST") || Objects.equals(facing, "WEST")) {
@@ -95,15 +103,19 @@ public class SuperPick implements Listener {
                 Block b8 = new Location(world, x, y - 1, z - 1).getBlock();
                 Block b9 = new Location(world, x, y + 1, z - 1).getBlock();
 
+                //world.strikeLightning(location);
+
                 b1.breakNaturally();
                 if(ores.contains(b2.getType()))b2.breakNaturally();
                 if(ores.contains(b3.getType()))b3.breakNaturally();
                 if(ores.contains(b4.getType()))b4.breakNaturally();
                 if(ores.contains(b5.getType()))b5.breakNaturally();
-                if(ores.contains(b6.getType()))b6.breakNaturally();
-                if(ores.contains(b7.getType()))b7.breakNaturally();
-                if(ores.contains(b8.getType()))b8.breakNaturally();
-                if(ores.contains(b9.getType()))b9.breakNaturally();
+                Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> {
+                    if(ores.contains(b6.getType()))b6.breakNaturally();
+                    if(ores.contains(b7.getType()))b7.breakNaturally();
+                    if(ores.contains(b8.getType()))b8.breakNaturally();
+                    if(ores.contains(b9.getType()))b9.breakNaturally();
+                }, 20L);
             }
         }
     }

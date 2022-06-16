@@ -1,16 +1,25 @@
 prefix: "<GRADIENT:FF80F6>&lbpLobby »</GRADIENT:FFCC70>&r "
 
-messages:
+join-quit:
+  welcome: "%player% dołączył na serwer!"
+  bye: "%player% wyszedł z serwera!"
   title:
     title: "<GRADIENT:FF80F6>&lbpLobby</GRADIENT:FFCC70>"
     subtitle: "%player% witaj na serwerze!"
     time: 3
     fade: 1
-  welcome: "%player% dołączył na serwer!"
-  bye: "%player% wyszedł z serwera!"
+    sound: "entity experience_orb pickup"
+  firework:
+    color: "#ff80f6"
+    fade: "#ffcc70"
+    shape: "star"
+    time: 0
+
+messages:
   config:
     false: "Złe użycie komendy!"
     reload: "Pomyślnie przeładowano konfigurację!"
+    sound: "entity experience_orb pickup"
   fly:
     not-player: "Użycie komendy dozwolone tylko dla graczy!"
     player:
@@ -19,6 +28,12 @@ messages:
     self:
       on: "Włączyłeś latanie!"
       off: "Wyłączyłeś latanie!"
+      speed: "Ustawiłeś prędkość lotu na %speed%"
+    sound: "entity bat takeoff"
+
+commands-aliases:
+  lobby:
+    reload: "przeladuj"
 
 super-pick:
   ores:
