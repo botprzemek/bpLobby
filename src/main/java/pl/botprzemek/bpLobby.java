@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.commands.Fly;
 import pl.botprzemek.commands.Lobby;
 import pl.botprzemek.handlers.JoinQuit;
+import pl.botprzemek.handlers.LaunchPad;
 import pl.botprzemek.handlers.SuperPick;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public final class bpLobby extends JavaPlugin {
         //Objects.requireNonNull(this.getCommand("tp")).setExecutor(new Teleport());
 
         new JoinQuit(this);
+        new LaunchPad(this);
 
         List<String> oreList = this.getConfig().getStringList("super-pick.ores");
 

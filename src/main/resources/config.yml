@@ -31,10 +31,19 @@ messages:
       off: "Wyłączyłeś latanie!"
       speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
     sound: "entity bat takeoff"
+  launch-pad:
+    activate: "Ziuuum!"
 
 commands-aliases:
   lobby:
     - "przeladuj|<GRADIENT:FF80F6>&l » Przeładuj</GRADIENT:FFCC70>&r przeładowuje konfigurację pluginu"
+
+launch-pad:
+  enable: true
+  material: "redstone block"
+  activator: "stone pressure plate"
+  power: 3
+  max: 2
 
 super-pick:
   ores:

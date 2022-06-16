@@ -29,9 +29,9 @@ public class JoinQuit implements Listener {
     String fireworkShape = bpLobby.plugin.getConfig().getString("join-quit.firework.shape");
     Color fireworkColor = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("join-quit.firework.color")).replace("#", "")), 16));
     Color fireworkFade = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("join-quit.firework.fade")).replace("#", "")), 16));
-    int fireworkTime = Integer.parseInt(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("join-quit.firework.time")));
-    int titleTime = 20 * Integer.parseInt(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("join-quit.title.time")));
-    int titleFade = 20 * Integer.parseInt(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("join-quit.title.fade")));
+    int fireworkTime = bpLobby.plugin.getConfig().getInt("join-quit.firework.time");
+    int titleTime = 20 * bpLobby.plugin.getConfig().getInt("join-quit.title.time");
+    int titleFade = 20 * bpLobby.plugin.getConfig().getInt("join-quit.title.fade");
 
     // JOIN
 
