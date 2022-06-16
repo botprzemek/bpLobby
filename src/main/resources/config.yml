@@ -15,6 +15,17 @@ messages:
       on: "Włączyłeś latanie!</GRADIENT:FFCC70>"
       off: "Wyłączyłeś latanie!</GRADIENT:FFCC70>"
 
+super-pick:
+  ores:
+    - stone
+    - iron ore
+    - coal ore
+    - gold ore
+    - diamond ore
+    - emerald ore
+    - lapis ore
+    - copper ore
+
 fill:
   material: "gray stained glass pane"
   amount: 1

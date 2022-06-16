@@ -27,6 +27,7 @@ public class JoinQuitHandler implements Listener {
 
         assert welcome != null;
         event.setJoinMessage(IridiumColorAPI.process(prefix + welcome.replace("%player%", player.getName())));
+        player.sendTitle("Hello!", "This is a test.", 1, 20, 1);
 
     }
 
