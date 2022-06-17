@@ -44,6 +44,7 @@ launch-pad:
   activator: "stone pressure plate"
   power: 3
   max: 2
+  sound: "block piston contract"
 
 super-pick:
   ores:
