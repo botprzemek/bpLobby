@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.commands.Fly;
 import pl.botprzemek.commands.Lobby;
+import pl.botprzemek.commands.Speed;
 import pl.botprzemek.handlers.JoinQuit;
 import pl.botprzemek.handlers.LaunchPad;
 import pl.botprzemek.handlers.SuperPick;
@@ -28,6 +29,7 @@ public final class bpLobby extends JavaPlugin {
 
         Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
         Objects.requireNonNull(this.getCommand("fly")).setExecutor(new Fly());
+        Objects.requireNonNull(this.getCommand("speed")).setExecutor(new Speed());
         //Objects.requireNonNull(this.getCommand("tp")).setExecutor(new Teleport());
 
         new JoinQuit(this);

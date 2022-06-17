@@ -32,6 +32,12 @@
 2. Set speed :heavy_check_mark:
 3. Player ON/OFF :heavy_check_mark:<br>
 
+## Speed command 2/3
+
+1. Message :heavy_check_mark:
+2. Set speed :heavy_check_mark:
+3. Set speed for player :heavy_check_mark:<br>
+
 ## Gamemode command 0/0
 
 1. Message :x:
