@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby;
+import pl.botprzemek.methods.FlyingSpeed;
+import pl.botprzemek.methods.WalkingSpeed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +31,24 @@ public class Fly implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 
-        if(args.length == 1) {
+        if (args.length == 1) {
+
+            List<String> arguments = new ArrayList<>();
+
+            arguments.add("1");
+            arguments.add("2");
+            arguments.add("3");
+            arguments.add("4");
+            arguments.add("on");
+            arguments.add("off");
+
+            return arguments;
+
+        } else if (args.length == 2) {
 
             List<String> playerNames = new ArrayList<>();
 
-            for(Player player : Bukkit.getOnlinePlayers()) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
                 playerNames.add(player.getName());
             }
 
@@ -44,64 +59,86 @@ public class Fly implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String [] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Player player = (Player) sender;
 
-        if(sender == null){
-            assert false;
-            sender.sendMessage(IridiumColorAPI.process(prefix + notPlayer));
-            return true;
+        if (args.length == 0) {
+
+            player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
+
         }
 
-        if(args.length == 0){
-            if(player.getAllowFlight()){
-                player.sendMessage(IridiumColorAPI.process(prefix + selfOff));
+        if (args.length == 1) {
+
+            if (args[0].length() == 1) {
+
+                int speed = Integer.parseInt(args[0]);
+                float flyingSpeed = new FlyingSpeed().setFlySpeed(player, speed);
+                player.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%speed%", args[0])));
                 player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-                player.setAllowFlight(false);
+                player.setFlySpeed(flyingSpeed);
+
             }
 
-            else{
+            else if (args[0].equals("on")) {
+
                 player.sendMessage(IridiumColorAPI.process(prefix + selfOn));
                 player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
                 player.setAllowFlight(true);
+
             }
+
+            else if (args[0].equals("off")) {
+
+                player.sendMessage(IridiumColorAPI.process(prefix + selfOff));
+                player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+                player.setAllowFlight(false);
+
+            }
+
         }
 
-        if(args.length == 1){
+        if (args.length == 2) {
 
-            if(args[0].length() == 1){
-                if(Integer.parseInt(args[0]) > 0 && Integer.parseInt(args[0]) < 6){
-                    float speed = (float) (0.1 * Integer.parseInt(args[0]));
-                    String speedString = String.valueOf(10 * speed);
-                    player.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%speed%", speedString)));
-                    player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-                    player.setFlySpeed(speed);
-                }
+            Player target = Bukkit.getPlayer(args[1]);
+
+            if (target == null) {
+
+                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
+
             }
 
-            else {
+            if (args[0].length() == 1 && target != null) {
 
-                Player target = Bukkit.getPlayer(args[0]);
+                int speed = Integer.parseInt(args[0]);
+                float flyingSpeed = new FlyingSpeed().setFlySpeed(target, speed);
 
-                if(target == null){
-                    player.sendMessage(IridiumColorAPI.process(prefix + notCorrect));
-                }
+                target.setWalkSpeed(flyingSpeed);
+                player.sendMessage(IridiumColorAPI.process(prefix + playerOn.replace("%player%", target.getName()).replace("%speed%", args[0])));
+                if(!player.equals(target)) target.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%player%", player.getName()).replace("%speed%", args[0])));
+                target.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
 
-                else{
-                    if(target.getAllowFlight()){
-                        player.sendMessage(IridiumColorAPI.process(prefix + playerOff.replace("%player%", target.getName())));
-                        player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-                        player.setAllowFlight(false);
-                    }
-
-                    else{
-                        player.sendMessage(IridiumColorAPI.process(prefix + playerOn.replace("%player%", target.getName())));
-                        player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-                        player.setAllowFlight(true);
-                    }
-                }
             }
+
+            else if(args[0].equals("on") && target != null) {
+
+                if(!player.equals(target)) player.sendMessage(IridiumColorAPI.process(prefix + playerOn.replace("%player%", target.getName()).replace("%speed%", args[0])));
+                target.sendMessage(IridiumColorAPI.process(prefix + selfOn.replace("%player%", player.getName()).replace("%speed%", args[0])));
+                target.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+                player.setAllowFlight(true);
+
+            }
+
+            else if(args[0].equals("off") && target != null) {
+
+                if(!player.equals(target)) player.sendMessage(IridiumColorAPI.process(prefix + playerOff.replace("%player%", target.getName()).replace("%speed%", args[0])));
+                target.sendMessage(IridiumColorAPI.process(prefix + selfOff.replace("%player%", player.getName()).replace("%speed%", args[0])));
+                target.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+                player.setAllowFlight(false);
+
+            }
+
         }
 
         return true;

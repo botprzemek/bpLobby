@@ -19,6 +19,7 @@ public class Speed implements CommandExecutor, TabCompleter {
 
     String prefix = bpLobby.plugin.getConfig().getString("prefix");
     String notCorrect = bpLobby.plugin.getConfig().getString("messages.speed.not-correct");
+    String useSpeed = bpLobby.plugin.getConfig().getString("messages.speed.self.use");
     String selfSpeed = bpLobby.plugin.getConfig().getString("messages.speed.self.set");
     String playerSpeed = bpLobby.plugin.getConfig().getString("messages.speed.player.set");
     String sound = Objects.requireNonNull(bpLobby.plugin.getConfig().getString("messages.speed.sound")).toUpperCase().replace(' ', '_');
@@ -34,7 +35,6 @@ public class Speed implements CommandExecutor, TabCompleter {
             arguments.add("2");
             arguments.add("3");
             arguments.add("4");
-            arguments.add("5");
 
             return arguments;
 
@@ -56,48 +56,41 @@ public class Speed implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         Player player = (Player) sender;
-        String usedCommand = String.valueOf(command);
 
         if (args.length == 0) {
-            player.sendMessage(IridiumColorAPI.process(prefix + notCorrect));
+            player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
         }
 
-        else if (args.length == 1) {
+        if (args.length == 1) {
 
             if (args[0].length() == 1) {
                 int speed = Integer.parseInt(args[0]);
                 float walkingSpeed = new WalkingSpeed().setWalkSpeed(player, speed);
+                player.sendMessage(IridiumColorAPI.process(prefix + useSpeed.replace("%speed%", args[0])));
                 player.setWalkSpeed(walkingSpeed);
-            }
-
-            else {
-                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect));
+                player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
             }
 
         }
 
-        else if (args.length == 2) {
+        if (args.length == 2) {
 
-            Player target = Bukkit.getPlayer(args[0]);
+            Player target = Bukkit.getPlayer(args[1]);
 
-            if (args[0].length() == 1) {
+            if (args[0].length() == 1 && target != null) {
 
-                if(target == null){
-                    player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command", command)));
-                }
-
-                else{
                     int speed = Integer.parseInt(args[0]);
                     float walkingSpeed = new WalkingSpeed().setWalkSpeed(target, speed);
+
                     target.setWalkSpeed(walkingSpeed);
-                    player.sendMessage(IridiumColorAPI.process(prefix + playerSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
+                    if(!player.equals(target)) player.sendMessage(IridiumColorAPI.process(prefix + playerSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
                     target.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
-                    target.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-                }
+                    target.playSound(target.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+
             }
 
             else {
-                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect));
+                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
             }
 
         }

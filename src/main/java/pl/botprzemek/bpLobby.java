@@ -8,6 +8,7 @@ import pl.botprzemek.commands.Lobby;
 import pl.botprzemek.commands.Speed;
 import pl.botprzemek.handlers.JoinQuit;
 import pl.botprzemek.handlers.LaunchPad;
+import pl.botprzemek.handlers.SpikesTrap;
 import pl.botprzemek.handlers.SuperPick;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public final class bpLobby extends JavaPlugin {
 
         new JoinQuit(this);
         new LaunchPad(this);
+        new SpikesTrap(this);
 
         List<String> oreList = this.getConfig().getStringList("super-pick.ores");
 

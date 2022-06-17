@@ -22,10 +22,11 @@ messages:
     sound: "entity experience_orb pickup"
   fly:
     not-player: "Użycie komendy dozwolone tylko dla graczy!"
-    not-correct: "Złe użycie komendy! Użyj \n<GRADIENT:FF80F6>&lnazwy gracza</GRADIENT:FFCC70>&r lub <GRADIENT:FF80F6>&lprędkości</GRADIENT:FFCC70>&r"
+    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
     player:
       on: "Włączyłeś latanie dla %player%!"
       off: "Wyłączyłeś latanie dla %player%!"
+      speed: "Ustawiłeś prędkość chodzenia<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
     self:
       on: "Włączyłeś latanie!"
       off: "Wyłączyłeś latanie!"
@@ -34,12 +35,15 @@ messages:
   speed:
     not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
     self:
-      set: "Ustawiłeś prędkość chodzenia<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70> dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+      use: "Ustawiłeś prędkość chodzenia na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
+      set: "Ustawiłeś prędkość chodzenia<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
     player:
-      set: "Ustawiono prędkość chodzenia na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70> przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+      set: "Ustawiono prędkość chodzenia na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
     sound: "block beacon activate"
   launch-pad:
     activate: "Ziuuum!"
+  spikes-trap:
+    activate: "Ałć! Wszedłeś na pułapkę!"
 
 commands-aliases:
   lobby:
@@ -52,6 +56,17 @@ launch-pad:
   power: 3
   max: 2
   sound: "block piston contract"
+
+spikes-trap:
+  enable: true
+  activator: "small amethyst bud"
+  power: 1
+  sound: "entity player hurt"
+  effect:
+    enable: true
+    effect: "slow"
+    duration: 10
+    strength: 2
 
 super-pick:
   ores:
