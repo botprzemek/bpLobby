@@ -20,6 +20,7 @@ public class LaunchPad implements Listener {
     }
 
     float launchPadPower = bpLobby.plugin.getConfig().getInt("launch-pad.power");
+    float launchPadPitch = Float.parseFloat(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("launch-pad.pitch")).replace(",", "."));
     int launchPadMax = bpLobby.plugin.getConfig().getInt("launch-pad.max");
     int wait = 0;
     Boolean launchPadEnable = bpLobby.plugin.getConfig().getBoolean("launch-pad.enable");
@@ -43,7 +44,7 @@ public class LaunchPad implements Listener {
                 if(wait == 0) {
                     player.setVelocity(location.getDirection().multiply(launchPadPower).setY(launchPadMax));
                     player.sendMessage(IridiumColorAPI.process(prefix + launchPadMessage));
-                    player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+                    player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, launchPadPitch);
                     ++wait;
                 }
                 Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> { wait = 0; }, 10L);

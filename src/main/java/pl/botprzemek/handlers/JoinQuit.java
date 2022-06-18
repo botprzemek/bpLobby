@@ -1,17 +1,20 @@
 package pl.botprzemek.handlers;
 
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
+import org.bukkit.*;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.profile.PlayerProfile;
 import pl.botprzemek.bpLobby;
+import pl.botprzemek.methods.FlyingSpeed;
+import pl.botprzemek.methods.PlayerHead;
 
 import java.util.Objects;
 
@@ -54,6 +57,9 @@ public class JoinQuit implements Listener {
                 .build());
         fireworkMeta.setPower(fireworkTime);
         firework.setFireworkMeta(fireworkMeta);
+
+        ItemStack item = new PlayerHead().getPlayerHead(player.getName());
+        player.getInventory().setItemInMainHand(item);
 
     }
 

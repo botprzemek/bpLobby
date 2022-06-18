@@ -23,6 +23,7 @@ public class Fly implements CommandExecutor, TabCompleter {
     String notCorrect = bpLobby.plugin.getConfig().getString("messages.fly.not-correct");
     String playerOn = bpLobby.plugin.getConfig().getString("messages.fly.player.on");
     String playerOff = bpLobby.plugin.getConfig().getString("messages.fly.player.off");
+    String playerSpeed = bpLobby.plugin.getConfig().getString("messages.fly.player.speed");
     String selfOn = bpLobby.plugin.getConfig().getString("messages.fly.self.on");
     String selfOff = bpLobby.plugin.getConfig().getString("messages.fly.self.off");
     String selfSpeed = bpLobby.plugin.getConfig().getString("messages.fly.self.speed");
@@ -30,6 +31,11 @@ public class Fly implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+
+        if (!(sender instanceof Player)) {
+            Bukkit.getLogger().info(notPlayer);
+            return null;
+        }
 
         if (args.length == 1) {
 
@@ -61,13 +67,14 @@ public class Fly implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        if (!(sender instanceof Player)) {
+            Bukkit.getLogger().info(notPlayer);
+            return false;
+        }
+
         Player player = (Player) sender;
 
-        if (args.length == 0) {
-
-            player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
-
-        }
+        if (args.length == 0) player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
 
         if (args.length == 1) {
 
@@ -103,11 +110,7 @@ public class Fly implements CommandExecutor, TabCompleter {
 
             Player target = Bukkit.getPlayer(args[1]);
 
-            if (target == null) {
-
-                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
-
-            }
+            if (target == null) player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
 
             if (args[0].length() == 1 && target != null) {
 
@@ -115,8 +118,8 @@ public class Fly implements CommandExecutor, TabCompleter {
                 float flyingSpeed = new FlyingSpeed().setFlySpeed(target, speed);
 
                 target.setWalkSpeed(flyingSpeed);
-                player.sendMessage(IridiumColorAPI.process(prefix + playerOn.replace("%player%", target.getName()).replace("%speed%", args[0])));
-                if(!player.equals(target)) target.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%player%", player.getName()).replace("%speed%", args[0])));
+                if(!player.equals(target)) player.sendMessage(IridiumColorAPI.process(prefix + playerSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
+                target.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%player%", player.getName()).replace("%speed%", args[0])));
                 target.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
 
             }

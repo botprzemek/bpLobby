@@ -18,6 +18,7 @@ import java.util.Objects;
 public class Speed implements CommandExecutor, TabCompleter {
 
     String prefix = bpLobby.plugin.getConfig().getString("prefix");
+    String notPlayer = bpLobby.plugin.getConfig().getString("messages.speed.not-player");
     String notCorrect = bpLobby.plugin.getConfig().getString("messages.speed.not-correct");
     String useSpeed = bpLobby.plugin.getConfig().getString("messages.speed.self.use");
     String selfSpeed = bpLobby.plugin.getConfig().getString("messages.speed.self.set");
@@ -26,6 +27,11 @@ public class Speed implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+
+        if (!(sender instanceof Player)) {
+            Bukkit.getLogger().info(notPlayer);
+            return null;
+        }
 
         if (args.length == 1) {
 
@@ -54,6 +60,11 @@ public class Speed implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        if (!(sender instanceof Player)) {
+            Bukkit.getLogger().info(notPlayer);
+            return false;
+        }
 
         Player player = (Player) sender;
 

@@ -33,6 +33,7 @@ messages:
       speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
     sound: "entity bat takeoff"
   speed:
+    not-player: "Użycie komendy dozwolone tylko dla graczy!"
     not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
     self:
       use: "Ustawiłeś prędkość chodzenia na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
@@ -55,7 +56,8 @@ launch-pad:
   activator: "stone pressure plate"
   power: 3
   max: 2
-  sound: "block piston contract"
+  sound: "entity dragon_fireball explode"
+  pitch: 1.75
 
 spikes-trap:
   enable: true
