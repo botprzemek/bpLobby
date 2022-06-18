@@ -28,6 +28,7 @@ public final class bpLobby extends JavaPlugin {
         Bukkit.getLogger().info("Starting bpLobby by botprzemek");
 
         this.saveDefaultConfig();
+        plugin = this;
 
         Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
         Objects.requireNonNull(this.getCommand("fly")).setExecutor(new Fly());
@@ -36,8 +37,7 @@ public final class bpLobby extends JavaPlugin {
 
         new JoinQuit(this);
 
-        boolean launchPadEnable = this.getConfig().getBoolean("launch-pad.enable");
-        if(launchPadEnable) new LaunchPad(this);
+        if(this.getConfig().getBoolean("launch-pad.enable")) new LaunchPad(this);
 
 
         new SpikesTrap(this);
