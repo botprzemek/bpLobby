@@ -8,22 +8,23 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby;
 import pl.botprzemek.methods.WalkingSpeed;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static pl.botprzemek.bpLobby.plugin;
+
 public class Speed implements CommandExecutor, TabCompleter {
 
-    String prefix = bpLobby.plugin.getConfig().getString("prefix");
-    String notPlayer = bpLobby.plugin.getConfig().getString("messages.speed.not-player");
-    String notCorrect = bpLobby.plugin.getConfig().getString("messages.speed.not-correct");
-    String useSpeed = bpLobby.plugin.getConfig().getString("messages.speed.self.use");
-    String selfSpeed = bpLobby.plugin.getConfig().getString("messages.speed.self.set");
-    String playerSpeed = bpLobby.plugin.getConfig().getString("messages.speed.player.set");
-    String sound = Objects.requireNonNull(bpLobby.plugin.getConfig().getString("messages.speed.sound")).toUpperCase().replace(' ', '_');
+    String prefix = plugin.getConfig().getString("prefix");
+    String notPlayer = plugin.getConfig().getString("messages.speed.not-player");
+    String notCorrect = plugin.getConfig().getString("messages.speed.not-correct");
+    String useSpeed = plugin.getConfig().getString("messages.speed.self.use");
+    String selfSpeed = plugin.getConfig().getString("messages.speed.self.set");
+    String playerSpeed = plugin.getConfig().getString("messages.speed.player.set");
+    String sound = Objects.requireNonNull(plugin.getConfig().getString("messages.speed.sound")).toUpperCase().replace(' ', '_');
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {

@@ -14,13 +14,15 @@ import pl.botprzemek.bpLobby;
 import java.util.List;
 import java.util.Objects;
 
+import static pl.botprzemek.bpLobby.plugin;
+
 public class SuperPick implements Listener {
 
     public SuperPick(bpLobby plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    List<Material> ores = bpLobby.plugin.ores;
+    List<Material> ores = plugin.ores;
 
     @EventHandler
     public void onStoneBreak(BlockBreakEvent event) {
@@ -58,7 +60,7 @@ public class SuperPick implements Listener {
                 if(ores.contains(b3.getType()))b3.breakNaturally();
                 if(ores.contains(b4.getType()))b4.breakNaturally();
                 if(ores.contains(b5.getType()))b5.breakNaturally();
-                Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> {
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
                     if(ores.contains(b6.getType()))b6.breakNaturally();
                     if(ores.contains(b7.getType()))b7.breakNaturally();
                     if(ores.contains(b8.getType()))b8.breakNaturally();
@@ -84,7 +86,7 @@ public class SuperPick implements Listener {
                 if(ores.contains(b3.getType()))b3.breakNaturally();
                 if(ores.contains(b4.getType()))b4.breakNaturally();
                 if(ores.contains(b5.getType()))b5.breakNaturally();
-                Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> {
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
                     if(ores.contains(b6.getType()))b6.breakNaturally();
                     if(ores.contains(b7.getType()))b7.breakNaturally();
                     if(ores.contains(b8.getType()))b8.breakNaturally();
@@ -110,7 +112,7 @@ public class SuperPick implements Listener {
                 if(ores.contains(b3.getType()))b3.breakNaturally();
                 if(ores.contains(b4.getType()))b4.breakNaturally();
                 if(ores.contains(b5.getType()))b5.breakNaturally();
-                Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> {
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
                     if(ores.contains(b6.getType()))b6.breakNaturally();
                     if(ores.contains(b7.getType()))b7.breakNaturally();
                     if(ores.contains(b8.getType()))b8.breakNaturally();

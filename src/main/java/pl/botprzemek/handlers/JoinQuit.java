@@ -10,13 +10,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.profile.PlayerProfile;
 import pl.botprzemek.bpLobby;
-import pl.botprzemek.methods.FlyingSpeed;
 import pl.botprzemek.methods.PlayerHead;
 
 import java.util.Objects;
+
+import static pl.botprzemek.bpLobby.plugin;
 
 public class JoinQuit implements Listener {
 
@@ -24,17 +23,17 @@ public class JoinQuit implements Listener {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    String prefix = bpLobby.plugin.getConfig().getString("prefix");
-    String welcome = bpLobby.plugin.getConfig().getString("join-quit.welcome");
-    String bye = bpLobby.plugin.getConfig().getString("join-quit.bye");
-    String title = bpLobby.plugin.getConfig().getString("join-quit.title.title");
-    String subtitle = bpLobby.plugin.getConfig().getString("join-quit.title.subtitle");
-    String fireworkShape = bpLobby.plugin.getConfig().getString("join-quit.firework.shape");
-    Color fireworkColor = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("join-quit.firework.color")).replace("#", "")), 16));
-    Color fireworkFade = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("join-quit.firework.fade")).replace("#", "")), 16));
-    int fireworkTime = bpLobby.plugin.getConfig().getInt("join-quit.firework.time");
-    int titleTime = 20 * bpLobby.plugin.getConfig().getInt("join-quit.title.time");
-    int titleFade = 20 * bpLobby.plugin.getConfig().getInt("join-quit.title.fade");
+    String prefix = plugin.getConfig().getString("prefix");
+    String welcome = plugin.getConfig().getString("join-quit.welcome");
+    String bye = plugin.getConfig().getString("join-quit.bye");
+    String title = plugin.getConfig().getString("join-quit.title.title");
+    String subtitle = plugin.getConfig().getString("join-quit.title.subtitle");
+    String fireworkShape = plugin.getConfig().getString("join-quit.firework.shape");
+    Color fireworkColor = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(plugin.getConfig().getString("join-quit.firework.color")).replace("#", "")), 16));
+    Color fireworkFade = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(plugin.getConfig().getString("join-quit.firework.fade")).replace("#", "")), 16));
+    int fireworkTime = plugin.getConfig().getInt("join-quit.firework.time");
+    int titleTime = 20 * plugin.getConfig().getInt("join-quit.title.time");
+    int titleFade = 20 * plugin.getConfig().getInt("join-quit.title.fade");
 
     // JOIN
 
@@ -59,7 +58,7 @@ public class JoinQuit implements Listener {
         firework.setFireworkMeta(fireworkMeta);
 
         ItemStack item = new PlayerHead().getPlayerHead(player.getName());
-        player.getInventory().setItemInMainHand(item);
+        player.getInventory().setItem(4, item);
 
     }
 

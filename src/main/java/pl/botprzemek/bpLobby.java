@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.commands.Fly;
 import pl.botprzemek.commands.Lobby;
 import pl.botprzemek.commands.Speed;
+import pl.botprzemek.commands.Teleport;
 import pl.botprzemek.handlers.JoinQuit;
 import pl.botprzemek.handlers.LaunchPad;
 import pl.botprzemek.handlers.SpikesTrap;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 public final class bpLobby extends JavaPlugin {
 
+
     public static bpLobby plugin;
     public List<Material> ores = new ArrayList<>();
 
@@ -26,7 +28,6 @@ public final class bpLobby extends JavaPlugin {
         Bukkit.getLogger().info("Starting bpLobby by botprzemek");
 
         this.saveDefaultConfig();
-        plugin = this;
 
         Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
         Objects.requireNonNull(this.getCommand("fly")).setExecutor(new Fly());
@@ -34,7 +35,11 @@ public final class bpLobby extends JavaPlugin {
         //Objects.requireNonNull(this.getCommand("tp")).setExecutor(new Teleport());
 
         new JoinQuit(this);
-        new LaunchPad(this);
+
+        boolean launchPadEnable = this.getConfig().getBoolean("launch-pad.enable");
+        if(launchPadEnable) new LaunchPad(this);
+
+
         new SpikesTrap(this);
 
         List<String> oreList = this.getConfig().getStringList("super-pick.ores");

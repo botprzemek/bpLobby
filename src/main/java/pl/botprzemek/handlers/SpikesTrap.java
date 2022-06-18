@@ -12,23 +12,25 @@ import pl.botprzemek.bpLobby;
 
 import java.util.Objects;
 
+import static pl.botprzemek.bpLobby.plugin;
+
 public class SpikesTrap implements Listener {
 
     public SpikesTrap(bpLobby plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    double spikesTrapPower = bpLobby.plugin.getConfig().getDouble("spikes-trap.power");
+    double spikesTrapPower = plugin.getConfig().getDouble("spikes-trap.power");
     int wait = 0;
-    int spikesTrapEffectDuration = 20 * bpLobby.plugin.getConfig().getInt("spikes-trap.effect.duration");
-    int spikesTrapEffectStrength = bpLobby.plugin.getConfig().getInt("spikes-trap.effect.strength") - 1;
-    Boolean spikesTrapEnable = bpLobby.plugin.getConfig().getBoolean("spikes-trap.enable");
-    Boolean spikesTrapEffectEnable = bpLobby.plugin.getConfig().getBoolean("spikes-trap.effect.enable");
-    Material spikesTrapActivator = Material.valueOf(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("spikes-trap.activator")).toUpperCase().replace(" ", "_"));
-    PotionEffectType spikesTrapEffect = PotionEffectType.getByName(Objects.requireNonNull(bpLobby.plugin.getConfig().getString("spikes-trap.effect.effect")));
-    String prefix = bpLobby.plugin.getConfig().getString("prefix");
-    String spikesTrapMessage = bpLobby.plugin.getConfig().getString("messages.spikes-trap.activate");
-    String sound = Objects.requireNonNull(bpLobby.plugin.getConfig().getString("spikes-trap.sound")).toUpperCase().replace(' ', '_');
+    int spikesTrapEffectDuration = 20 * plugin.getConfig().getInt("spikes-trap.effect.duration");
+    int spikesTrapEffectStrength = plugin.getConfig().getInt("spikes-trap.effect.strength") - 1;
+    Boolean spikesTrapEnable = plugin.getConfig().getBoolean("spikes-trap.enable");
+    Boolean spikesTrapEffectEnable = plugin.getConfig().getBoolean("spikes-trap.effect.enable");
+    Material spikesTrapActivator = Material.valueOf(Objects.requireNonNull(plugin.getConfig().getString("spikes-trap.activator")).toUpperCase().replace(" ", "_"));
+    PotionEffectType spikesTrapEffect = PotionEffectType.getByName(Objects.requireNonNull(plugin.getConfig().getString("spikes-trap.effect.effect")));
+    String prefix = plugin.getConfig().getString("prefix");
+    String spikesTrapMessage = plugin.getConfig().getString("messages.spikes-trap.activate");
+    String sound = Objects.requireNonNull(plugin.getConfig().getString("spikes-trap.sound")).toUpperCase().replace(' ', '_');
 
     @EventHandler
     public void onWalking(PlayerMoveEvent event){
@@ -57,7 +59,7 @@ public class SpikesTrap implements Listener {
 
                 }
 
-                Bukkit.getScheduler().runTaskLater(bpLobby.plugin, () -> { wait = 0; }, 100L);
+                Bukkit.getScheduler().runTaskLater(plugin, () -> { wait = 0; }, 100L);
             }
         }
     }

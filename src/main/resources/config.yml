@@ -17,7 +17,6 @@ join-quit:
 
 messages:
   config:
-    false: "Złe użycie komendy! Poprawne użycie:"
     reload: "Pomyślnie przeładowano konfigurację!"
     sound: "entity experience_orb pickup"
   fly:
@@ -46,9 +45,12 @@ messages:
   spikes-trap:
     activate: "Ałć! Wszedłeś na pułapkę!"
 
+player-head:
+  name: "<GRADIENT:FF80F6>&lTwoje statystyki</GRADIENT:FFCC70>&r"
+
 commands-aliases:
   lobby:
-    - "przeladuj|<GRADIENT:FF80F6>&l » Przeładuj</GRADIENT:FFCC70>&r przeładowuje konfigurację pluginu"
+    - "przeladuj|Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
 
 launch-pad:
   enable: true

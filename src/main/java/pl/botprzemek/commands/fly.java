@@ -8,26 +8,26 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby;
 import pl.botprzemek.methods.FlyingSpeed;
-import pl.botprzemek.methods.WalkingSpeed;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static pl.botprzemek.bpLobby.plugin;
+
 public class Fly implements CommandExecutor, TabCompleter {
 
-    String prefix = bpLobby.plugin.getConfig().getString("prefix");
-    String notPlayer = bpLobby.plugin.getConfig().getString("messages.fly.not-player");
-    String notCorrect = bpLobby.plugin.getConfig().getString("messages.fly.not-correct");
-    String playerOn = bpLobby.plugin.getConfig().getString("messages.fly.player.on");
-    String playerOff = bpLobby.plugin.getConfig().getString("messages.fly.player.off");
-    String playerSpeed = bpLobby.plugin.getConfig().getString("messages.fly.player.speed");
-    String selfOn = bpLobby.plugin.getConfig().getString("messages.fly.self.on");
-    String selfOff = bpLobby.plugin.getConfig().getString("messages.fly.self.off");
-    String selfSpeed = bpLobby.plugin.getConfig().getString("messages.fly.self.speed");
-    String sound = Objects.requireNonNull(bpLobby.plugin.getConfig().getString("messages.fly.sound")).toUpperCase().replace(' ', '_');
+    String prefix = plugin.getConfig().getString("prefix");
+    String notPlayer = plugin.getConfig().getString("messages.fly.not-player");
+    String notCorrect = plugin.getConfig().getString("messages.fly.not-correct");
+    String playerOn = plugin.getConfig().getString("messages.fly.player.on");
+    String playerOff = plugin.getConfig().getString("messages.fly.player.off");
+    String playerSpeed = plugin.getConfig().getString("messages.fly.player.speed");
+    String selfOn = plugin.getConfig().getString("messages.fly.self.on");
+    String selfOff = plugin.getConfig().getString("messages.fly.self.off");
+    String selfSpeed = plugin.getConfig().getString("messages.fly.self.speed");
+    String sound = Objects.requireNonNull(plugin.getConfig().getString("messages.fly.sound")).toUpperCase().replace(' ', '_');
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {

@@ -8,20 +8,22 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static pl.botprzemek.bpLobby.plugin;
+
 public class Lobby implements CommandExecutor, TabCompleter {
 
-    String prefix = bpLobby.plugin.getConfig().getString("prefix");
-    List<String> lobby = bpLobby.plugin.getConfig().getStringList("commands-aliases.lobby");
+    String prefix = plugin.getConfig().getString("prefix");
+    List<String> lobby = plugin.getConfig().getStringList("commands-aliases.lobby");
     String[] lobbyReload = lobby.get(0).split("\\|");
-    String configFalse = bpLobby.plugin.getConfig().getString("messages.config.false");
-    String configReload = bpLobby.plugin.getConfig().getString("messages.config.reload");
-    String sound = Objects.requireNonNull(bpLobby.plugin.getConfig().getString("messages.config.sound")).toUpperCase().replace(' ', '_');
+    String alias = lobbyReload[0];
+    String usage = lobbyReload[1].replace("%alias%", alias);
+    String configReload = plugin.getConfig().getString("messages.config.reload");
+    String sound = Objects.requireNonNull(plugin.getConfig().getString("messages.config.sound")).toUpperCase().replace(' ', '_');
 
 
     @Override
@@ -31,8 +33,7 @@ public class Lobby implements CommandExecutor, TabCompleter {
 
             List<String> arguments = new ArrayList<>();
 
-            arguments.add(lobbyReload[0]);
-            arguments.add("menu");
+            arguments.add(alias);
 
             return arguments;
 
@@ -59,7 +60,7 @@ public class Lobby implements CommandExecutor, TabCompleter {
 
         if (args.length == 0) {
 
-            player.sendMessage(IridiumColorAPI.process(prefix + configFalse + "\n" + lobbyReload[1]));
+            player.sendMessage(IridiumColorAPI.process(prefix + usage.replace("%command%", label)));
             player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
             return false;
 
@@ -67,8 +68,7 @@ public class Lobby implements CommandExecutor, TabCompleter {
 
         if (Objects.equals(args[0], lobbyReload[0])) {
 
-
-
+            plugin.reloadConfig();
             player.sendMessage(IridiumColorAPI.process(prefix + configReload));
             player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
 
