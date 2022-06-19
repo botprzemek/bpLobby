@@ -32,11 +32,17 @@
 2. Set speed :heavy_check_mark:
 3. Player ON/OFF :heavy_check_mark:<br>
 
-## Speed command 2/3
+## Speed command 3/3
 
 1. Message :heavy_check_mark:
 2. Set speed :heavy_check_mark:
 3. Set speed for player :heavy_check_mark:<br>
+
+## Teleport command 3/3
+
+1. Message :heavy_check_mark:
+2. To player :heavy_check_mark:
+3. Player to another player :heavy_check_mark:<br>
 
 ## Gamemode command 0/0
 
