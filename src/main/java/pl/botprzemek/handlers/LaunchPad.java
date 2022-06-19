@@ -33,6 +33,7 @@ public class LaunchPad implements Listener {
 
     @EventHandler
     public void onWalking(PlayerMoveEvent event){
+
             Player player = event.getPlayer();
             Location location = player.getLocation();
             location.setY(location.getBlockY() - 2);
@@ -40,11 +41,18 @@ public class LaunchPad implements Listener {
             if(!(player.getLocation().getBlock().getType().equals(launchPadActivator) && location.getBlock().getType().equals(launchPadMaterial))) return;
 
             if(wait == 0) {
+
+                plugin.jumpingPlayers.add(player);
                 player.setVelocity(location.getDirection().multiply(launchPadPower).setY(launchPadMax));
                 player.sendMessage(IridiumColorAPI.process(prefix + launchPadMessage));
                 player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, launchPadPitch);
                 ++wait;
+
             }
-            Bukkit.getScheduler().runTaskLater(plugin, () -> { wait = 0; }, 10L);
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+
+                wait = 0;
+
+            }, 10L);
     }
 }

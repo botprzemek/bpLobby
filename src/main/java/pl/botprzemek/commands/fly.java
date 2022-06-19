@@ -90,20 +90,21 @@ public class Fly implements CommandExecutor, TabCompleter {
 
         if (args.length == 1) {
 
-            if (Integer.parseInt(args[0]) > 4) {
-
-                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
-                return false;
-
-            }
-
             if (args[0].length() == 1) {
+
+                if (Integer.parseInt(args[0]) > 4) {
+
+                    player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
+                    return false;
+
+                }
 
                 int speed = Integer.parseInt(args[0]);
                 float flyingSpeed = new FlyingSpeed().setFlySpeed(player, speed);
                 player.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%speed%", args[0])));
                 player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
                 player.setFlySpeed(flyingSpeed);
+                player.setAllowFlight(true);
 
             }
 
@@ -140,6 +141,7 @@ public class Fly implements CommandExecutor, TabCompleter {
                 float flyingSpeed = new FlyingSpeed().setFlySpeed(target, speed);
 
                 target.setWalkSpeed(flyingSpeed);
+                target.setAllowFlight(true);
                 if(!player.equals(target)) player.sendMessage(IridiumColorAPI.process(prefix + playerSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
                 target.sendMessage(IridiumColorAPI.process(prefix + setSpeed.replace("%player%", player.getName()).replace("%speed%", args[0])));
                 target.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);

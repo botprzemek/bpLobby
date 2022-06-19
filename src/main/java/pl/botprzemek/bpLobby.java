@@ -2,6 +2,7 @@ package pl.botprzemek;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.commands.Fly;
 import pl.botprzemek.commands.Lobby;
@@ -11,6 +12,7 @@ import pl.botprzemek.handlers.JoinQuit;
 import pl.botprzemek.handlers.LaunchPad;
 import pl.botprzemek.handlers.SpikesTrap;
 import pl.botprzemek.handlers.SuperPick;
+import pl.botprzemek.methods.LaunchPadFall;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +20,9 @@ import java.util.Objects;
 
 public final class bpLobby extends JavaPlugin {
 
-
     public static bpLobby plugin;
     public List<Material> ores = new ArrayList<>();
+    public ArrayList<Player> jumpingPlayers = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -37,7 +39,10 @@ public final class bpLobby extends JavaPlugin {
 
         new JoinQuit(this);
 
-        if(this.getConfig().getBoolean("launch-pad.enable")) new LaunchPad(this);
+        if(this.getConfig().getBoolean("launch-pad.enable")){
+            new LaunchPad(this);
+            new LaunchPadFall(this);
+        };
 
 
         new SpikesTrap(this);
