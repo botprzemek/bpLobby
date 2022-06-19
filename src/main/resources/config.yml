@@ -40,6 +40,13 @@ messages:
     player:
       set: "Ustawiono prędkość chodzenia na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
     sound: "block beacon activate"
+  teleport:
+    not-player: "Użycie komendy dozwolone tylko dla graczy!"
+    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<gracz 1></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz 2></GRADIENT:FFCC70>&r"
+    self: "Przeniosłeś się gracza<GRADIENT:FF80F6>&l %player% </GRADIENT:FFCC70>"
+    toself: "Nie możesz się przenieść do samego siebie, wypadniesz z multiwersum!"
+    player: "Przeniosłeś gracza<GRADIENT:FF80F6>&l %player% </GRADIENT:FFCC70>&rdo<GRADIENT:FF80F6>&l %target% </GRADIENT:FFCC70>"
+    sound: "entity ender pearl throw"
   launch-pad:
     activate: "Ziuuum!"
   spikes-trap:

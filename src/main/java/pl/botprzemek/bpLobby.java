@@ -33,7 +33,7 @@ public final class bpLobby extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
         Objects.requireNonNull(this.getCommand("fly")).setExecutor(new Fly());
         Objects.requireNonNull(this.getCommand("speed")).setExecutor(new Speed());
-        //Objects.requireNonNull(this.getCommand("tp")).setExecutor(new Teleport());
+        Objects.requireNonNull(this.getCommand("teleport")).setExecutor(new Teleport());
 
         new JoinQuit(this);
 

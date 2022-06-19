@@ -7,10 +7,13 @@ description: botprzemek's Lobby plugin
 website: www.botprzemek.pl
 commands:
   bplobby:
+    description: Pozwala graczowi na zarządzanie Lobby
+    permission: bpLobby.bplobby
+    permission-message: Nie masz permisji!
     aliases: [bpl]
   fly:
     description: Pozwala graczowi na latanie
-    permission: bpLobby.latanie
+    permission: bpLobby.fly
     permission-message: Nie masz permisji!
     aliases: [f, latanie]
   speed:
@@ -18,4 +21,9 @@ commands:
     permission: bpLobby.speed
     permission-message: Nie masz permisji!
     aliases: [s, predkosc]
+  teleport:
+    description: Pozwala graczowi na szybsze poruszanie się
+    permission: bpLobby.teleport
+    permission-message: Nie masz permisji!
+    aliases: [ tp, przenies ]
 
