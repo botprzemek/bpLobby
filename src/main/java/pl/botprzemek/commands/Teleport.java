@@ -62,9 +62,17 @@ public class Teleport implements CommandExecutor, TabCompleter {
 
             Player target = Bukkit.getPlayer(args[0]);
 
+            if (target == null) {
+
+                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
+                return false;
+
+            }
+
             if (target.equals(player)) {
 
                 player.sendMessage(IridiumColorAPI.process(prefix + toSelf));
+                return false;
 
             }
 
