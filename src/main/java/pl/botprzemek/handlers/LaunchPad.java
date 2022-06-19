@@ -53,6 +53,6 @@ public class LaunchPad implements Listener {
 
                 wait = 0;
 
-            }, 10L);
+            }, 5L);
     }
 }

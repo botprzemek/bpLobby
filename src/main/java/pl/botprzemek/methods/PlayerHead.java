@@ -8,6 +8,7 @@ import org.bukkit.profile.PlayerProfile;
 import pl.botprzemek.bpLobby;
 
 public class PlayerHead {
+
     public ItemStack getPlayerHead(String player) {
 
         String playerHeadStatistics = bpLobby.plugin.getConfig().getString("player-head.name");

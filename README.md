@@ -25,6 +25,7 @@
 1. Message :heavy_check_mark:
 2. Fixed double trigger :heavy_check_mark:
 3. Particles :x:<br>
+4. No fall damage on fall
 
 ## Fly command 3/3
 

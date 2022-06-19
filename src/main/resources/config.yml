@@ -55,6 +55,11 @@ messages:
     activate: "Ziuuum!"
   spikes-trap:
     activate: "Ałć! Wszedłeś na pułapkę!"
+  game-mode:
+    names: "Przetrwanie|Kreatywny|Obserwator"
+    not-player: "Użycie komendy dozwolone tylko dla graczy!"
+    set: ""
+    already-set: ""
 
 player-head:
   name: "<GRADIENT:FF80F6>&lTwoje statystyki</GRADIENT:FFCC70>&r"
