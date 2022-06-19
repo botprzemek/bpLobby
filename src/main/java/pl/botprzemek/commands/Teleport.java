@@ -32,8 +32,10 @@ public class Teleport implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
+
             Bukkit.getLogger().info(notPlayer);
             return null;
+
         }
 
         return null;
@@ -42,12 +44,12 @@ public class Teleport implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
+
             Bukkit.getLogger().info(notPlayer);
             return false;
-        }
 
-        Player player = (Player) sender;
+        }
 
         Teleporting teleporting = new Teleporting();
 

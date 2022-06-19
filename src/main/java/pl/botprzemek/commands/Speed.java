@@ -30,8 +30,10 @@ public class Speed implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
+
             Bukkit.getLogger().info(notPlayer);
             return null;
+
         }
 
         if (args.length == 1) {
@@ -45,7 +47,9 @@ public class Speed implements CommandExecutor, TabCompleter {
 
             return arguments;
 
-        } else if (args.length == 2) {
+        }
+
+        else if (args.length == 2) {
 
             List<String> playerNames = new ArrayList<>();
 
@@ -62,25 +66,37 @@ public class Speed implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
+
             Bukkit.getLogger().info(notPlayer);
             return false;
+
         }
 
-        Player player = (Player) sender;
-
         if (args.length == 0) {
+
             player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
+            return false;
+
         }
 
         if (args.length == 1) {
 
+            if (Integer.parseInt(args[0]) > 4) {
+
+                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
+                return false;
+
+            }
+
             if (args[0].length() == 1) {
+
                 int speed = Integer.parseInt(args[0]);
                 float walkingSpeed = new WalkingSpeed().setWalkSpeed(player, speed);
                 player.sendMessage(IridiumColorAPI.process(prefix + useSpeed.replace("%speed%", args[0])));
                 player.setWalkSpeed(walkingSpeed);
                 player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+
             }
 
         }
@@ -89,20 +105,21 @@ public class Speed implements CommandExecutor, TabCompleter {
 
             Player target = Bukkit.getPlayer(args[1]);
 
-            if (args[0].length() == 1 && target != null) {
+            if (target == null) {
+                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
+                return false;
+            }
+
+            if (args[0].length() == 1) {
 
                     int speed = Integer.parseInt(args[0]);
                     float walkingSpeed = new WalkingSpeed().setWalkSpeed(target, speed);
 
                     target.setWalkSpeed(walkingSpeed);
-                    if(!player.equals(target)) player.sendMessage(IridiumColorAPI.process(prefix + playerSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
-                    target.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
+                    if(!player.equals(target)) player.sendMessage(IridiumColorAPI.process(prefix + selfSpeed.replace("%player%", target.getName()).replace("%speed%", args[0])));
+                    target.sendMessage(IridiumColorAPI.process(prefix + playerSpeed.replace("%player%", player.getName()).replace("%speed%", args[0])));
                     target.playSound(target.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
 
-            }
-
-            else {
-                player.sendMessage(IridiumColorAPI.process(prefix + notCorrect.replace("%command%", label)));
             }
 
         }

@@ -23,13 +23,17 @@ messages:
     not-player: "Użycie komendy dozwolone tylko dla graczy!"
     not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
     player:
-      on: "Włączyłeś latanie dla %player%!"
-      off: "Wyłączyłeś latanie dla %player%!"
-      speed: "Ustawiłeś prędkość chodzenia<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+      on: "Włączyłeś latanie dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r!"
+      off: "Wyłączyłeś latanie dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r!"
+      speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
     self:
       on: "Włączyłeś latanie!"
       off: "Wyłączyłeś latanie!"
       speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
+    set:
+      on: "Włączono latanie przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+      off: "Wyłączono latanie przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+      speed: "Ustawiono prędkość lotu na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
     sound: "entity bat takeoff"
   speed:
     not-player: "Użycie komendy dozwolone tylko dla graczy!"
