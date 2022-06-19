@@ -6,7 +6,7 @@
 
 1. Config.yml :heavy_check_mark:
 2. %player% into .getPlayer(); :heavy_check_mark:
-3. Reloading on alias :heavy_check_mark:<br>
+3. Reloading on alias /bpl %alias% :heavy_check_mark:<br>
 
 ## HEX colors and Gradients with IridiumColorAPI and HEX to RGB 2/2
 
@@ -29,20 +29,20 @@
 ## Fly command 3/3
 
 1. Message :heavy_check_mark:
-2. Set speed :heavy_check_mark:
-3. Player ON/OFF :heavy_check_mark:<br>
+2. Set speed /fly {speed} :heavy_check_mark:
+3. Player ON/OFF /fly {speed} {player} :heavy_check_mark:<br>
 
 ## Speed command 3/3
 
 1. Message :heavy_check_mark:
-2. Set speed :heavy_check_mark:
-3. Set speed for player :heavy_check_mark:<br>
+2. Set speed /speed {speed} :heavy_check_mark:
+3. Set speed for player /speed {speed} {player} :heavy_check_mark:<br>
 
 ## Teleport command 3/3
 
 1. Message :heavy_check_mark:
-2. To player :heavy_check_mark:
-3. Player to another player :heavy_check_mark:<br>
+2. To player /tp {player} :heavy_check_mark:
+3. Player to another player /tp {player} {another_player} :heavy_check_mark:<br>
 
 ## Gamemode command 0/0
 
