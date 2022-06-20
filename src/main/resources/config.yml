@@ -56,10 +56,45 @@ messages:
   spikes-trap:
     activate: "Ałć! Wszedłeś na pułapkę!"
   game-mode:
-    names: "Przetrwanie|Kreatywny|Obserwator"
+    names: ["Przetrwanie", "Kreatywny", "Obserwator"]
     not-player: "Użycie komendy dozwolone tylko dla graczy!"
     set: ""
     already-set: ""
+  drop:
+    stone: "Znalazłeś<GRADIENT:FF80F6>&l %amount%x %item%</GRADIENT:FFCC70>&r!"
+
+drop:
+  stone:
+    "0":
+      material: "paper"
+      name: "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>"
+      enhantments:
+        luck: 2
+      chance: 0.1
+      min-amount: 2
+      max-amount: 10
+    "1":
+      material: "paper"
+      name: "<GRADIENT:FF80F6>&lChuj</GRADIENT:FFCC70>"
+      enhantments:
+      chance: 0.2
+      min-amount: 1
+      max-amount: 3
+    "2":
+      material: "paper"
+      name: "<GRADIENT:FF80F6>&lAyo</GRADIENT:FFCC70>"
+      enhantments:
+      chance: 0.3
+      min-amount: 1
+      max-amount: 3
+    "3":
+      material: "paper"
+      name: "<GRADIENT:FF80F6>&lBruh</GRADIENT:FFCC70>"
+      enhantments:
+      chance: 0.4
+      min-amount: 1
+      max-amount: 3
+
 
 player-head:
   name: "<GRADIENT:FF80F6>&lTwoje statystyki</GRADIENT:FFCC70>&r"

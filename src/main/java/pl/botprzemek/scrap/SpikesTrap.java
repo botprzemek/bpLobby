@@ -1,4 +1,4 @@
-package pl.botprzemek.handlers;
+package pl.botprzemek.scrap;
 
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import org.bukkit.*;
