@@ -6,17 +6,20 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Supplier;
 
 public class DropItems {
 
     private final Material material;
     private final String customName;
     private final Map<Enchantment, Integer> enchantmentToLevelMap = new HashMap<>();
+    private List<String> loreList;
     private double chance;
     private int minAmount;
     private int maxAmount;
@@ -46,13 +49,14 @@ public class DropItems {
 
             for (String enchantmentKey : enchantmentsSection.getKeys(false)){
 
-                Enchantment enchantment = Enchantment.getByKey(
-                        NamespacedKey.minecraft(
-                                enchantmentKey.toLowerCase(Locale.ROOT)
-                        )
-                );
+                Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(enchantmentKey.toLowerCase(Locale.ROOT)));
 
-                if (enchantment != null) {
+                if (enchantment == null) {
+
+                    Bukkit.getLogger().info("Enchant is not correct");
+
+                }
+                else {
 
                     int level = enchantmentsSection.getInt(enchantmentKey);
                     enchantmentToLevelMap.put(enchantment, level);
@@ -63,6 +67,8 @@ public class DropItems {
 
         }
 
+        loreList = IridiumColorAPI.process(section.getStringList("lore"));
+
         this.chance = section.getDouble("chance");
         this.minAmount = section.getInt("min-amount");
         this.maxAmount = section.getInt("max-amount");
@@ -71,8 +77,7 @@ public class DropItems {
 
     public boolean shouldDrop(Random random) {
 
-        double num = random.nextDouble();
-        return  num > chance;
+        return random.nextDouble() < chance;
 
     }
 
@@ -96,13 +101,19 @@ public class DropItems {
 
         for (Map.Entry<Enchantment, Integer> enchantEntry : enchantmentToLevelMap.entrySet()) {
 
-            item.addEnchantment(
+            meta.addEnchant(
 
                     enchantEntry.getKey(),
-                    enchantEntry.getValue()
+                    enchantEntry.getValue(),
+                    true
+
             );
 
         }
+
+
+        meta.setLore(loreList);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         item.setItemMeta(meta);
 

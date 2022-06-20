@@ -68,29 +68,30 @@ drop:
     "0":
       material: "paper"
       name: "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>"
-      enhantments:
-        luck: 2
+      enchantments:
+        MENDING: 2
       chance: 0.1
       min-amount: 2
       max-amount: 10
     "1":
       material: "paper"
       name: "<GRADIENT:FF80F6>&lChuj</GRADIENT:FFCC70>"
-      enhantments:
+      enchantments:
+        DURABILITY: 3
       chance: 0.2
       min-amount: 1
       max-amount: 3
     "2":
       material: "paper"
       name: "<GRADIENT:FF80F6>&lAyo</GRADIENT:FFCC70>"
-      enhantments:
+      enchantments:
       chance: 0.3
       min-amount: 1
       max-amount: 3
     "3":
       material: "paper"
       name: "<GRADIENT:FF80F6>&lBruh</GRADIENT:FFCC70>"
-      enhantments:
+      enchantments:
       chance: 0.4
       min-amount: 1
       max-amount: 3

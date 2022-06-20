@@ -13,14 +13,14 @@
 1. IridiumColorAPI.process :heavy_check_mark:
 2. HEX to RGB for fireworks and armor :heavy_check_mark:
 
-## On Join and Quit 3/4
+## On Join and Quit 4/4
 
 1. Message :heavy_check_mark:
 2. Title :heavy_check_mark:
 3. Fireworks :heavy_check_mark:
 4. Particles :heavy_check_mark:<br>
 
-## Launch pad 2/3
+## Launch pad 4/4
 
 1. Message :heavy_check_mark:
 2. Fixed double trigger :heavy_check_mark:
@@ -45,7 +45,14 @@
 2. To player /tp {player} :heavy_check_mark:
 3. Player to another player /tp {player} {another_player} :heavy_check_mark:<br>
 
-## Gamemode command 0/0
+## Drop from Stone 3/3
+
+1. Config loot :heavy_check_mark:
+2. Randomize chance and amount :heavy_check_mark:
+3. Particles and sound on drop :heavy_check_mark:
+
+
+## Gamemode command 1/3
 
 1. Message :x:
 1. Alias :x:
