@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby;
-import pl.botprzemek.methods.DropItems;
+import pl.botprzemek.methods.ItemsGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +29,9 @@ public class StoneDrop implements Listener {
     String prefix = plugin.getConfig().getString("prefix");
     String droppedItem = plugin.getConfig().getString("messages.drop.stone");
 
-    private final List<DropItems> dropListItems = new ArrayList<>();
+    private final List<ItemsGenerator> dropListItems = new ArrayList<>();
 
-    public void dropStoneManager() {
+    public void dropManager() {
 
         ConfigurationSection stoneDrop = plugin.getConfig().getConfigurationSection("drop.stone");
 
@@ -39,7 +39,7 @@ public class StoneDrop implements Listener {
         for (String key : stoneDrop.getKeys(false)) {
 
             ConfigurationSection section = stoneDrop.getConfigurationSection(key);
-            dropListItems.add(new DropItems(section));
+            dropListItems.add(new ItemsGenerator(section));
 
         }
 
@@ -53,7 +53,7 @@ public class StoneDrop implements Listener {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         int randomList = random.nextInt(dropListItems.size());
 
-        DropItems randomItem = dropListItems.get(randomList);
+        ItemsGenerator randomItem = dropListItems.get(randomList);
 
         if (!event.getBlock().getType().equals(Material.STONE)) return;
 
@@ -65,6 +65,7 @@ public class StoneDrop implements Listener {
             ItemStack item = randomItem.makeItem(random);
             player.sendMessage(IridiumColorAPI.process(prefix + droppedItem.replace("%amount%", String.valueOf(item.getAmount())).replace("%item%", Objects.requireNonNull(item.getItemMeta()).getDisplayName())));
             block.getWorld().dropItem(block.getLocation(), item);
+            block.breakNaturally();
 
         }
 

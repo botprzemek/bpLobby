@@ -1,10 +1,12 @@
 package pl.botprzemek.methods;
 
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -16,10 +18,10 @@ public class ItemsGenerator {
     private final Material material;
     private final String customName;
     private final Map<Enchantment, Integer> enchantmentToLevelMap = new HashMap<>();
-
-    private double chance = 0;
-    private int minAmount = 0;
-    private int maxAmount = 0;
+    private List<String> loreList;
+    private double chance;
+    private int minAmount;
+    private int maxAmount;
 
     public ItemsGenerator(ConfigurationSection section) {
 
@@ -27,7 +29,7 @@ public class ItemsGenerator {
 
         try {
 
-            material = Material.valueOf(section.getString("material"));
+            material = Material.valueOf(section.getString("material").toUpperCase().replace(" ", "_"));
 
         }
 
@@ -42,22 +44,29 @@ public class ItemsGenerator {
 
         ConfigurationSection enchantmentsSection = section.getConfigurationSection("enchantments");
 
-        if (enchantmentsSection == null) return;
+        if (enchantmentsSection != null) {
 
-        for (String enchantmentKey : enchantmentsSection.getKeys(false)){
+            for (String enchantmentKey : enchantmentsSection.getKeys(false)){
 
-            Enchantment enchantment = Enchantment.getByKey(
-                    NamespacedKey.minecraft(
-                            enchantmentKey.toLowerCase(Locale.ROOT)
-                    )
-            );
+                Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(enchantmentKey.toLowerCase(Locale.ROOT)));
 
-            if (enchantment == null) return;
+                if (enchantment == null) {
 
-            int level = enchantmentsSection.getInt(enchantmentKey);
-            enchantmentToLevelMap.put(enchantment, level);
+                    Bukkit.getLogger().info("Enchant is not correct");
+
+                }
+                else {
+
+                    int level = enchantmentsSection.getInt(enchantmentKey);
+                    enchantmentToLevelMap.put(enchantment, level);
+
+                }
+
+            }
 
         }
+
+        loreList = IridiumColorAPI.process(section.getStringList("lore"));
 
         this.chance = section.getDouble("chance");
         this.minAmount = section.getInt("min-amount");
@@ -65,7 +74,7 @@ public class ItemsGenerator {
 
     }
 
-    public boolean shouldFill(Random random) {
+    public boolean shouldDrop(Random random) {
 
         return random.nextDouble() < chance;
 
@@ -82,17 +91,28 @@ public class ItemsGenerator {
         assert meta != null;
         meta.setDisplayName(customName);
 
-        if (enchantmentToLevelMap.isEmpty()) return null;
+        if (enchantmentToLevelMap.isEmpty()) {
+
+            item.setItemMeta(meta);
+            return item;
+
+        }
 
         for (Map.Entry<Enchantment, Integer> enchantEntry : enchantmentToLevelMap.entrySet()) {
 
-            item.addEnchantment(
+            meta.addEnchant(
 
                     enchantEntry.getKey(),
-                    enchantEntry.getValue()
+                    enchantEntry.getValue(),
+                    true
+
             );
 
         }
+
+
+        meta.setLore(loreList);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         item.setItemMeta(meta);
 

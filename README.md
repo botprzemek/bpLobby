@@ -2,6 +2,8 @@
 
 ## _botprzemek's Lobby plugin for Spigot 1.18+_<br><br>
 
+!["About"])(https://www.botprzemek.pl/ae546wsne6a/img/about.png)
+
 ## Reading from config and %player% placeholder 3/3
 
 1. Config.yml :heavy_check_mark:
@@ -45,12 +47,12 @@
 2. To player /tp {player} :heavy_check_mark:
 3. Player to another player /tp {player} {another_player} :heavy_check_mark:<br>
 
-## Drop from Stone 3/3
+## Drop from Stone 4/4
 
 1. Config loot :heavy_check_mark:
-2. Randomize chance and amount :heavy_check_mark:
-3. Particles and sound on drop :heavy_check_mark:
-
+2. Material, name, multiple enchants :heavy_check_mark:
+3. Randomize loot, chance and amount :heavy_check_mark:
+4. Particles and sound on drop :heavy_check_mark:<br>
 
 ## Gamemode command 1/3
 

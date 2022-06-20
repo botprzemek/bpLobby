@@ -1,8 +1,6 @@
 package pl.botprzemek;
 
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.commands.*;
@@ -36,7 +34,7 @@ public final class bpLobby extends JavaPlugin {
         new JoinQuit(this);
 
         StoneDrop dropItems = new StoneDrop(this);
-        dropItems.dropStoneManager();
+        dropItems.dropManager();
 
         if(this.getConfig().getBoolean("launch-pad.enable")){
             new LaunchPad(this);
