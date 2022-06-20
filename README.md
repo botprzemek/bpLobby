@@ -18,7 +18,7 @@
 1. Message :heavy_check_mark:
 2. Title :heavy_check_mark:
 3. Fireworks :heavy_check_mark:
-4. Particles :x:<br>
+4. Particles :heavy_check_mark:<br>
 
 ## Launch pad 2/3
 
