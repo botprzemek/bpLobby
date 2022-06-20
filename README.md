@@ -2,7 +2,7 @@
 
 ## _botprzemek's Lobby plugin for Spigot 1.18+_<br><br>
 
-![About])(https://www.botprzemek.pl/ae546wsne6a/img/about.png)
+![About](https://www.botprzemek.pl/ae546wsne6a/img/about.png)
 
 ## Reading from config and %player% placeholder 3/3
 
