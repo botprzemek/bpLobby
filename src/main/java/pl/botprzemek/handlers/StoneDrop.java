@@ -31,7 +31,7 @@ public class StoneDrop implements Listener {
 
     private final List<DropItems> dropListItems = new ArrayList<>();
 
-    public void dropManager() {
+    public void dropStoneManager() {
 
         ConfigurationSection stoneDrop = plugin.getConfig().getConfigurationSection("drop.stone");
 

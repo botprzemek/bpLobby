@@ -36,7 +36,7 @@ public final class bpLobby extends JavaPlugin {
         new JoinQuit(this);
 
         StoneDrop dropItems = new StoneDrop(this);
-        dropItems.dropManager();
+        dropItems.dropStoneManager();
 
         if(this.getConfig().getBoolean("launch-pad.enable")){
             new LaunchPad(this);

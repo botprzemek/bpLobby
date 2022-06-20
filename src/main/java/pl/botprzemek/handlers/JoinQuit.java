@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import pl.botprzemek.bpLobby;
+import pl.botprzemek.methods.FireworkGenerator;
 import pl.botprzemek.methods.ParticleGenerator;
 import pl.botprzemek.methods.PlayerHead;
 
@@ -43,7 +44,9 @@ public class JoinQuit implements Listener {
     int titleTime = 20 * plugin.getConfig().getInt("join-quit.title.time");
     int titleFade = 20 * plugin.getConfig().getInt("join-quit.title.fade");
 
+    FireworkGenerator fireworkGenerator = new FireworkGenerator();
     ParticleGenerator particleGenerator = new ParticleGenerator();
+    PlayerHead playerHead = new PlayerHead();
 
     // JOIN
 
@@ -55,22 +58,12 @@ public class JoinQuit implements Listener {
         event.setJoinMessage(IridiumColorAPI.process(prefix + welcome.replace("%player%", player.getName())));
         player.sendTitle(IridiumColorAPI.process(title), IridiumColorAPI.process(subtitle.replace("%player%", player.getName())), titleFade, titleTime, titleFade);
 
-        Firework firework = player.getWorld().spawn(event.getPlayer().getLocation(), Firework.class);
-        FireworkMeta fireworkMeta = firework.getFireworkMeta();
-        fireworkMeta.addEffect(FireworkEffect.builder()
-                .flicker(false)
-                .trail(true)
-                .with(FireworkEffect.Type.valueOf(fireworkShape.toUpperCase()))
-                .withColor(fireworkColor)
-                .withFade(fireworkFade)
-                .build());
-        fireworkMeta.setPower(fireworkTime);
-        firework.setFireworkMeta(fireworkMeta);
-
-        ItemStack item = new PlayerHead().getPlayerHead(player.getName());
-        player.getInventory().setItem(4, item);
-
+        fireworkGenerator.generateFireworks(event, player, fireworkShape, fireworkColor, fireworkFade, fireworkTime);
         particleGenerator.onSpawnParticle(player);
+
+        ItemStack item = playerHead.getPlayerHead(player.getName());
+
+        player.getInventory().setItem(4, item);
 
     }
 

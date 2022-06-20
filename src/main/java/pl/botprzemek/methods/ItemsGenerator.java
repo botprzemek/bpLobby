@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GenerateItems {
+public class ItemsGenerator {
 
     private final Material material;
     private final String customName;
@@ -21,7 +21,7 @@ public class GenerateItems {
     private int minAmount = 0;
     private int maxAmount = 0;
 
-    public GenerateItems(ConfigurationSection section) {
+    public ItemsGenerator(ConfigurationSection section) {
 
         Material material;
 
