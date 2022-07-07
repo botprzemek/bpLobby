@@ -2,28 +2,19 @@ package pl.botprzemek.handlers;
 
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import org.bukkit.*;
-import org.bukkit.entity.Firework;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import pl.botprzemek.bpLobby;
 import pl.botprzemek.methods.FireworkGenerator;
 import pl.botprzemek.methods.ParticleGenerator;
 import pl.botprzemek.methods.PlayerHead;
 
 import java.util.Objects;
-
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
 import static pl.botprzemek.bpLobby.plugin;
 
 public class JoinQuit implements Listener {
@@ -43,6 +34,7 @@ public class JoinQuit implements Listener {
     int fireworkTime = plugin.getConfig().getInt("join-quit.firework.time");
     int titleTime = 20 * plugin.getConfig().getInt("join-quit.title.time");
     int titleFade = 20 * plugin.getConfig().getInt("join-quit.title.fade");
+    Boolean playerHeadEnable = plugin.getConfig().getBoolean("player-head.enabled");
 
     FireworkGenerator fireworkGenerator = new FireworkGenerator();
     ParticleGenerator particleGenerator = new ParticleGenerator();
@@ -61,9 +53,16 @@ public class JoinQuit implements Listener {
         fireworkGenerator.generateFireworks(event, player, fireworkShape, fireworkColor, fireworkFade, fireworkTime);
         particleGenerator.onSpawnParticle(player);
 
-        ItemStack item = playerHead.getPlayerHead(player.getName());
+        if (!playerHeadEnable) return;
 
-        player.getInventory().setItem(4, item);
+        else {
+
+            ItemStack item = playerHead.getPlayerHead(player.getPlayerProfile());
+            player.getInventory().setItem(4, item);
+
+        }
+
+        //Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(6);
 
     }
 

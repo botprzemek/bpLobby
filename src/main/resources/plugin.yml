@@ -26,4 +26,16 @@ commands:
     permission: bpLobby.teleport
     permission-message: Nie masz permisji!
     aliases: [ tp, przenies ]
+#  lobby-br:
+#    description: Pozwala na wysyłanie wiadomości serwerowych
+#    aliases: [powiedz, wiadomosc]
+#  lobby:
+#    description: Pozwala graczowi na wybór serwera przez gui bądź komendę
+#    aliases: [ server, serwer, wybor ]
+#  drops:
+#    description: Pozwala graczowi na szybsze poruszanie się
+#    permission: bpLobby.teleport
+#    permission-message: Nie masz permisji!
+#    aliases: [ drop, dropy, losowanie ]
+
 

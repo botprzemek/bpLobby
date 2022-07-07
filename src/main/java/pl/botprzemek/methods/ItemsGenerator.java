@@ -80,10 +80,10 @@ public class ItemsGenerator {
 
     }
 
-    public ItemStack makeItem(ThreadLocalRandom random) {
+    public ItemStack makeItem(ThreadLocalRandom random, int multiplier) {
 
         int amount = random.nextInt(minAmount, maxAmount+1);
-        ItemStack item = new ItemStack(material, amount);
+        ItemStack item = new ItemStack(material, amount*multiplier);
         ItemMeta meta = item.getItemMeta();
 
         if (customName == null) return null;

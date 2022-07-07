@@ -1,19 +1,19 @@
-package pl.botprzemek.scrap;
-
-public class onEnabee {
-
-    public void onEnaebee() {
-
-//        public List<Material> ores = new ArrayList<>();
+//package pl.botprzemek.scrap;
 //
-//        new SpikesTrap(this);
+//public class onEnabee {
 //
-//        List<String> oreList = this.getConfig().getStringList("super-pick.ores");
+//    public void onEnaebee() {
 //
-//        for(String ore : oreList) {
-//            ores.add(Material.getMaterial(ore.toUpperCase().replace(" ", "_")));
-//        }
-//
-//        new SuperPick(this);
-    }
-}
+////        public List<Material> ores = new ArrayList<>();
+////
+////        new SpikesTrap(this);
+////
+////        List<String> oreList = this.getConfig().getStringList("super-pick.ores");
+////
+////        for(String ore : oreList) {
+////            ores.add(Material.getMaterial(ore.toUpperCase().replace(" ", "_")));
+////        }
+////
+////        new SuperPick(this);
+//    }
+//}

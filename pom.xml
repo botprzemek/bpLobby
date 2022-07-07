@@ -6,7 +6,7 @@
 
     <groupId>bpLobby</groupId>
     <artifactId>bpLobby</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3</version>
     <packaging>jar</packaging>
 
     <name>bpLobby</name>
@@ -27,6 +27,9 @@
                 <configuration>
                     <source>16</source>
                     <target>16</target>
+                    <excludes>
+                        <exclude>pl.botprzemek.scrap/*.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -49,7 +52,7 @@
                                 </filter>
                             </filters>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>H:\server\server\plugins\bpLobby.jar</outputFile>
+                            <outputFile>H:\server\server\plugins\${project.name}-${project.version}.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
@@ -69,16 +72,30 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
+            <id>minecraft-repo</id>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
+        <repository>
             <id>2lstudios</id>
             <url>https://ci.2lstudios.dev/plugin/repository/everything/</url>
         </repository>
+<!--        <repository>-->
+<!--            <id>botprzemek</id>-->
+<!--            <url>https://repo.botprzemek.pl/api/com</url>-->
+<!--        </repository>-->
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.18.1-R0.1-SNAPSHOT</version>
+            <version>1.18.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>3.5.41</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -87,5 +104,11 @@
             <version>1.0.6</version>
             <scope>compile</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.hideitem</groupId>-->
+<!--            <artifactId>HideItem</artifactId>-->
+<!--            <version>3.0.4</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
     </dependencies>
 </project>

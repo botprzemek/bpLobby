@@ -114,3 +114,4 @@ buildNumber.properties
 
 # Common working directory
 run/
+/src/main/java/pl/botprzemek/scrap/

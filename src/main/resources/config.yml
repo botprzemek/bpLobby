@@ -15,6 +15,29 @@ join-quit:
     shape: "star"
     time: 0
 
+player-head:
+  enabled: false
+  name: "<GRADIENT:FF80F6>&lTwoje statystyki</GRADIENT:FFCC70>&r"
+
+head:
+  url: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQwNmU0NTMxOGU5YTRhNmJmZTEzMmYyMDJmZTNjZWFjMTVkMTFlYWVkYmVmMWViMDZhMzc2ZGI0MzMwOTBhOCJ9fX0="
+  name: "goldentreasurechest"
+  display-name: "<GRADIENT:FF80F6>&lZłota Skrzynia</GRADIENT:FFCC70>"
+
+commands-aliases:
+  lobby:
+    - "przeladuj|Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
+    - "double|Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
+
+launch-pad:
+  enable: true
+  material: "redstone block"
+  activator: "stone pressure plate"
+  power: 3
+  max: 2
+  sound: "entity dragon_fireball explode"
+  pitch: 1.75
+
 messages:
   config:
     reload: "Pomyślnie przeładowano konfigurację!"
@@ -53,99 +76,94 @@ messages:
     sound: "entity ender pearl throw"
   launch-pad:
     activate: "Ziuuum!"
-  spikes-trap:
-    activate: "Ałć! Wszedłeś na pułapkę!"
-  game-mode:
-    names: ["Przetrwanie", "Kreatywny", "Obserwator"]
-    not-player: "Użycie komendy dozwolone tylko dla graczy!"
-    set: ""
-    already-set: ""
-  drop:
-    stone: "Znalazłeś<GRADIENT:FF80F6>&l %amount%x %item%</GRADIENT:FFCC70>&r!"
+  head-click: "Kliknąłeś na %chest%!"
 
-drop:
-  stone:
-    "0":
-      material: "paper"
-      name: "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>"
-      enchantments:
-        MENDING: 2
-      chance: 0.1
-      min-amount: 2
-      max-amount: 10
-    "1":
-      material: "paper"
-      name: "<GRADIENT:FF80F6>&lChuj</GRADIENT:FFCC70>"
-      enchantments:
-        DURABILITY: 3
-      chance: 0.2
-      min-amount: 1
-      max-amount: 3
-    "2":
-      material: "paper"
-      name: "<GRADIENT:FF80F6>&lAyo</GRADIENT:FFCC70>"
-      enchantments:
-      chance: 0.3
-      min-amount: 1
-      max-amount: 3
-    "3":
-      material: "paper"
-      name: "<GRADIENT:FF80F6>&lBruh</GRADIENT:FFCC70>"
-      enchantments:
-      chance: 0.4
-      min-amount: 1
-      max-amount: 3
+#spikes-trap:
+#  enable: true
+#  activator: "small amethyst bud"
+#  power: 1
+#  sound: "entity player hurt"
+#  effect:
+#    enable: true
+#    effect: "slow"
+#    duration: 10
+#    strength: 2
+#
+#super-pick:
+#  ores:
+#    - stone
+#    - iron ore
+#    - coal ore
+#    - gold ore
+#    - diamond ore
+#    - emerald ore
+#    - lapis ore
+#    - copper ore
+#  spikes-trap:
+#    activate: "Ałć! Wszedłeś na pułapkę!"
+#  game-mode:
+#    names: ["Przetrwanie", "Kreatywny", "Obserwator"]
+#    not-player: "Użycie komendy dozwolone tylko dla graczy!"
+#    set: ""
+#    already-set: ""
+#  drop:
+#    stone:
+#      on-drop: "Znalazłeś<GRADIENT:FF80F6>&l %amount%x %item%</GRADIENT:FFCC70>&r!"
+#      sound: "block amethyst_cluster place"
 
+#lobby-selector:
+#  gui:
+#    name: "Wybierz Lobby"
+#    size: 9
+#    filling: "gray stained glass pane"
+#    servers:
+#      "0":
+#        server: "wicia"
+#        material: "stone"
+#        name: "<GRADIENT:FF80F6>&lTestowa nazwa</GRADIENT:FFCC70>"
+#        slot: 4
+#        lore:
+#          - "<GRADIENT:FF80F6>&lTestowe lore 1</GRADIENT:FFCC70>"
+#          - "<GRADIENT:FF80F6>&lTestowe lore 2</GRADIENT:FFCC70>"
 
-player-head:
-  name: "<GRADIENT:FF80F6>&lTwoje statystyki</GRADIENT:FFCC70>&r"
-
-commands-aliases:
-  lobby:
-    - "przeladuj|Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
-
-launch-pad:
-  enable: true
-  material: "redstone block"
-  activator: "stone pressure plate"
-  power: 3
-  max: 2
-  sound: "entity dragon_fireball explode"
-  pitch: 1.75
-
-spikes-trap:
-  enable: true
-  activator: "small amethyst bud"
-  power: 1
-  sound: "entity player hurt"
-  effect:
-    enable: true
-    effect: "slow"
-    duration: 10
-    strength: 2
-
-super-pick:
-  ores:
-    - stone
-    - iron ore
-    - coal ore
-    - gold ore
-    - diamond ore
-    - emerald ore
-    - lapis ore
-    - copper ore
-
-fill:
-  material: "gray stained glass pane"
-  amount: 1
-  name: " "
-
-center:
-  material: "compass"
-  amount: 1
-  name: "Lobby"
-
-inventory:
-  size: 27
-  name: "Wybierz serwer"
-  sound: "block chest open"
+#drop:
+#  stone:
+#    "0":
+#      material: "diamond"
+#      name: "<GRADIENT:FF80F6>&lTestowy drop</GRADIENT:FFCC70>"
+#      lore:
+#        - "<GRADIENT:FF80F6>&lTestowe lore</GRADIENT:FFCC70>&r"
+#        - "<GRADIENT:FF80F6>&lZ enchantem</GRADIENT:FFCC70>&r"
+#        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
+#      enchantments:
+#        CHANNELING: 1
+#        SHARPNESS: 10
+#      chance: 0.4
+#      min-amount: 1
+#      max-amount: 3
+#    "1":
+#      material: "golden_boots"
+#      name: "<GRADIENT:FF80F6>&lBuciki</GRADIENT:FFCC70>"
+#      lore:
+#        - "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>&r"
+#        - "<GRADIENT:FF80F6>&lTotalna</GRADIENT:FFCC70>&r"
+#        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
+#      enchantments:
+#        PROTECTION: 10
+#        UNBREAKING: 3
+#      chance: 0.6
+#      min-amount: 1
+#      max-amount: 1
+#    "2":
+#      material: "nether_star"
+#      name: "<GRADIENT:FF80F6>&lGwiazda </GRADIENT:FFCC70>"
+#      lore:
+#        - "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>&r"
+#        - "<GRADIENT:FF80F6>&lTotalna</GRADIENT:FFCC70>&r"
+#        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
+#      enchantments:
+#        PROTECTION: 10
+#        UNBREAKING: 3
+#      chance: 0.5
+#      min-amount: 5
+#      max-amount: 20
