@@ -10,7 +10,6 @@ import org.bukkit.profile.PlayerProfile;
 import pl.botprzemek.bpLobby;
 
 import java.lang.reflect.Field;
-import java.util.UUID;
 
 public class PlayerHead {
 
