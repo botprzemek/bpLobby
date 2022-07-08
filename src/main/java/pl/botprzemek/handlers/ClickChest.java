@@ -3,9 +3,11 @@ package pl.botprzemek.handlers;
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import com.mojang.authlib.GameProfile;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Skull;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -17,6 +19,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import pl.botprzemek.bpLobby;
+import pl.botprzemek.methods.FireworkGenerator;
 import pl.botprzemek.methods.PlayerHead;
 
 import java.util.Objects;
@@ -37,9 +40,21 @@ public class ClickChest implements Listener {
     String headName = plugin.getConfig().getString("head.name");
     String headDisplayName = plugin.getConfig().getString("head.display-name");
     String headClick = plugin.getConfig().getString("messages.head-click");
+    String title = plugin.getConfig().getString("head.title.title");
+    String subtitle = plugin.getConfig().getString("head.title.subtitle");
+    String fireworkShape = plugin.getConfig().getString("head.firework.shape");
+    Color fireworkColor = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(plugin.getConfig().getString("head.firework.color")).replace("#", "")), 16));
+    Color fireworkFade = Color.fromRGB(Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(plugin.getConfig().getString("head.firework.fade")).replace("#", "")), 16));
+    int fireworkTime = plugin.getConfig().getInt("head.firework.time");
+    int titleTime = 20 * plugin.getConfig().getInt("head.title.time");
+    int titleFade = 20 * plugin.getConfig().getInt("head.title.fade");
+
+    FireworkGenerator fireworkGenerator = new FireworkGenerator();
 
     GameProfile headProfile = new GameProfile(UUID.randomUUID(), headName);
     SkullMeta head = playerHead.getCustomHead(headUrl, headProfile, headDisplayName);
+
+    BlockData air = Material.AIR.createBlockData();
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -71,6 +86,15 @@ public class ClickChest implements Listener {
             if (!(headBlockUUID.equals(headName))) return;
 
             player.sendMessage(IridiumColorAPI.process(prefix + headClick.replace("%chest%", head.getDisplayName())));
+
+            player.sendTitle(IridiumColorAPI.process(title.replace("%name%", head.getDisplayName())), IridiumColorAPI.process(subtitle.replace("%amount%", String.valueOf(10))), titleFade, titleTime, titleFade);
+
+            fireworkGenerator.generateFireworks(event, player, block.getLocation(), fireworkShape, fireworkColor, fireworkFade, fireworkTime);
+
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                player.sendBlockChange(block.getLocation(), air);
+            }, 1L);
+
         }
     }
 }

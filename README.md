@@ -1,19 +1,25 @@
 # bpLobby
 
-## _botprzemek's Lobby plugin for Spigot 1.18+_<br><br>
+## _botprzemek's Lobby plugin for Spigot 1.18.2+_<br><br>
 
-![About](https://www.botprzemek.pl/ae546wsne6a/img/about.png)
+![About](https://www.botprzemek.pl/cloud/panel2.png)
 
-## Reading from config and %player% placeholder 3/3
+## Lobby Server selector 1/3
+1. Bungee teleport :heavy_check_mark:
+2. GUI :x:
+3. Command :x:<br>
 
-1. Config.yml :heavy_check_mark:
-2. %player% into .getPlayer(); :heavy_check_mark:
-3. Reloading on alias /bpl %alias% :heavy_check_mark:<br>
+## Gamemode command 0/3
 
-## HEX colors and Gradients with IridiumColorAPI and HEX to RGB 2/2
+1. Message :x:
+1. Alias :x:
+1. GUI :x:<br>
 
-1. IridiumColorAPI.process :heavy_check_mark:
-2. HEX to RGB for fireworks and armor :heavy_check_mark:
+## Menu 0/0
+
+1. Command :x:
+2. Open on item :x:
+3. GUI :x:<br>
 
 ## On Join and Quit 4/4
 
@@ -28,6 +34,11 @@
 2. Fixed double trigger :heavy_check_mark:
 3. Particles :heavy_check_mark:
 4. No fall damage on fall :heavy_check_mark:<br>
+
+## Custom Player Heads 2/2
+1. Get player heads :heavy_check_mark:
+1. Get custom head with NMS :heavy_check_mark:
+2. Message on click :heavy_check_mark:<br>
 
 ## Fly command 3/3
 
@@ -54,14 +65,15 @@
 3. Randomize loot, chance and amount :heavy_check_mark:
 4. Particles and sound on drop :heavy_check_mark:<br>
 
-## Gamemode command 1/3
+## Reading from config and %player% placeholder 3/3
 
-1. Message :x:
-1. Alias :x:
-1. GUI :x:<br>
+1. Config.yml :heavy_check_mark:
+2. %player% into .getPlayer(); :heavy_check_mark:
+3. Reloading on alias /bpl %alias% :heavy_check_mark:<br>
 
-## Menu 0/0
+## HEX colors and Gradients with IridiumColorAPI and HEX to RGB 2/2
 
-1. Command :x:
-2. Open on item :x:
-3. GUI :x:<br>
+1. IridiumColorAPI.process :heavy_check_mark:
+2. HEX to RGB for fireworks and armor :heavy_check_mark:
+
+![About](https://www.botprzemek.pl/cloud/panel1.png)

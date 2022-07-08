@@ -25,6 +25,16 @@ head:
   url: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQwNmU0NTMxOGU5YTRhNmJmZTEzMmYyMDJmZTNjZWFjMTVkMTFlYWVkYmVmMWViMDZhMzc2ZGI0MzMwOTBhOCJ9fX0="
   name: "goldentreasurechest"
   display-name: "<GRADIENT:FF80F6>&lZłota Skrzynia</GRADIENT:FFCC70>"
+  title:
+    title: "<GRADIENT:FF80F6>&lZnalazłeś %name%!</GRADIENT:FFCC70>"
+    subtitle: "Pozostało ci jeszcze %amount% skrzyń!"
+    time: 3
+    fade: 1
+  firework:
+    color: "#ff80f6"
+    fade: "#ffcc70"
+    shape: "star"
+    time: 0
 
 broadcast:
   message: "Dziękujemy za rozgrywkę na <GRADIENT:FF80F6>&lbpLobby!</GRADIENT:FFCC70>"
