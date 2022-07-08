@@ -1,5 +1,5 @@
 # Scrap
-src/main/java/pl/botprzemek/scrap/*
+src/main/java/pl/botprzemek/scrap
 
 # User-specific stuff
 .idea/
@@ -114,4 +114,5 @@ buildNumber.properties
 
 # Common working directory
 run/
+/src/main/java/pl/botprzemek/scrap/
 /src/main/java/pl/botprzemek/scrap/

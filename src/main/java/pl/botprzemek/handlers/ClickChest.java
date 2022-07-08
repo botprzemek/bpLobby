@@ -40,7 +40,6 @@ public class ClickChest implements Listener {
 
     GameProfile headProfile = new GameProfile(UUID.randomUUID(), headName);
     SkullMeta head = playerHead.getCustomHead(headUrl, headProfile, headDisplayName);
-    UUID headUUID = Objects.requireNonNull(head.getOwningPlayer()).getUniqueId();
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -66,9 +65,10 @@ public class ClickChest implements Listener {
             if (!(Objects.requireNonNull(event.getClickedBlock()).getType().equals(Material.PLAYER_HEAD))) return;
 
             Skull headBlock = (Skull) block.getState();
-            UUID headBlockUUID = Objects.requireNonNull(headBlock.getOwningPlayer()).getUniqueId();
+            String headBlockUUID = Objects.requireNonNull(headBlock.getOwnerProfile()).getName();
 
-            if (!(headBlockUUID.equals(headUUID))) return;
+            assert headBlockUUID != null;
+            if (!(headBlockUUID.equals(headName))) return;
 
             player.sendMessage(IridiumColorAPI.process(prefix + headClick.replace("%chest%", head.getDisplayName())));
         }

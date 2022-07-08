@@ -1,5 +1,7 @@
 prefix: "<GRADIENT:FF80F6>&lbpLobby »</GRADIENT:FFCC70>&r "
 
+usage: "Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
+
 join-quit:
   welcome: "%player% dołączył na serwer!"
   bye: "%player% wyszedł z serwera!"
@@ -24,10 +26,14 @@ head:
   name: "goldentreasurechest"
   display-name: "<GRADIENT:FF80F6>&lZłota Skrzynia</GRADIENT:FFCC70>"
 
+broadcast:
+  message: "Dziękujemy za rozgrywkę na <GRADIENT:FF80F6>&lbpLobby!</GRADIENT:FFCC70>"
+  sound: "entity experience_orb pickup"
+
 commands-aliases:
   lobby:
-    - "przeladuj|Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
-    - "double|Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
+    - "przeladuj"
+    - "double"
 
 launch-pad:
   enable: true
