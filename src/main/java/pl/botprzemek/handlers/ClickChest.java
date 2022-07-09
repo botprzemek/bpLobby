@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Skull;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,10 +21,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import pl.botprzemek.bpLobby;
 import pl.botprzemek.methods.FireworkGenerator;
+import pl.botprzemek.methods.ItemsGenerator;
 import pl.botprzemek.methods.PlayerHead;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static pl.botprzemek.bpLobby.plugin;
 
@@ -56,6 +61,23 @@ public class ClickChest implements Listener {
 
     BlockData air = Material.AIR.createBlockData();
 
+    String droppedItem = plugin.getConfig().getString("messages.drop.chest.on-drop");
+    private final List<ItemsGenerator> dropListItems = new ArrayList<>();
+
+    public void dropManager(String path) {
+
+        ConfigurationSection stoneDrop = plugin.getConfig().getConfigurationSection(path);
+
+        assert stoneDrop != null;
+        for (String key : stoneDrop.getKeys(false)) {
+
+            ConfigurationSection section = stoneDrop.getConfigurationSection(key);
+            dropListItems.add(new ItemsGenerator(section));
+
+        }
+
+    }
+
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent event) {
 
@@ -85,15 +107,26 @@ public class ClickChest implements Listener {
             assert headBlockUUID != null;
             if (!(headBlockUUID.equals(headName))) return;
 
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                player.sendBlockChange(block.getLocation(), air);
+            }, 1L);
+
             player.sendMessage(IridiumColorAPI.process(prefix + headClick.replace("%chest%", head.getDisplayName())));
 
             player.sendTitle(IridiumColorAPI.process(title.replace("%name%", head.getDisplayName())), IridiumColorAPI.process(subtitle.replace("%amount%", String.valueOf(10))), titleFade, titleTime, titleFade);
 
             fireworkGenerator.generateFireworks(event, player, block.getLocation(), fireworkShape, fireworkColor, fireworkFade, fireworkTime);
 
-            Bukkit.getScheduler().runTaskLater(plugin, () -> {
-                player.sendBlockChange(block.getLocation(), air);
-            }, 1L);
+            ThreadLocalRandom random = ThreadLocalRandom.current();
+            int randomList = random.nextInt(dropListItems.size());
+
+            ItemsGenerator randomItem = dropListItems.get(randomList);
+
+            ItemStack item = randomItem.makeItem(random, 1);
+
+            player.getInventory().addItem(item);
+
+            player.sendMessage(IridiumColorAPI.process(prefix + droppedItem.replace("%amount%", String.valueOf(item.getAmount())).replace("%item%", Objects.requireNonNull(item.getItemMeta()).getDisplayName())));
 
         }
     }

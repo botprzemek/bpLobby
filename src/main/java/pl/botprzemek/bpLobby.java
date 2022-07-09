@@ -7,7 +7,9 @@ import pl.botprzemek.commands.*;
 import pl.botprzemek.handlers.ClickChest;
 import pl.botprzemek.handlers.JoinQuit;
 import pl.botprzemek.handlers.LaunchPad;
+import pl.botprzemek.handlers.PlayerChat;
 import pl.botprzemek.methods.LaunchPadFall;
+import pl.botprzemek.scrap.StoneDrop;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -25,7 +27,7 @@ public final class bpLobby extends JavaPlugin {
         this.saveDefaultConfig();
         plugin = this;
 
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+        //getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
         Objects.requireNonNull(this.getCommand("fly")).setExecutor(new Fly());
@@ -34,10 +36,11 @@ public final class bpLobby extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("lobby-br")).setExecutor(new Broadcast());
 
         new JoinQuit(this);
-        new ClickChest(this);
+        new PlayerChat(this);
 
-//        StoneDrop dropItems = new StoneDrop(this);
-//        dropItems.dropManager();
+//        new ClickChest(this);
+//        ClickChest dropItems = new ClickChest(this);
+//        dropItems.dropManager("drop.chest");
 
         if(this.getConfig().getBoolean("launch-pad.enable")){
             new LaunchPad(this);

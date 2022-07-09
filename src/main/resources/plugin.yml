@@ -8,26 +8,28 @@ website: www.botprzemek.pl
 commands:
   bplobby:
     description: Pozwala graczowi na zarządzanie Lobby
-    permission: bpLobby.bplobby
+    permission: bplobby.bplobby
     permission-message: Nie masz permisji!
     aliases: [bpl]
   fly:
     description: Pozwala graczowi na latanie
-    permission: bpLobby.fly
+    permission: bplobby.fly
     permission-message: Nie masz permisji!
     aliases: [f, latanie]
   speed:
     description: Pozwala graczowi na szybsze poruszanie się
-    permission: bpLobby.speed
+    permission: bplobby.speed
     permission-message: Nie masz permisji!
     aliases: [s, predkosc]
   teleport:
     description: Pozwala graczowi na szybsze poruszanie się
-    permission: bpLobby.teleport
+    permission: bplobby.teleport
     permission-message: Nie masz permisji!
     aliases: [ tp, przenies ]
   lobby-br:
     description: Pozwala na wysyłanie wiadomości serwerowych
+    permission: bplobby.broadcast
+    permission-message: Nie masz permisji!
     aliases: [powiedz, wiadomosc]
 #  lobby:
 #    description: Pozwala graczowi na wybór serwera przez gui bądź komendę

@@ -38,7 +38,8 @@ public class LaunchPad implements Listener {
             Location location = player.getLocation();
             location.setY(location.getBlockY() - 2);
 
-            if(!(player.getLocation().getBlock().getType().equals(launchPadActivator) && location.getBlock().getType().equals(launchPadMaterial))) return;
+//          if(!(player.getLocation().getBlock().getType().equals(launchPadActivator) && location.getBlock().getType().equals(launchPadMaterial))) return;
+            if(!(location.getBlock().getType().equals(launchPadMaterial))) return;
 
             if(wait == 0) {
 

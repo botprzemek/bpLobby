@@ -3,6 +3,13 @@ prefix: "<GRADIENT:FF80F6>&lbpLobby »</GRADIENT:FFCC70>&r "
 usage: "Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
 
 join-quit:
+  spawn:
+    world: world
+    x: -5.5
+    y: 208
+    z: -13.5
+    pitch: 90.0
+    yaw: 0.0
   welcome: "%player% dołączył na serwer!"
   bye: "%player% wyszedł z serwera!"
   title:
@@ -16,6 +23,7 @@ join-quit:
     fade: "#ffcc70"
     shape: "star"
     time: 0
+    offset: true
 
 player-head:
   enabled: false
@@ -93,6 +101,51 @@ messages:
   launch-pad:
     activate: "Ziuuum!"
   head-click: "Kliknąłeś na %chest%!"
+  drop:
+    chest:
+      on-drop: "Znalazłeś<GRADIENT:FF80F6>&l %amount%x %item%</GRADIENT:FFCC70>&r!"
+
+drop:
+  chest:
+    "0":
+      material: "diamond"
+      name: "<GRADIENT:FF80F6>&lTestowy drop</GRADIENT:FFCC70>"
+      lore:
+        - "<GRADIENT:FF80F6>&lTestowe lore</GRADIENT:FFCC70>&r"
+        - "<GRADIENT:FF80F6>&lZ enchantem</GRADIENT:FFCC70>&r"
+        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
+      enchantments:
+        CHANNELING: 1
+        SHARPNESS: 10
+      chance: 0.4
+      min-amount: 1
+      max-amount: 3
+    "1":
+      material: "golden_boots"
+      name: "<GRADIENT:FF80F6>&lBuciki</GRADIENT:FFCC70>"
+      lore:
+        - "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>&r"
+        - "<GRADIENT:FF80F6>&lTotalna</GRADIENT:FFCC70>&r"
+        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
+      enchantments:
+        PROTECTION: 10
+        UNBREAKING: 3
+      chance: 0.6
+      min-amount: 1
+      max-amount: 1
+    "2":
+      material: "nether_star"
+      name: "<GRADIENT:FF80F6>&lGwiazda </GRADIENT:FFCC70>"
+      lore:
+        - "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>&r"
+        - "<GRADIENT:FF80F6>&lTotalna</GRADIENT:FFCC70>&r"
+        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
+      enchantments:
+        PROTECTION: 10
+        UNBREAKING: 3
+      chance: 0.5
+      min-amount: 5
+      max-amount: 20
 
 #spikes-trap:
 #  enable: true
@@ -141,45 +194,3 @@ messages:
 #        lore:
 #          - "<GRADIENT:FF80F6>&lTestowe lore 1</GRADIENT:FFCC70>"
 #          - "<GRADIENT:FF80F6>&lTestowe lore 2</GRADIENT:FFCC70>"
-
-#drop:
-#  stone:
-#    "0":
-#      material: "diamond"
-#      name: "<GRADIENT:FF80F6>&lTestowy drop</GRADIENT:FFCC70>"
-#      lore:
-#        - "<GRADIENT:FF80F6>&lTestowe lore</GRADIENT:FFCC70>&r"
-#        - "<GRADIENT:FF80F6>&lZ enchantem</GRADIENT:FFCC70>&r"
-#        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
-#      enchantments:
-#        CHANNELING: 1
-#        SHARPNESS: 10
-#      chance: 0.4
-#      min-amount: 1
-#      max-amount: 3
-#    "1":
-#      material: "golden_boots"
-#      name: "<GRADIENT:FF80F6>&lBuciki</GRADIENT:FFCC70>"
-#      lore:
-#        - "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>&r"
-#        - "<GRADIENT:FF80F6>&lTotalna</GRADIENT:FFCC70>&r"
-#        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
-#      enchantments:
-#        PROTECTION: 10
-#        UNBREAKING: 3
-#      chance: 0.6
-#      min-amount: 1
-#      max-amount: 1
-#    "2":
-#      material: "nether_star"
-#      name: "<GRADIENT:FF80F6>&lGwiazda </GRADIENT:FFCC70>"
-#      lore:
-#        - "<GRADIENT:FF80F6>&lEssa</GRADIENT:FFCC70>&r"
-#        - "<GRADIENT:FF80F6>&lTotalna</GRADIENT:FFCC70>&r"
-#        - "<GRADIENT:FF80F6>&l%enchant% %level%</GRADIENT:FFCC70>&r"
-#      enchantments:
-#        PROTECTION: 10
-#        UNBREAKING: 3
-#      chance: 0.5
-#      min-amount: 5
-#      max-amount: 20
