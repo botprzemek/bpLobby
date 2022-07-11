@@ -31,6 +31,11 @@ commands:
     permission: bplobby.broadcast
     permission-message: Nie masz permisji!
     aliases: [powiedz, wiadomosc]
+  players:
+    description: Pozwala na pokazywanie i ukrywanie graczy
+    permission: bplobby.hide-see
+    permission-message: Nie masz permisji!
+    aliases: [gracze, widok]
 #  lobby:
 #    description: Pozwala graczowi na wybór serwera przez gui bądź komendę
 #    aliases: [ server, serwer, wybor ]

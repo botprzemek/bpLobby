@@ -2,6 +2,7 @@ package pl.botprzemek.handlers;
 
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,32 +11,35 @@ import pl.botprzemek.bpLobby;
 
 import java.util.Objects;
 
-import static pl.botprzemek.bpLobby.plugin;
+import static pl.botprzemek.bpLobby.*;
 
 public class PlayerChat implements Listener {
 
     public PlayerChat(bpLobby plugin) { Bukkit.getPluginManager().registerEvents(this, plugin); }
 
-    String messagePrefix = IridiumColorAPI.process(Objects.requireNonNull(plugin.getConfig().getString("prefix")));
-    String messageMessage = IridiumColorAPI.process(Objects.requireNonNull(plugin.getConfig().getString("messages.chat.message")));
-    String format = IridiumColorAPI.process(Objects.requireNonNull(plugin.getConfig().getString("messages.chat.format")));
+    String messagePrefix = Objects.requireNonNull(plugin.getConfig().getString("prefix"));
+    String messageMessage = Objects.requireNonNull(plugin.getConfig().getString("messages.chat.message"));
+    String format = Objects.requireNonNull(plugin.getConfig().getString("messages.chat.format"));
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
         Player player = event.getPlayer();
+        String message = event.getMessage();
+        String group = perms.getPrimaryGroup(player);
+        World world = event.getPlayer().getWorld();
+        String playerPrefix = chat.getGroupPrefix(world, group).replace("#", "GRADIENT:");
 
         if (!(player.hasPermission("bplobby.chat"))) {
 
-            player.sendMessage(messagePrefix + messageMessage);
+            player.sendMessage(IridiumColorAPI.process(messagePrefix + messageMessage));
             event.setCancelled(true);
-            return;
 
         }
 
         else {
 
-            event.setFormat(format);
+            event.setFormat(IridiumColorAPI.process(format.replace("%prefix%", playerPrefix).replace("%player%", player.getName()).replace("%message%", message)));
 
         }
     }

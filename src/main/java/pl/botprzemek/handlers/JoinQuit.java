@@ -3,6 +3,7 @@ package pl.botprzemek.handlers;
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,7 @@ import pl.botprzemek.bpLobby;
 import pl.botprzemek.methods.FireworkGenerator;
 import pl.botprzemek.methods.ParticleGenerator;
 import pl.botprzemek.methods.PlayerHead;
+import pl.botprzemek.methods.PlayerSee;
 
 import java.util.Objects;
 import static pl.botprzemek.bpLobby.plugin;
@@ -41,8 +43,14 @@ public class JoinQuit implements Listener {
     FireworkGenerator fireworkGenerator = new FireworkGenerator();
     ParticleGenerator particleGenerator = new ParticleGenerator();
     PlayerHead playerHead = new PlayerHead();
+    PlayerSee playerSee = new PlayerSee();
 
     // JOIN
+
+//    public void hideEntityForPlayer(Player player, Player target) {
+//        PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(target);
+//        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+//    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -61,6 +69,9 @@ public class JoinQuit implements Listener {
             fireworkGenerator.generateFireworks(event, player, fireworkShape, fireworkColor, fireworkFade, fireworkTime, -2, 3);
             fireworkGenerator.generateFireworks(event, player, fireworkShape, fireworkColor, fireworkFade, fireworkTime, -3, 2);
         }
+
+        playerSee.hidePlayersEveryone(player);
+
         particleGenerator.onSpawnParticle(player);
 
         if (playerHeadEnable) {

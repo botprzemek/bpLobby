@@ -1,4 +1,4 @@
-prefix: "<GRADIENT:FF80F6>&lbpLobby »</GRADIENT:FFCC70>&r "
+prefix: "<GRADIENT:FF80F6>&lbpLobby.pl »</GRADIENT:FFCC70>&r "
 
 usage: "Złe użycie komendy! \nUżyj /%command%<GRADIENT:FF80F6>&l %alias% </GRADIENT:FFCC70>&r"
 
@@ -45,13 +45,15 @@ head:
     time: 0
 
 broadcast:
-  message: "Dziękujemy za rozgrywkę na <GRADIENT:FF80F6>&lbpLobby!</GRADIENT:FFCC70>"
+  message: "Dziękujemy za rozgrywkę na <GRADIENT:FF80F6>&lbpLobby.pl!</GRADIENT:FFCC70>"
   sound: "entity experience_orb pickup"
 
 commands-aliases:
   lobby:
     - "przeladuj"
-    - "double"
+  player-see:
+    - "wyłącz"
+    - "włącz"
 
 launch-pad:
   enable: true
@@ -66,6 +68,13 @@ messages:
   config:
     reload: "Pomyślnie przeładowano konfigurację!"
     sound: "entity experience_orb pickup"
+  chat:
+    message: "Czat dla <GRADIENT:FF80F6>&lgraczy</GRADIENT:FFCC70>&r jest <GRADIENT:FF80F6>&lwyłączony!</GRADIENT:FFCC70>&r"
+    format: "%prefix%&r &l%player% &l<SOLID:FFCC70>»&r %message%"
+  hide-show:
+    hide: "Widoczność <GRADIENT:FF80F6>&lgraczy</GRADIENT:FFCC70>&r jest <GRADIENT:FF80F6>&lwyłączona!</GRADIENT:FFCC70>&r"
+    show: "Widoczność <GRADIENT:FF80F6>&lgraczy</GRADIENT:FFCC70>&r jest <GRADIENT:FF80F6>&lwłączona!</GRADIENT:FFCC70>&r"
+    sound: "entity ender pearl throw"
   fly:
     not-player: "Użycie komendy dozwolone tylko dla graczy!"
     not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"

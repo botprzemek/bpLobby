@@ -76,8 +76,16 @@
             <url>https://libraries.minecraft.net/</url>
         </repository>
         <repository>
-            <id>2lstudios</id>
-            <url>https://ci.2lstudios.dev/plugin/repository/everything/</url>
+            <id>iridiumdevelopment</id>
+            <url>https://nexus.iridiumdevelopment.net/repository/maven-releases/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/repository/public/</url>
         </repository>
 <!--        <repository>-->
 <!--            <id>botprzemek</id>-->
@@ -103,6 +111,18 @@
             <artifactId>IridiumColorAPI</artifactId>
             <version>1.0.6</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.MilkBowl</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.7.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.8.0</version>
+            <scope>provided</scope>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.hideitem</groupId>-->
