@@ -21,7 +21,15 @@
 2. Open on item :x:
 3. GUI :x:<br>
 
-##
+## Player Visiblity Switch 3/3
+1. Message :heavy_check_mark:
+2. Command :heavy_check_mark:
+3. On-join :heavy_check_mark:
+
+## Chat moderation 3/3
+1. Permission chat :heavy_check_mark:
+2. Block message :heavy_check_mark:
+3. Vault prefixes :heavy_check_mark:
 
 ## On Join and Quit 4/4
 
