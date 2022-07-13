@@ -2,6 +2,7 @@ package pl.botprzemek;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
+import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
@@ -10,10 +11,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 import pl.botprzemek.commands.*;
-import pl.botprzemek.handlers.JoinQuit;
-import pl.botprzemek.handlers.LaunchPad;
-import pl.botprzemek.handlers.PlayerChat;
-import pl.botprzemek.handlers.PlayerClickGUI;
+import pl.botprzemek.handlers.*;
 import pl.botprzemek.methods.LaunchPadFall;
 import pl.botprzemek.methods.ServerConnect;
 
@@ -30,7 +28,14 @@ public final class bpLobby extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        Bukkit.getLogger().info("Starting bpLobby by botprzemek");
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6>Starting bpLobby by botprzemek</GRADIENT:FFCC70>"));
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6>    __          __                                       __  </GRADIENT:FFCC70>"));
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6>   / /_  ____  / /_____  _________  ___  ____ ___  ___  / /__</GRADIENT:FFCC70>"));
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6>  / __ \\/ __ \\/ __/ __ \\/ ___/_  / / _ \\/ __ `__ \\/ _ \\/ //_/</GRADIENT:FFCC70>"));
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6> / /_/ / /_/ / /_/ /_/ / /    / /_/  __/ / / / / /  __/ ,<   </GRADIENT:FFCC70>"));
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6>/_.___/\\____/\\__/ .___/_/    /___/\\___/_/ /_/ /_/\\___/_/|_|  </GRADIENT:FFCC70>"));
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6>               /_/                                           </GRADIENT:FFCC70>"));
+        getLogger().info(IridiumColorAPI.process("<GRADIENT:FF80F6>                                                             </GRADIENT:FFCC70>"));
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
@@ -51,6 +56,7 @@ public final class bpLobby extends JavaPlugin {
         new JoinQuit(this);
         new PlayerChat(this);
         new PlayerClickGUI(this);
+        new PlayerServerSelector(this);
 
         if(this.getConfig().getBoolean("launch-pad.enable")){
             new LaunchPad(this);

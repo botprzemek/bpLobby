@@ -49,6 +49,13 @@ broadcast:
   sound: "entity experience_orb pickup"
 
 servers:
+  selector:
+    name: "<GRADIENT:FF80F6>&lWybierz serwer!</GRADIENT:FFCC70>"
+    index: 4
+    url: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODc5ZTU0Y2JlODc4NjdkMTRiMmZiZGYzZjE4NzA4OTQzNTIwNDhkZmVjZDk2Mjg0NmRlYTg5M2IyMTU0Yzg1In19fQ=="
+    lore:
+      - "<GRADIENT:FF80F6>&lTestowe lore</GRADIENT:FFCC70>"
+      - "<GRADIENT:FF80F6>&lDruga linijka</GRADIENT:FFCC70>"
   gui:
     name: "<GRADIENT:FF80F6>&lWybierz swój serwer!</GRADIENT:FFCC70>"
     size: 27

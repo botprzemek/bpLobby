@@ -4,11 +4,6 @@
 
 ![About](https://www.botprzemek.pl/cloud/panel2.png)
 
-## Lobby Server selector 1/3
-1. Bungee teleport :heavy_check_mark:
-2. GUI :x:
-3. Command :x:<br>
-
 ## Gamemode command 0/3
 
 1. Message :x:
@@ -20,6 +15,12 @@
 1. Command :x:
 2. Open on item :x:
 3. GUI :x:<br>
+
+## Lobby Server selector 3/3
+1. Bungee teleport :heavy_check_mark:
+2. GUI :heavy_check_mark:
+3. Item Server Selector :heavy_check_mark:
+4. Command  :heavy_check_mark:<br>
 
 ## Player Visiblity Switch 3/3
 1. Message :heavy_check_mark:

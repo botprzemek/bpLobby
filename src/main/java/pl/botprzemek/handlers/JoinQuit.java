@@ -47,11 +47,6 @@ public class JoinQuit implements Listener {
 
     // JOIN
 
-//    public void hideEntityForPlayer(Player player, Player target) {
-//        PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(target);
-//        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-//    }
-
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
 

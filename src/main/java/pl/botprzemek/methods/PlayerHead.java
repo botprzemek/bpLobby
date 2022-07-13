@@ -10,6 +10,7 @@ import org.bukkit.profile.PlayerProfile;
 import pl.botprzemek.bpLobby;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 public class PlayerHead {
 
@@ -61,4 +62,19 @@ public class PlayerHead {
 
         return headMeta;
     }
+
+    public SkullMeta getCustomHead(String headURL, GameProfile profile, String headDisplay, List<String> lore) {
+
+        Material head = Material.PLAYER_HEAD;
+        ItemStack item = new ItemStack(head, 1);
+
+        SkullMeta headMeta = getSkull(headURL, profile, item);
+        assert headMeta != null;
+        headMeta.setDisplayName(IridiumColorAPI.process(headDisplay));
+        headMeta.setLore(IridiumColorAPI.process(lore));
+        item.setItemMeta(headMeta);
+
+        return headMeta;
+    }
+
 }
