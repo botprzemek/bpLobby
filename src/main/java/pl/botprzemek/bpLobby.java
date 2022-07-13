@@ -1,18 +1,21 @@
 package pl.botprzemek;
 
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 import pl.botprzemek.commands.*;
-import pl.botprzemek.handlers.ClickChest;
 import pl.botprzemek.handlers.JoinQuit;
 import pl.botprzemek.handlers.LaunchPad;
 import pl.botprzemek.handlers.PlayerChat;
+import pl.botprzemek.handlers.PlayerClickGUI;
 import pl.botprzemek.methods.LaunchPadFall;
-import pl.botprzemek.scrap.StoneDrop;
+import pl.botprzemek.methods.ServerConnect;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -29,10 +32,10 @@ public final class bpLobby extends JavaPlugin {
 
         Bukkit.getLogger().info("Starting bpLobby by botprzemek");
 
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
         this.saveDefaultConfig();
         plugin = this;
-
-        //getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         setupPermissions();
         setupChat();
@@ -43,13 +46,11 @@ public final class bpLobby extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("teleport")).setExecutor(new Teleport());
         Objects.requireNonNull(this.getCommand("lobby-br")).setExecutor(new Broadcast());
         Objects.requireNonNull(this.getCommand("players")).setExecutor(new HideShowPlayers());
+        Objects.requireNonNull(this.getCommand("server")).setExecutor(new Server());
 
         new JoinQuit(this);
         new PlayerChat(this);
-
-//        new ClickChest(this);
-//        ClickChest dropItems = new ClickChest(this);
-//        dropItems.dropManager("drop.chest");
+        new PlayerClickGUI(this);
 
         if(this.getConfig().getBoolean("launch-pad.enable")){
             new LaunchPad(this);
@@ -60,8 +61,9 @@ public final class bpLobby extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
         Bukkit.getLogger().info("Shutting bpLobby");
+        this.getServer().getMessenger().unregisterOutgoingPluginChannel(this);
+        this.getServer().getMessenger().unregisterIncomingPluginChannel(this);
     }
 
     private boolean setupPermissions() {

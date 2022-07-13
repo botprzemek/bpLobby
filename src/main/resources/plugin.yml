@@ -36,6 +36,11 @@ commands:
     permission: bplobby.hide-see
     permission-message: Nie masz permisji!
     aliases: [gracze, widok]
+  server:
+    description: Pozwala na teleportacje między serwerami
+    permission: bplobby.server.self
+    permission-message: Nie masz permisji!
+    aliases: [tryb, serwer, wybor]
 #  lobby:
 #    description: Pozwala graczowi na wybór serwera przez gui bądź komendę
 #    aliases: [ server, serwer, wybor ]
