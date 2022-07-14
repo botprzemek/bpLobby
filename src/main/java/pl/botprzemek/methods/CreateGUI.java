@@ -17,10 +17,14 @@ import static pl.botprzemek.bpLobby.plugin;
 
 public class CreateGUI {
 
-    public List<ItemStack> guiItems = new ArrayList<>();
-    public List<Integer> guiIndexes = new ArrayList<>();
+    public static List<ItemStack> guiItems = new ArrayList<>();
+    public static List<Integer> guiIndexes = new ArrayList<>();
 
-    public void getItems() {
+    static int guiSize = plugin.getConfig().getInt("servers.gui.size");
+    static String guiName = plugin.getConfig().getString("servers.gui.name");
+    static String guiFillingMaterial = plugin.getConfig().getString("servers.gui.filling").toUpperCase().replace(' ', '_');
+
+    public static void getItems() {
 
         ConfigurationSection guiConfig = plugin.getConfig().getConfigurationSection("servers.gui.items");
 
@@ -47,14 +51,17 @@ public class CreateGUI {
 
     }
 
-    public Inventory createGUI(Player owner, int size, String name, String material) {
+    public static Inventory createGUI(Player owner, int size, String name, String material) {
 
         getItems();
 
         Inventory gui = Bukkit.createInventory(owner, size, name);
 
         ItemStack guiFilling = new ItemStack(Material.valueOf(material));
-        ItemStack test = new ItemStack(Material.MAGENTA_BANNER);
+        ItemMeta meta = guiFilling.getItemMeta();
+
+        meta.setDisplayName(" ");
+        guiFilling.setItemMeta(meta);
 
         for (int i = 0; i < size; ++i) gui.setItem(i, guiFilling);
 
@@ -62,5 +69,7 @@ public class CreateGUI {
 
         return gui;
     }
+
+    public static Inventory guiServers = createGUI(null, guiSize, IridiumColorAPI.process(guiName), guiFillingMaterial);
 
 }

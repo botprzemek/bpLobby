@@ -21,6 +21,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import static pl.botprzemek.bpLobby.plugin;
+import static pl.botprzemek.methods.CreateGUI.guiServers;
 
 public class Server implements CommandExecutor, TabCompleter {
 
@@ -29,12 +30,7 @@ public class Server implements CommandExecutor, TabCompleter {
     String connect = plugin.getConfig().getString("messages.server.success");
     String usage = plugin.getConfig().getString("usage").replace("%alias%", "serwer");
 
-    int guiSize = plugin.getConfig().getInt("servers.gui.size");
-    String guiName = plugin.getConfig().getString("servers.gui.name");
-    String guiFillingMaterial = plugin.getConfig().getString("servers.gui.filling").toUpperCase().replace(' ', '_');
-
     ServerConnect serverConnect = new ServerConnect();
-    CreateGUI createGUI = new CreateGUI();
 
     List<String> serverNames = plugin.getConfig().getStringList("servers.name");
 
@@ -53,12 +49,11 @@ public class Server implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        Inventory gui = createGUI.createGUI(null, guiSize, IridiumColorAPI.process(guiName), guiFillingMaterial);
-
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.openInventory(gui);
+
+            player.openInventory(guiServers);
             player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
 
         }
@@ -80,26 +75,6 @@ public class Server implements CommandExecutor, TabCompleter {
             serverConnect.sendMessage(player, IridiumColorAPI.process(prefix + connect.replace("%server%", args[0])));
 
         }
-
-//        if (args.length == 2) {
-//
-//            String server = plugin.getConfig().getString("servers.server." + args[0]);
-//
-//            if (Bukkit.getPlayer(args[1]) == null) {
-//
-//                player.sendMessage(IridiumColorAPI.process(prefix + usage.replace("%command%", label)));
-//                player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-//                return false;
-//
-//            }
-//
-//            Player target = Bukkit.getPlayer(args[1]);
-//            if (target != player) player.sendMessage(IridiumColorAPI.process(prefix + other.replace("%server%", args[0]).replace("%player%", target.getName())));
-//            target.sendMessage(IridiumColorAPI.process(prefix + connect.replace("%server%", args[0])));
-//            serverConnect.connectPlayers(target, server);
-//            player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
-//
-//        }
 
         return true;
     }

@@ -1,3 +1,13 @@
+#
+#    __          __                                       __
+#   / /_  ____  / /_____  _________  ___  ____ ___  ___  / /__
+#  / __ \/ __ \/ __/ __ \/ ___/_  / / _ \/ __ `__ \/ _ \/ //_/
+# / /_/ / /_/ / /_/ /_/ / /    / /_/  __/ / / / / /  __/ ,<
+#/_.___/\____/\__/ .___/_/    /___/\___/_/ /_/ /_/\___/_/|_|
+#               /_/
+# bpLobby-0.4-BETA by botprzemek
+#
+
 prefix: "<GRADIENT:FF80F6>&lbpLobby.pl »</GRADIENT:FFCC70>&r "
 
 usage: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l%alias%</GRADIENT:FFCC70>&r"
@@ -24,29 +34,6 @@ join-quit:
     shape: "star"
     time: 0
     offset: true
-
-player-head:
-  enabled: false
-  name: "<GRADIENT:FF80F6>&lTwoje statystyki</GRADIENT:FFCC70>&r"
-
-head:
-  url: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQwNmU0NTMxOGU5YTRhNmJmZTEzMmYyMDJmZTNjZWFjMTVkMTFlYWVkYmVmMWViMDZhMzc2ZGI0MzMwOTBhOCJ9fX0="
-  name: "goldentreasurechest"
-  display-name: "<GRADIENT:FF80F6>&lZłota Skrzynia</GRADIENT:FFCC70>"
-  title:
-    title: "<GRADIENT:FF80F6>&lZnalazłeś %name%!</GRADIENT:FFCC70>"
-    subtitle: "Pozostało ci jeszcze %amount% skrzyń!"
-    time: 3
-    fade: 1
-  firework:
-    color: "#ff80f6"
-    fade: "#ffcc70"
-    shape: "star"
-    time: 0
-
-broadcast:
-  message: "Dziękujemy za rozgrywkę na <GRADIENT:FF80F6>&lbpLobby.pl!</GRADIENT:FFCC70>"
-  sound: "entity experience_orb pickup"
 
 servers:
   selector:
@@ -82,13 +69,6 @@ servers:
     Testowy: "testowy_przemek"
     Wiciaa__: "wicia"
 
-commands-aliases:
-  lobby:
-    - "przeladuj"
-  player-see:
-    - "wyłącz"
-    - "włącz"
-
 launch-pad:
   enable: true
   material: "redstone block"
@@ -113,45 +93,76 @@ messages:
     success: "Zostałeś <GRADIENT:FF80F6>&lprzeniesiony</GRADIENT:FFCC70>&r na serwer <GRADIENT:FF80F6>&l%server%</GRADIENT:FFCC70>&r"
     other-player: "Przeniosłeś <GRADIENT:FF80F6>&l%player%</GRADIENT:FFCC70>&r na serwer <GRADIENT:FF80F6>&l%server%</GRADIENT:FFCC70>&r"
     sound: "entity ender pearl throw"
-  fly:
-    not-player: "Użycie komendy dozwolone tylko dla graczy!"
-    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
-    player:
-      on: "Włączyłeś latanie dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r!"
-      off: "Wyłączyłeś latanie dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r!"
-      speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
-    self:
-      on: "Włączyłeś latanie!"
-      off: "Wyłączyłeś latanie!"
-      speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
-    set:
-      on: "Włączono latanie przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
-      off: "Wyłączono latanie przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
-      speed: "Ustawiono prędkość lotu na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
-    sound: "entity bat takeoff"
-  speed:
-    not-player: "Użycie komendy dozwolone tylko dla graczy!"
-    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
-    self:
-      use: "Ustawiłeś prędkość chodzenia na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
-      set: "Ustawiłeś prędkość chodzenia<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
-    player:
-      set: "Ustawiono prędkość chodzenia na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
-    sound: "block beacon activate"
-  teleport:
-    not-player: "Użycie komendy dozwolone tylko dla graczy!"
-    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<gracz 1></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz 2></GRADIENT:FFCC70>&r"
-    self: "Przeniosłeś się gracza<GRADIENT:FF80F6>&l %player% </GRADIENT:FFCC70>"
-    toself: "Nie możesz się przenieść do samego siebie, wypadniesz z multiwersum!"
-    player: "Przeniosłeś gracza<GRADIENT:FF80F6>&l %player% </GRADIENT:FFCC70>&rdo<GRADIENT:FF80F6>&l %target% </GRADIENT:FFCC70>"
-    sound: "entity ender pearl throw"
   launch-pad:
     activate: "Ziuuum!"
-  head-click: "Kliknąłeś na %chest%!"
-  drop:
-    chest:
-      on-drop: "Znalazłeś<GRADIENT:FF80F6>&l %amount%x %item%</GRADIENT:FFCC70>&r!"
 
+broadcast:
+  message: "Dziękujemy za rozgrywkę na <GRADIENT:FF80F6>&lbpLobby.pl!</GRADIENT:FFCC70>"
+  sound: "entity experience_orb pickup"
+
+commands-aliases:
+  lobby:
+    - "przeladuj"
+  player-see:
+    - "wyłącz"
+    - "włącz"
+
+#head:
+#  url: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzQwNmU0NTMxOGU5YTRhNmJmZTEzMmYyMDJmZTNjZWFjMTVkMTFlYWVkYmVmMWViMDZhMzc2ZGI0MzMwOTBhOCJ9fX0="
+#  name: "goldentreasurechest"
+#  display-name: "<GRADIENT:FF80F6>&lZłota Skrzynia</GRADIENT:FFCC70>"
+#  title:
+#    title: "<GRADIENT:FF80F6>&lZnalazłeś %name%!</GRADIENT:FFCC70>"
+#    subtitle: "Pozostało ci jeszcze %amount% skrzyń!"
+#    time: 3
+#    fade: 1
+#  firework:
+#    color: "#ff80f6"
+#    fade: "#ffcc70"
+#    shape: "star"
+#    time: 0
+#
+#  fly:
+#    not-player: "Użycie komendy dozwolone tylko dla graczy!"
+#    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
+#    player:
+#      on: "Włączyłeś latanie dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r!"
+#      off: "Wyłączyłeś latanie dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r!"
+#      speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+#    self:
+#      on: "Włączyłeś latanie!"
+#      off: "Wyłączyłeś latanie!"
+#      speed: "Ustawiłeś prędkość lotu na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
+#    set:
+#      on: "Włączono latanie przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+#      off: "Wyłączono latanie przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+#      speed: "Ustawiono prędkość lotu na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+#    sound: "entity bat takeoff"
+#  speed:
+#    not-player: "Użycie komendy dozwolone tylko dla graczy!"
+#    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<prędkość></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz></GRADIENT:FFCC70>&r"
+#    self:
+#      use: "Ustawiłeś prędkość chodzenia na<GRADIENT:FF80F6>&l %speed% </GRADIENT:FFCC70>"
+#      set: "Ustawiłeś prędkość chodzenia<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r dla<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+#    player:
+#      set: "Ustawiono prędkość chodzenia na<GRADIENT:FF80F6>&l %speed%</GRADIENT:FFCC70>&r przez<GRADIENT:FF80F6>&l %player%</GRADIENT:FFCC70>&r"
+#    sound: "block beacon activate"
+#  teleport:
+#    not-player: "Użycie komendy dozwolone tylko dla graczy!"
+#    not-correct: "Złe użycie komendy! \nUżyj /%command% <GRADIENT:FF80F6>&l<gracz 1></GRADIENT:FFCC70>&r <GRADIENT:FF80F6>&l<gracz 2></GRADIENT:FFCC70>&r"
+#    self: "Przeniosłeś się gracza<GRADIENT:FF80F6>&l %player% </GRADIENT:FFCC70>"
+#    toself: "Nie możesz się przenieść do samego siebie, wypadniesz z multiwersum!"
+#    player: "Przeniosłeś gracza<GRADIENT:FF80F6>&l %player% </GRADIENT:FFCC70>&rdo<GRADIENT:FF80F6>&l %target% </GRADIENT:FFCC70>"
+#    sound: "entity ender pearl throw"
+#  head-click: "Kliknąłeś na %chest%!"
+#  drop:
+#    chest:
+#      on-drop: "Znalazłeś<GRADIENT:FF80F6>&l %amount%x %item%</GRADIENT:FFCC70>&r!"
+#
+#player-head:
+#  enabled: false
+#  name: "<GRADIENT:FF80F6>&lTwoje statystyki</GRADIENT:FFCC70>&r"
+#
 #drop:
 #  chest:
 #    "0":
@@ -226,7 +237,7 @@ messages:
 #    stone:
 #      on-drop: "Znalazłeś<GRADIENT:FF80F6>&l %amount%x %item%</GRADIENT:FFCC70>&r!"
 #      sound: "block amethyst_cluster place"
-
+#
 #lobby-selector:
 #  gui:
 #    name: "Wybierz Lobby"

@@ -22,6 +22,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import static pl.botprzemek.bpLobby.plugin;
+import static pl.botprzemek.methods.CreateGUI.guiServers;
 
 public class PlayerClickGUI implements Listener {
 
@@ -73,24 +74,28 @@ public class PlayerClickGUI implements Listener {
 
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getClickedInventory() == null) event.setCancelled(true);
+        if (event.getClickedInventory() == null) return;
 
-        if (!(event.getClickedInventory() instanceof CreateGUI)) event.setCancelled(true);
+        if (event.getClickedInventory() == guiServers) {
 
-        if (!(guiIndexes.contains(event.getSlot()))) event.setCancelled(true);
+            if (!(guiIndexes.contains(event.getSlot()))) event.setCancelled(true);
 
-        String itemName = ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName());
-        String server = plugin.getConfig().getString("servers.server." + itemName);
+            if (event.getCurrentItem().getItemMeta() == null) event.setCancelled(true);
 
-        if (serverNames.contains(itemName)) {
+            String itemName = ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName());
+            String server = plugin.getConfig().getString("servers.server." + itemName);
 
-            event.setCancelled(true);
+            if (serverNames.contains(itemName)) {
 
-            player.closeInventory();
-            player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+                event.setCancelled(true);
 
-            serverConnect.connectPlayers(player, server);
-            serverConnect.sendMessage(player, IridiumColorAPI.process(prefix + click.replace("%server%", itemName)));
+                player.closeInventory();
+                player.playSound(player.getLocation(), Sound.valueOf(sound), 1.0f, 1.0f);
+
+                serverConnect.connectPlayers(player, server);
+                serverConnect.sendMessage(player, IridiumColorAPI.process(prefix + click.replace("%server%", itemName)));
+
+            }
 
         }
 

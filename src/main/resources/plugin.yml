@@ -11,21 +11,6 @@ commands:
     permission: bplobby.bplobby
     permission-message: Nie masz permisji!
     aliases: [bpl]
-  fly:
-    description: Pozwala graczowi na latanie
-    permission: bplobby.fly
-    permission-message: Nie masz permisji!
-    aliases: [f, latanie]
-  speed:
-    description: Pozwala graczowi na szybsze poruszanie się
-    permission: bplobby.speed
-    permission-message: Nie masz permisji!
-    aliases: [s, predkosc]
-  teleport:
-    description: Pozwala graczowi na szybsze poruszanie się
-    permission: bplobby.teleport
-    permission-message: Nie masz permisji!
-    aliases: [ tp, przenies ]
   lobby-br:
     description: Pozwala na wysyłanie wiadomości serwerowych
     permission: bplobby.broadcast
@@ -49,5 +34,18 @@ commands:
 #    permission: bpLobby.teleport
 #    permission-message: Nie masz permisji!
 #    aliases: [ drop, dropy, losowanie ]
-
-
+#  fly:
+#    description: Pozwala graczowi na latanie
+#    permission: bplobby.fly
+#    permission-message: Nie masz permisji!
+#    aliases: [f, latanie]
+#  speed:
+#    description: Pozwala graczowi na szybsze poruszanie się
+#    permission: bplobby.speed
+#    permission-message: Nie masz permisji!
+#    aliases: [s, predkosc]
+#  teleport:
+#    description: Pozwala graczowi na szybsze poruszanie się
+#    permission: bplobby.teleport
+#    permission-message: Nie masz permisji!
+#    aliases: [ tp, przenies ]

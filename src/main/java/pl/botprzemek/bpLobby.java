@@ -1,7 +1,5 @@
 package pl.botprzemek;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;
@@ -9,11 +7,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.messaging.PluginMessageListener;
 import pl.botprzemek.commands.*;
 import pl.botprzemek.handlers.*;
 import pl.botprzemek.methods.LaunchPadFall;
-import pl.botprzemek.methods.ServerConnect;
+import pl.botprzemek.scrap.Fly;
+import pl.botprzemek.scrap.Speed;
+import pl.botprzemek.scrap.Teleport;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -45,18 +44,15 @@ public final class bpLobby extends JavaPlugin {
         setupPermissions();
         setupChat();
 
-        Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
-        Objects.requireNonNull(this.getCommand("fly")).setExecutor(new Fly());
-        Objects.requireNonNull(this.getCommand("speed")).setExecutor(new Speed());
-        Objects.requireNonNull(this.getCommand("teleport")).setExecutor(new Teleport());
-        Objects.requireNonNull(this.getCommand("lobby-br")).setExecutor(new Broadcast());
-        Objects.requireNonNull(this.getCommand("players")).setExecutor(new HideShowPlayers());
-        Objects.requireNonNull(this.getCommand("server")).setExecutor(new Server());
-
         new JoinQuit(this);
         new PlayerChat(this);
         new PlayerClickGUI(this);
         new PlayerServerSelector(this);
+
+        Objects.requireNonNull(this.getCommand("bplobby")).setExecutor(new Lobby());
+        Objects.requireNonNull(this.getCommand("lobby-br")).setExecutor(new Broadcast());
+        Objects.requireNonNull(this.getCommand("players")).setExecutor(new HideShowPlayers());
+        Objects.requireNonNull(this.getCommand("server")).setExecutor(new Server());
 
         if(this.getConfig().getBoolean("launch-pad.enable")){
             new LaunchPad(this);
