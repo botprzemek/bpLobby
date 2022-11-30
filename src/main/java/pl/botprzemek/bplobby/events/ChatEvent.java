@@ -1,30 +1,45 @@
 package pl.botprzemek.bplobby.events;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import pl.botprzemek.bplobby.bpLobby;
+import pl.botprzemek.bplobby.BpLobby;
+import pl.botprzemek.bplobby.utils.StringSerialize;
 
 public class ChatEvent implements Listener {
 
-    public ChatEvent(bpLobby instance) {
-        Bukkit.getPluginManager().registerEvents(this, instance);
+    private final BpLobby instance;
+
+    public ChatEvent(BpLobby instance) {
+
+        this.instance = instance;
+
     }
 
     @EventHandler
     public void onChatEvent(AsyncPlayerChatEvent event) {
 
+        FileConfiguration config = BpLobby.getInstanceConfig();
+
+        if (!(event.getPlayer().hasPermission("bplobby.chat"))) {
+
+            event.setCancelled(true);
+
+            String legacyPrefix = new StringSerialize().serializeString(event.getPlayer(), config.getString("chat.no-permission")
+                    .replace("%prefix%", config.getString("prefix")));
+
+            event.getPlayer().sendMessage(legacyPrefix);
+
+            return;
+
+        }
+
         String originalMessage = event.getMessage();
 
-        MiniMessage mm = MiniMessage.miniMessage();
+        String legacyPrefix = new StringSerialize().serializeString(event.getPlayer(), config.getString("chat.format"));
 
-        Component componentMessage = mm.deserialize("<gradient:#ff80f6:#ffcc70><bold>bpLobby</bold></gradient> ");
+        event.setFormat(legacyPrefix + originalMessage);
 
-        String serializedMessage = mm.serialize(componentMessage) + originalMessage;
-
-        event.setMessage(serializedMessage);
     }
 }

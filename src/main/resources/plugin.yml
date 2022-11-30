@@ -3,7 +3,7 @@ version: '0.1-REMASTERED'
 authors: [botprzemek]
 website: 'https://www.github.com/botprzemek/bpLobby/'
 description: All-in-one lobby plugin (1.18.2)
-main: pl.botprzemek.bplobby.bpLobby
+main: pl.botprzemek.bplobby.BpLobby
 api-version: '1.18'
 softdepend: [Vault, LuckPerms, PlaceholderAPI, Oraxen]
 commands:
@@ -13,9 +13,11 @@ commands:
 permissions:
   bplobby.*:
     description: Gives access to all bpLobby commands
+    default: true
     children:
       bplobby.admin: true
       bplobby.broadcast: true
       bplobby.server: true
       bplobby.server.all: true
       bplobby.view: true
+      bplobby.chat: true
