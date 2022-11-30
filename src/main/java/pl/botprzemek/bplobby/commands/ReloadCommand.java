@@ -31,9 +31,20 @@ public class ReloadCommand implements CommandExecutor {
 
         instance.loadInstanceConfig();
 
-        Player player = (Player) sender;
-
         FileConfiguration config = BpLobby.getInstanceConfig();
+
+        if (!(sender instanceof Player)) {
+
+            String legacyString = new StringSerialize().serializeString(config.getString("reload")
+                    .replace("%prefix%", config.getString("prefix")));
+
+            sender.sendMessage(legacyString);
+
+            return true;
+
+        }
+
+        Player player = (Player) sender;
 
         String legacyString = new StringSerialize().serializeString(player, config.getString("reload")
                 .replace("%prefix%", config.getString("prefix")));

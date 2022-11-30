@@ -11,6 +11,14 @@ public class StringSerialize {
 
     private final MiniMessage mm = BpLobby.getMiniMessage();
 
+    public String serializeString(String string) {
+
+        Component prefixComponent = mm.deserialize(string);
+
+        return  LegacyComponentSerializer.legacySection().serialize(prefixComponent);
+
+    }
+
     public String serializeString(Player player, String string) {
 
         String stringPlaceholders = PlaceholderAPI.setPlaceholders(player, string);
