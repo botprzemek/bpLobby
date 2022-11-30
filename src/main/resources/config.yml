@@ -10,4 +10,4 @@ chat:
   format: "%vault_prefix%%player_name% "
   no-permission: "%prefix% You don't have <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient> to <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient>"
 
-oraxen: "%oraxen_menu_items%"
+oraxen: "§f%oraxen_neg_shift_16%%oraxen_menu_items%"
