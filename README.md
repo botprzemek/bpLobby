@@ -2,7 +2,9 @@
 
 ## _botprzemek's Lobby plugin for Spigot 1.18.2+_<br><br>
 
-![About](https://www.botprzemek.pl/cloud/panel2.png)
+[comment]: <> (![About](https://www.botprzemek.pl/cloud/panel2.png))
+
+OUTDATED! New build coming soon!
 
 ## Permissions
 1. bplobby.bplobby - */bplobby*, Managing plugin
