@@ -1,5 +1,6 @@
 package pl.botprzemek.bpLobby.Event;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -23,13 +24,13 @@ public class ChatEvent implements Listener {
 
             event.setCancelled(true);
 
-            event.getPlayer().sendMessage(stringSerializer.serializeTextFromPath("chat.no-permission"));
+            event.getPlayer().sendMessage(stringSerializer.serializeTextFromPath("chat.no-permission", event.getPlayer().getDisplayName(), event.getMessage()));
 
             return;
 
         }
 
-        event.setFormat(stringSerializer.serializeTextFromPath("chat.permission").replace("%message%", event.getMessage()));
+        event.setFormat(stringSerializer.serializeTextFromPath("chat.permission", event.getPlayer().getDisplayName(), event.getMessage()));
 
     }
 }

@@ -32,11 +32,13 @@ public class StringSerializer {
 
     }
 
-    public String serializeTextFromPath(String path) {
+    public String serializeTextFromPath(String path, String playerName, String message) {
 
         return LegacyComponentSerializer.legacySection()
                 .serialize(mm.deserialize(messageConfig.getMessage(path)
-                .replace("%prefix%", messageConfig.getMessage("prefix"))));
+                .replace("%player_name%", playerName)
+                .replace("%prefix%", messageConfig.getMessage("prefix"))
+                .replace("%message%", message)));
 
     }
 
