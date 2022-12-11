@@ -9,15 +9,20 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import pl.botprzemek.bpLobby.Lobby.Inventory.InventoryManager;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
+import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
 public class JoinQuitEvent implements Listener {
 
     private StringSerializer stringSerializer;
 
+    private HideShowPlayers hideShowPlayers;
+
     public JoinQuitEvent(LobbyManager lobbyManager) {
 
         this.stringSerializer = lobbyManager.getStringSerializer();
+
+        this.hideShowPlayers = lobbyManager.getHideShowPlayers();
 
     }
 
@@ -30,6 +35,8 @@ public class JoinQuitEvent implements Listener {
 
         Inventory inventory = new InventoryManager(stringSerializer.serializeInventoryTitle("welcome"), InventoryType.DISPENSER, 0).getInventory();
 
+        hideShowPlayers.hidePlayers(player);
+
         player.openInventory(inventory);
 
     }
@@ -39,7 +46,7 @@ public class JoinQuitEvent implements Listener {
 
         Player player = event.getPlayer();
 
-        event.setQuitMessage(stringSerializer.serializeJoinQuit(player, "join"));
+        event.setQuitMessage(stringSerializer.serializeJoinQuit(player, "quit"));
 
     }
 

@@ -11,6 +11,8 @@ public class CommandManager {
 
         instance.getCommand("bplobby").setExecutor(new ReloadCommand(lobbyManager));
 
+        instance.getCommand("players").setExecutor(new PlayersCommand(lobbyManager));
+
     }
 
 }

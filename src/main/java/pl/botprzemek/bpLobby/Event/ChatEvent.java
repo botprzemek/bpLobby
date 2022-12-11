@@ -1,11 +1,10 @@
 package pl.botprzemek.bpLobby.Event;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
 public class ChatEvent implements Listener {
 

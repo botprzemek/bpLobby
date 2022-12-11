@@ -5,8 +5,9 @@ import pl.botprzemek.bpLobby.BpLobby;
 import pl.botprzemek.bpLobby.Command.CommandManager;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
 import pl.botprzemek.bpLobby.Event.EventManager;
-import pl.botprzemek.bpLobby.Utils.ConsoleStartup;
-import pl.botprzemek.bpLobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Utils.ConsoleStartup;
+import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
+import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
 public class LobbyManager {
 
@@ -16,6 +17,8 @@ public class LobbyManager {
 
     private StringSerializer stringSerializer;
 
+    private HideShowPlayers hideShowPlayers;
+
     private BukkitAudiences adventure;
 
     public LobbyManager(BpLobby instance) {
@@ -23,6 +26,8 @@ public class LobbyManager {
         this.instance = instance;
 
         this.adventure = BukkitAudiences.create(instance);
+
+        this.hideShowPlayers = new HideShowPlayers(instance);
 
         this.configManager = new ConfigManager(this);
 
@@ -59,6 +64,12 @@ public class LobbyManager {
     public BukkitAudiences getAdventure() {
 
         return adventure;
+
+    }
+
+    public HideShowPlayers getHideShowPlayers() {
+
+        return hideShowPlayers;
 
     }
 
