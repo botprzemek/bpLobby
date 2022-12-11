@@ -1,15 +1,14 @@
-package pl.botprzemek.bplobby.utils;
+package pl.botprzemek.bpLobby.Utils;
 
 import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import pl.botprzemek.bplobby.BpLobby;
+import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
 public class ConsoleStartup {
 
-    public ConsoleStartup(BukkitAudiences adventure, BpLobby instance) {
+    public ConsoleStartup(LobbyManager lobbyManager) {
 
-        Audience sender = adventure.sender(instance.getServer().getConsoleSender());
+        Audience sender = lobbyManager.getAdventure().sender(lobbyManager.getInstance().getServer().getConsoleSender());
 
         MiniMessage mm = MiniMessage.miniMessage();
 

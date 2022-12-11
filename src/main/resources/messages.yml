@@ -1,0 +1,21 @@
+# Prefix for messages
+
+prefix: "<gradient:#ff80f6:#ffcc70>♦ <bold>bpLobby</bold> ♦</gradient>"
+
+# Join Message
+
+join: "%prefix% %player_name% joined the <gradient:#ff80f6:#ffcc70><bold>server!</bold></gradient>"
+
+# Quit Message
+
+quit: "%prefix% %player_name% left the <gradient:#ff80f6:#ffcc70><bold>server!</bold></gradient>"
+
+# Reload message
+
+reload: "%prefix% Configuration <gradient:#ff80f6:#ffcc70><bold>reloaded</bold></gradient>"
+
+# Chat message
+
+chat:
+  permission: "<gradient:#ff80f6:#ffcc70>♦ <bold>%player_name%</bold> ♦</gradient> %message%"
+  no-permission: "%prefix% You don't have <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient> to send <gradient:#ff80f6:#ffcc70><bold>messages</bold></gradient>"

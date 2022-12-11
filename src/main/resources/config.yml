@@ -2,10 +2,6 @@ prefix: "<gradient:#ff80f6:#ffcc70>♦ <bold>bpLobby</bold> ♦</gradient>"
 
 reload: "%prefix% Configuration reloaded <gradient:#ff80f6:#ffcc70><bold>successfully</bold></gradient>"
 
-join: "%prefix% %player_name% joined the server!"
-
-quit: "%prefix% %player_name% left the server!"
-
 chat:
   format: "%vault_prefix%%player_name% "
   no-permission: "%prefix% You don't have <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient> to <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient>"
