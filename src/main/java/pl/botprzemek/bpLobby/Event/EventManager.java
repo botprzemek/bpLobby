@@ -13,5 +13,9 @@ public class EventManager {
 
         instance.getServer().getPluginManager().registerEvents(new ChatEvent(lobbyManager), instance);
 
+        instance.getServer().getPluginManager().registerEvents(new InventoryEvent(lobbyManager), instance);
+
+        instance.getServer().getPluginManager().registerEvents(new BlockInteractionEvent(lobbyManager), instance);
+
     }
 }

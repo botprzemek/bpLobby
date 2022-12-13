@@ -12,7 +12,7 @@ commands:
     default: true
     description: Reloading command for bpLobby plugin
   server:
-    aliases: [serwer, s]
+    aliases: [serwer, s, servers]
     default: true
     description: Server changing command
   players:

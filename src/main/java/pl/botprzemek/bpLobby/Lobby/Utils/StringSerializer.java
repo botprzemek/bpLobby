@@ -42,10 +42,10 @@ public class StringSerializer {
 
     }
 
-    public String serializeInventoryTitle(String string) {
+    public String serializePlainText(String string) {
 
         return LegacyComponentSerializer.legacySection()
-                .serialize(mm.deserialize(inventoryConfig.getInventoryTitle(string)));
+                .serialize(mm.deserialize(string));
 
     }
 

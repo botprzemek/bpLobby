@@ -13,6 +13,8 @@ public class CommandManager {
 
         instance.getCommand("players").setExecutor(new PlayersCommand(lobbyManager));
 
+        instance.getCommand("server").setExecutor(new ServerCommand(lobbyManager));
+
     }
 
 }

@@ -13,20 +13,12 @@
 
 package pl.botprzemek.bpLobby.Command;
 
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
-import pl.botprzemek.bpLobby.Lobby.Inventory.InventoryManager;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
-
-import java.util.HashMap;
 
 public class ReloadCommand implements CommandExecutor {
 

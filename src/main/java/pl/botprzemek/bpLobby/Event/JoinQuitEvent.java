@@ -3,11 +3,9 @@ package pl.botprzemek.bpLobby.Event;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.Inventory;
-import pl.botprzemek.bpLobby.Lobby.Inventory.InventoryManager;
+import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
 import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
@@ -18,11 +16,15 @@ public class JoinQuitEvent implements Listener {
 
     private HideShowPlayers hideShowPlayers;
 
+    private ServerSelector serverSelector;
+
     public JoinQuitEvent(LobbyManager lobbyManager) {
 
         this.stringSerializer = lobbyManager.getStringSerializer();
 
         this.hideShowPlayers = lobbyManager.getHideShowPlayers();
+
+        this.serverSelector = lobbyManager.getServerSelector();
 
     }
 
@@ -33,11 +35,9 @@ public class JoinQuitEvent implements Listener {
 
         event.setJoinMessage(stringSerializer.serializeJoinQuit(player, "join"));
 
-        Inventory inventory = new InventoryManager(stringSerializer.serializeInventoryTitle("welcome"), InventoryType.DISPENSER, 0).getInventory();
-
         hideShowPlayers.hidePlayers(player);
 
-        player.openInventory(inventory);
+        serverSelector.createInventory(player.getUniqueId());
 
     }
 
@@ -47,6 +47,8 @@ public class JoinQuitEvent implements Listener {
         Player player = event.getPlayer();
 
         event.setQuitMessage(stringSerializer.serializeJoinQuit(player, "quit"));
+
+        serverSelector.removeInventory(player.getUniqueId());
 
     }
 

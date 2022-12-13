@@ -12,7 +12,7 @@ quit: "%prefix% %player_name% left the <gradient:#ff80f6:#ffcc70><bold>server!</
 
 # Reload message
 
-reload: "%prefix% Configuration <gradient:#ff80f6:#ffcc70><bold>reloaded</bold></gradient>"
+reload: "%prefix% Configuration <gradient:#ff80f6:#ffcc70><bold>reloaded!</bold></gradient>"
 
 # Chat message
 

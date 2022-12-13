@@ -3,3 +3,13 @@
 welcome:
   title: "<white>ꐟ"
   size: 0
+
+# Server selector GUI
+
+server-selector:
+  title: "<white>ꐟ"
+  size: 27
+  items:
+     0:
+       slot: 14
+       id: example_sword
