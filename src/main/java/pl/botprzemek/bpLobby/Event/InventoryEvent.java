@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
@@ -36,7 +37,9 @@ public class InventoryEvent implements Listener {
 
         if (serverSelector.getInventoryItems() == null) player.closeInventory();
 
-        if (!inventory.getItem(event.getSlot()).isSimilar(serverSelector.getInventoryItem(event.getSlot()))) return;
+        ItemStack item = inventory.getItem(event.getSlot());
+
+        if (!item.isSimilar(serverSelector.getInventoryItem(event.getSlot()))) return;
 
         player.closeInventory();
 

@@ -44,6 +44,8 @@ public class ReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+
+
         for (Player player : Bukkit.getOnlinePlayers()) serverSelector.removeInventory(player.getUniqueId());
 
         configManager.loadConfigs();

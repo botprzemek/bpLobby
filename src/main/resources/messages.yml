@@ -20,6 +20,14 @@ chat:
   permission: "<gradient:#ff80f6:#ffcc70>♦ <bold>%player_name%</bold> ♦</gradient> %message%"
   no-permission: "%prefix% You don't have <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient> to send <gradient:#ff80f6:#ffcc70><bold>messages!</bold></gradient>"
 
+# Server selector
+
 server:
   success: "%prefix% You have been <gradient:#ff80f6:#ffcc70><bold>sent</bold></gradient> to the <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
   error: "%prefix% There was an <gradient:#ff80f6:#ffcc70><bold>error</bold></gradient> while connecting to <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
+
+# Players command message
+
+players:
+  shown: "%prefix% Players are <gradient:#ff80f6:#ffcc70><bold>visible</bold></gradient> now!"
+  hidden: "%prefix% Players are <gradient:#ff80f6:#ffcc70><bold>hidden</bold></gradient> now!"

@@ -21,8 +21,6 @@ public class ServerSelector {
 
     private StringSerializer stringSerializer;
 
-    private List<Button> items;
-
     public ServerSelector(LobbyManager lobbyManager, String inventoryName) {
 
         this.inventoryConfig = lobbyManager.getConfigManager().getInventoryConfig();
@@ -32,8 +30,6 @@ public class ServerSelector {
         this.serverSelectorName = inventoryName;
 
         this.serverSelectors = new HashMap<>();
-
-        this.items = inventoryConfig.getInventoryItems(inventoryName);
 
     }
 
@@ -61,6 +57,8 @@ public class ServerSelector {
 
     public Inventory setInventoryItems(UUID playerUUID, Inventory inventory) {
 
+        List<Button> items = inventoryConfig.getInventoryItems(serverSelectorName);
+
         if (items == null) {
 
             serverSelectors.put(playerUUID, inventory);
@@ -85,6 +83,8 @@ public class ServerSelector {
 
     public ItemStack getInventoryItem(int slot) {
 
+        List<Button> items = inventoryConfig.getInventoryItems(serverSelectorName);
+
         for (Button item : items) {
 
             if (item.getSlot() == slot) return OraxenItems.getItemById(item.getItemID()).build();
@@ -96,6 +96,8 @@ public class ServerSelector {
     }
 
     public String getServerName(int slot) {
+
+        List<Button> items = inventoryConfig.getInventoryItems(serverSelectorName);
 
         for (Button item : items) {
 

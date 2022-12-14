@@ -32,9 +32,21 @@ public class PlayersCommand implements CommandExecutor {
 
         boolean invisible = hideShowPlayers.getHiddenPlayers().get(player.getUniqueId());
 
-        if (invisible) hideShowPlayers.showPlayers(player);
+        if (invisible) {
 
-        else hideShowPlayers.hidePlayers(player);
+            hideShowPlayers.showPlayers(player);
+
+            player.sendMessage(stringSerializer.serializeJoinQuit(player, "players.shown"));
+
+        }
+
+        else {
+
+            hideShowPlayers.hidePlayers(player);
+
+            player.sendMessage(stringSerializer.serializeJoinQuit(player, "players.hidden"));
+
+        }
 
         return true;
 
