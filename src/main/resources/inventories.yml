@@ -10,6 +10,7 @@ server-selector:
   title: "<white>ꐟ"
   size: 27
   items:
-     0:
-       slot: 14
-       id: example_sword
+    0:
+      slot: 14
+      id: "example_sword"
+      action: "lobby1"

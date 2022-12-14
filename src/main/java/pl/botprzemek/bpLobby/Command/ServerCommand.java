@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
@@ -26,9 +25,7 @@ public class ServerCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        Inventory inventory = serverSelector.getInventory(player.getUniqueId());
-
-        player.openInventory(inventory);
+        player.openInventory(serverSelector.getInventory(player.getUniqueId()));
 
         return true;
 

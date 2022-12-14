@@ -7,14 +7,19 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
+import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
 
 public class InventoryEvent implements Listener {
 
     private ServerSelector serverSelector;
 
+    private BungeeChannel bungeeChannel;
+
     public InventoryEvent(LobbyManager lobbyManager) {
 
         this.serverSelector = lobbyManager.getServerSelector();
+
+        this.bungeeChannel = lobbyManager.getBungeeChannel();
 
     }
 
@@ -25,7 +30,17 @@ public class InventoryEvent implements Listener {
 
         Inventory inventory = event.getClickedInventory();
 
-        if (serverSelector.getInventory(player.getUniqueId()).equals(inventory)) event.setCancelled(true);
+        if (!serverSelector.getInventory(player.getUniqueId()).equals(inventory)) return;
+
+        event.setCancelled(true);
+
+        if (serverSelector.getInventoryItems() == null) player.closeInventory();
+
+        if (!inventory.getItem(event.getSlot()).isSimilar(serverSelector.getInventoryItem(event.getSlot()))) return;
+
+        player.closeInventory();
+
+        bungeeChannel.sendPlayerToServer(player, serverSelector.getServerName(event.getSlot()));
 
     }
 

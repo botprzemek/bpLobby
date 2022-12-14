@@ -14,6 +14,7 @@ public final class BpLobby extends JavaPlugin {
 
     }
 
+    @Override
     public void onDisable() {
 
         lobbyManager.cleanUp();

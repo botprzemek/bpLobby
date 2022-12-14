@@ -1,11 +1,14 @@
 package pl.botprzemek.bpLobby.Lobby.Inventory;
 
+import io.th0rgal.oraxen.api.OraxenItems;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby.Lobby.Config.InventoryConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class ServerSelector {
@@ -14,23 +17,31 @@ public class ServerSelector {
 
     private InventoryConfig inventoryConfig;
 
+    private String serverSelectorName;
+
     private StringSerializer stringSerializer;
 
-    public ServerSelector(LobbyManager lobbyManager) {
+    private List<Button> items;
+
+    public ServerSelector(LobbyManager lobbyManager, String inventoryName) {
 
         this.inventoryConfig = lobbyManager.getConfigManager().getInventoryConfig();
 
         this.stringSerializer = lobbyManager.getStringSerializer();
 
+        this.serverSelectorName = inventoryName;
+
         this.serverSelectors = new HashMap<>();
+
+        this.items = inventoryConfig.getInventoryItems(inventoryName);
 
     }
 
     public Inventory createInventory(UUID playerUUID) {
 
-        Inventory inventory = inventoryConfig.getFilledInventory(stringSerializer, "server-selector");
+        Inventory inventory = inventoryConfig.getInventory(stringSerializer, serverSelectorName);
 
-        serverSelectors.put(playerUUID, inventory);
+        inventory = setInventoryItems(playerUUID, inventory);
 
         return inventory;
 
@@ -45,6 +56,54 @@ public class ServerSelector {
     public void removeInventory(UUID playerUUID) {
 
         serverSelectors.remove(playerUUID);
+
+    }
+
+    public Inventory setInventoryItems(UUID playerUUID, Inventory inventory) {
+
+        if (items == null) {
+
+            serverSelectors.put(playerUUID, inventory);
+
+            return inventory;
+
+        }
+
+        for (Button item : items) inventory.setItem(item.getSlot(), OraxenItems.getItemById(item.getItemID()).build());
+
+        serverSelectors.put(playerUUID, inventory);
+
+        return inventory;
+
+    }
+
+    public List<Button> getInventoryItems() {
+
+        return inventoryConfig.getInventoryItems(serverSelectorName);
+
+    }
+
+    public ItemStack getInventoryItem(int slot) {
+
+        for (Button item : items) {
+
+            if (item.getSlot() == slot) return OraxenItems.getItemById(item.getItemID()).build();
+
+        }
+
+        return null;
+
+    }
+
+    public String getServerName(int slot) {
+
+        for (Button item : items) {
+
+            if (item.getSlot() == slot) return item.getAction();
+
+        }
+
+        return null;
 
     }
 

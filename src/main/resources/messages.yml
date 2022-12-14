@@ -18,4 +18,8 @@ reload: "%prefix% Configuration <gradient:#ff80f6:#ffcc70><bold>reloaded!</bold>
 
 chat:
   permission: "<gradient:#ff80f6:#ffcc70>♦ <bold>%player_name%</bold> ♦</gradient> %message%"
-  no-permission: "%prefix% You don't have <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient> to send <gradient:#ff80f6:#ffcc70><bold>messages</bold></gradient>"
+  no-permission: "%prefix% You don't have <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient> to send <gradient:#ff80f6:#ffcc70><bold>messages!</bold></gradient>"
+
+server:
+  success: "%prefix% You have been <gradient:#ff80f6:#ffcc70><bold>sent</bold></gradient> to the <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
+  error: "%prefix% There was an <gradient:#ff80f6:#ffcc70><bold>error</bold></gradient> while connecting to <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"

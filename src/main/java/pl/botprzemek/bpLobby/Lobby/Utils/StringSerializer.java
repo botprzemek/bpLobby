@@ -60,4 +60,13 @@ public class StringSerializer {
 
     }
 
+    public String serializeServer(String string, String server) {
+
+        return LegacyComponentSerializer.legacySection()
+                .serialize(mm.deserialize(messageConfig.getMessage(string)
+                        .replace("%prefix%", messageConfig.getMessage("prefix"))
+                        .replace("%server%", server)));
+
+    }
+
 }

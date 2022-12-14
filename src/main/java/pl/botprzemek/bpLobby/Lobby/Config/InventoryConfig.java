@@ -1,14 +1,14 @@
 package pl.botprzemek.bpLobby.Lobby.Config;
 
-import io.th0rgal.oraxen.api.OraxenItems;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby.BpLobby;
+import pl.botprzemek.bpLobby.Lobby.Inventory.Button;
 import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InventoryConfig extends Config {
 
@@ -30,9 +30,9 @@ public class InventoryConfig extends Config {
 
     }
 
-    public HashMap<Integer, ItemStack> getInventoryItems(String inventoryName) {
+    public List<Button> getInventoryItems(String inventoryName) {
 
-        HashMap<Integer, ItemStack> items = new HashMap<>();
+        List<Button> inventoryData = new ArrayList<>();
 
         ConfigurationSection itemsConfig = getConfigurationSection(inventoryName + ".items");
 
@@ -42,36 +42,20 @@ public class InventoryConfig extends Config {
 
             ConfigurationSection itemConfig = itemsConfig.getConfigurationSection(key);
 
-            String itemID = itemConfig.getString("id");
-
-            if (!OraxenItems.exists(itemID)) {
-
-                Bukkit.getLogger().info("Item does not exists (" + itemID + ")");
-
-                return null;
-
-            }
-
-            items.put(itemConfig.getInt("slot"), OraxenItems.getItemById(itemID).build());
+            inventoryData.add(new Button(itemConfig.getInt("slot"), itemConfig.getString("id"), itemConfig.getString("action")));
 
         }
 
-        return items;
+        return inventoryData;
 
     }
 
-    public Inventory getFilledInventory(StringSerializer stringSerializer, String inventoryName) {
+    public Inventory getInventory(StringSerializer stringSerializer, String inventoryName) {
 
         Inventory inventory = Bukkit.createInventory(
                 null,
                 getInventorySize(inventoryName),
                 getInventoryTitle(stringSerializer, inventoryName));
-
-        HashMap<Integer, ItemStack> items = getInventoryItems(inventoryName);
-
-        if (items == null) return inventory;
-
-        for (int slot : items.keySet()) inventory.setItem(slot, items.get(slot));
 
         return inventory;
 
