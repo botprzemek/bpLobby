@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import pl.botprzemek.bpLobby.Command.PlayerInventory;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
@@ -18,6 +19,8 @@ public class JoinQuitEvent implements Listener {
 
     private ServerSelector serverSelector;
 
+    private PlayerInventory playerInventory;
+
     public JoinQuitEvent(LobbyManager lobbyManager) {
 
         this.stringSerializer = lobbyManager.getStringSerializer();
@@ -25,6 +28,8 @@ public class JoinQuitEvent implements Listener {
         this.hideShowPlayers = lobbyManager.getHideShowPlayers();
 
         this.serverSelector = lobbyManager.getServerSelector();
+
+        this.playerInventory = lobbyManager.getPlayerInventory();
 
     }
 
@@ -38,6 +43,8 @@ public class JoinQuitEvent implements Listener {
         hideShowPlayers.hidePlayers(player);
 
         serverSelector.createInventory(player.getUniqueId());
+
+        playerInventory.createPlayerInventory(player);
 
     }
 

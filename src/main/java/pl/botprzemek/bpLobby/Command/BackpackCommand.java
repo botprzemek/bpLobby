@@ -7,18 +7,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
-public class ServerCommand implements CommandExecutor {
+public class BackpackCommand implements CommandExecutor {
 
-    private ServerSelector serverSelector;
+    private PlayerInventory playerInventory;
 
     private CustomSound customSound;
 
-    public ServerCommand(LobbyManager lobbyManager) {
+    public BackpackCommand(LobbyManager lobbyManager) {
 
-        this.serverSelector = lobbyManager.getServerSelector();
+        this.playerInventory = lobbyManager.getPlayerInventory();
 
         for (CustomSound customSound1 : OraxenPlugin.get().getSoundManager().getCustomSounds()) {
 
@@ -27,7 +26,6 @@ public class ServerCommand implements CommandExecutor {
         }
 
     }
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
@@ -35,12 +33,8 @@ public class ServerCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        player.openInventory(serverSelector.getInventory(player.getUniqueId()));
-
-        customSound.play(player, player.getLocation());
+        player.openInventory(playerInventory.getPlayerInventory(player));
 
         return true;
-
     }
-
 }

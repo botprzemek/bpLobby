@@ -19,6 +19,10 @@ commands:
     aliases: [gracze, g, widok, see]
     default: true
     description: Players visibility changing command
+  backpack:
+    aliases: [plecak, b]
+    default: true
+    description: Players backpack command
 permissions:
   bplobby.*:
     description: Gives access to all bpLobby commands

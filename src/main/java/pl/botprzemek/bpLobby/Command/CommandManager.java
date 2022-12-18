@@ -15,6 +15,8 @@ public class CommandManager {
 
         instance.getCommand("server").setExecutor(new ServerCommand(lobbyManager));
 
+        instance.getCommand("backpack").setExecutor(new BackpackCommand(lobbyManager));
+
     }
 
 }

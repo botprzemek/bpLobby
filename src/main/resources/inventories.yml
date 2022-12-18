@@ -4,6 +4,12 @@ welcome:
   title: "<white>ꐟ"
   size: 0
 
+# BackpackGUI
+
+backpack:
+  title: "<white>ꐟ"
+  size: 0
+
 # Server selector GUI
 
 server-selector:
