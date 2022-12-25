@@ -2,6 +2,7 @@ package pl.botprzemek.bpLobby.Lobby.Config;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import pl.botprzemek.bpLobby.BpLobby;
 import pl.botprzemek.bpLobby.Lobby.Inventory.Button;
@@ -18,9 +19,9 @@ public class InventoryConfig extends Config {
 
     }
 
-    public String getInventoryTitle(StringSerializer stringSerializer, String inventoryName) {
+    public String getInventoryTitle(Player player, StringSerializer stringSerializer, String inventoryName) {
 
-        return stringSerializer.serializePlainText(getConfigurationSection(inventoryName).getString("title"));
+        return stringSerializer.serializePlainTextWithPapi(player, getConfigurationSection(inventoryName).getString("title"));
 
     }
 
@@ -50,12 +51,12 @@ public class InventoryConfig extends Config {
 
     }
 
-    public Inventory getInventory(StringSerializer stringSerializer, String inventoryName) {
+    public Inventory getInventory(Player player, StringSerializer stringSerializer, String inventoryName) {
 
         Inventory inventory = Bukkit.createInventory(
                 null,
                 getInventorySize(inventoryName),
-                getInventoryTitle(stringSerializer, inventoryName));
+                getInventoryTitle(player, stringSerializer, inventoryName));
 
         return inventory;
 

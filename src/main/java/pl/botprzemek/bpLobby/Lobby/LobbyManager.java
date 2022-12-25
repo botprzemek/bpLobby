@@ -8,8 +8,8 @@ import pl.botprzemek.bpLobby.Event.EventManager;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
-import pl.botprzemek.bpLobby.Lobby.Utils.ConsoleStartup;
 import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
+import pl.botprzemek.bpLobby.Lobby.Utils.Startup;
 import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
 public class LobbyManager {
@@ -52,7 +52,7 @@ public class LobbyManager {
 
         this.playerInventory = new PlayerInventory(this);
 
-        new ConsoleStartup(this);
+        new Startup(this);
 
         new CommandManager(this);
 

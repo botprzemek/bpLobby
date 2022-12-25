@@ -24,17 +24,20 @@ public class PlayerInventory {
 
         this.stringSerializer = lobbyManager.getStringSerializer();
 
+        playerInventories = new HashMap<>();
+
     }
 
     public Inventory createPlayerInventory(Player player) {
 
-        Inventory inventory = Bukkit.createInventory(player, inventoryConfig.getInventorySize("backpack"), inventoryConfig.getInventoryTitle(stringSerializer, "backpack"));
+        Inventory inventory = Bukkit.createInventory(player, inventoryConfig.getInventorySize("backpack"), inventoryConfig.getInventoryTitle(player, stringSerializer, "backpack"));
 
         playerInventories.put(player.getUniqueId(), inventory);
 
         player.sendMessage("Created inventory: " + playerInventories.get(player.getUniqueId()).getSize());
 
         return inventory;
+
     }
 
     public HashMap<UUID, Inventory> getPlayerInventories() {

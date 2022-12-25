@@ -1,9 +1,11 @@
 package pl.botprzemek.bpLobby.Event;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
@@ -44,6 +46,13 @@ public class InventoryEvent implements Listener {
         player.closeInventory();
 
         bungeeChannel.sendPlayerToServer(player, serverSelector.getServerName(event.getSlot()));
+
+    }
+
+    @EventHandler
+    public void onPlayerItemDrop(PlayerDropItemEvent event) {
+
+        if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
 
     }
 

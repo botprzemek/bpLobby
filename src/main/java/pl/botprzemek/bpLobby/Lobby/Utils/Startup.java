@@ -2,11 +2,34 @@ package pl.botprzemek.bpLobby.Lobby.Utils;
 
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.GameRule;
+import org.bukkit.World;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
-public class ConsoleStartup {
+public class Startup {
 
-    public ConsoleStartup(LobbyManager lobbyManager) {
+    public Startup(LobbyManager lobbyManager) {
+
+        World world = lobbyManager.getInstance().getServer().getWorld("world");
+
+        world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
+        world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
+        world.setGameRule(GameRule.DISABLE_ELYTRA_MOVEMENT_CHECK, true);
+        world.setGameRule(GameRule.SPECTATORS_GENERATE_CHUNKS, false);
+        world.setGameRule(GameRule.DO_FIRE_TICK, false);
+        world.setGameRule(GameRule.DO_MOB_SPAWNING, false);
+        world.setGameRule(GameRule.DO_MOB_LOOT, false);
+        world.setGameRule(GameRule.DO_ENTITY_DROPS, false);
+        world.setGameRule(GameRule.DO_INSOMNIA, false);
+        world.setGameRule(GameRule.SHOW_DEATH_MESSAGES, false);
+        world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
+        world.setGameRule(GameRule.MOB_GRIEFING, false);
+        world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, false);
+        world.setGameRule(GameRule.FALL_DAMAGE, false);
+        world.setGameRule(GameRule.FIRE_DAMAGE, false);
+        world.setGameRule(GameRule.DROWNING_DAMAGE, false);
+        world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
+        world.setGameRule(GameRule.DO_PATROL_SPAWNING, false);
 
         Audience sender = lobbyManager.getAdventure().sender(lobbyManager.getInstance().getServer().getConsoleSender());
 

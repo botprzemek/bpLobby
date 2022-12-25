@@ -1,6 +1,7 @@
 package pl.botprzemek.bpLobby.Lobby.Inventory;
 
 import io.th0rgal.oraxen.api.OraxenItems;
+import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby.Lobby.Config.InventoryConfig;
@@ -35,7 +36,7 @@ public class ServerSelector {
 
     public Inventory createInventory(UUID playerUUID) {
 
-        Inventory inventory = inventoryConfig.getInventory(stringSerializer, serverSelectorName);
+        Inventory inventory = inventoryConfig.getInventory(Bukkit.getPlayer(playerUUID), stringSerializer, serverSelectorName);
 
         inventory = setInventoryItems(playerUUID, inventory);
 

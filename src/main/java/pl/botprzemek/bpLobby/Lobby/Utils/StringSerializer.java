@@ -4,7 +4,6 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.Lobby.Config.InventoryConfig;
 import pl.botprzemek.bpLobby.Lobby.Config.MessageConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
@@ -14,13 +13,9 @@ public class StringSerializer {
 
     private MessageConfig messageConfig;
 
-    private InventoryConfig inventoryConfig;
-
     public StringSerializer(LobbyManager lobbyManager) {
 
         this.messageConfig = lobbyManager.getConfigManager().getMessageConfig();
-
-        this.inventoryConfig = lobbyManager.getConfigManager().getInventoryConfig();
 
     }
 
@@ -42,10 +37,11 @@ public class StringSerializer {
 
     }
 
-    public String serializePlainText(String string) {
+    public String serializePlainTextWithPapi(Player player, String string) {
 
         return LegacyComponentSerializer.legacySection()
-                .serialize(mm.deserialize(string));
+                .serialize(mm.deserialize(PlaceholderAPI
+                                          .setPlaceholders(player, string)));
 
     }
 

@@ -36,5 +36,6 @@ public class BackpackCommand implements CommandExecutor {
         player.openInventory(playerInventory.getPlayerInventory(player));
 
         return true;
+
     }
 }

@@ -29,5 +29,5 @@ server:
 # Players command message
 
 players:
-  shown: "%prefix% Players are <gradient:#ff80f6:#ffcc70><bold>visible</bold></gradient> now!"
-  hidden: "%prefix% Players are <gradient:#ff80f6:#ffcc70><bold>hidden</bold></gradient> now!"
+  shown: "%prefix% Players are now <gradient:#ff80f6:#ffcc70><bold>visible!</bold></gradient>"
+  hidden: "%prefix% Players are now <gradient:#ff80f6:#ffcc70><bold>hidden!</bold></gradient>"
