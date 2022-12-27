@@ -1,11 +1,12 @@
 package pl.botprzemek.bpLobby.Event;
 
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import pl.botprzemek.bpLobby.Command.PlayerInventory;
+import pl.botprzemek.bpLobby.Lobby.Config.LobbyConfig;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
@@ -19,7 +20,7 @@ public class JoinQuitEvent implements Listener {
 
     private ServerSelector serverSelector;
 
-    private PlayerInventory playerInventory;
+    private LobbyConfig lobbyConfig;
 
     public JoinQuitEvent(LobbyManager lobbyManager) {
 
@@ -29,7 +30,7 @@ public class JoinQuitEvent implements Listener {
 
         this.serverSelector = lobbyManager.getServerSelector();
 
-        this.playerInventory = lobbyManager.getPlayerInventory();
+        this.lobbyConfig = lobbyManager.getConfigManager().getLobbyConfig();
 
     }
 
@@ -42,9 +43,9 @@ public class JoinQuitEvent implements Listener {
 
         hideShowPlayers.hidePlayers(player);
 
-        serverSelector.createInventory(player.getUniqueId());
+        player.playSound(player, Sound.valueOf(lobbyConfig.getLobbySound().getString("name").toUpperCase()), (float) lobbyConfig.getLobbySound().getDouble("volume"), (float) lobbyConfig.getLobbySound().getDouble("pitch"));
 
-        playerInventory.createPlayerInventory(player);
+        serverSelector.createInventory(player.getUniqueId());
 
     }
 

@@ -17,6 +17,8 @@ public class ConfigManager {
 
     private InventoryConfig inventoryConfig;
 
+    private LobbyConfig lobbyConfig;
+
     public ConfigManager(LobbyManager lobbyManager) {
 
         this.instance = lobbyManager.getInstance();
@@ -24,6 +26,8 @@ public class ConfigManager {
         configs.add(this.messageConfig = new MessageConfig(instance));
 
         configs.add(this.inventoryConfig = new InventoryConfig(instance));
+
+        configs.add(this.lobbyConfig = new LobbyConfig(instance));
 
     }
 
@@ -62,4 +66,11 @@ public class ConfigManager {
         return inventoryConfig;
 
     }
+
+    public LobbyConfig getLobbyConfig() {
+
+        return lobbyConfig;
+
+    }
+
 }

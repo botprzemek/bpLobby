@@ -1,5 +1,5 @@
 name: bpLobby
-version: '0.1-REMASTERED'
+version: '0.4'
 authors: [botprzemek]
 website: 'https://www.github.com/botprzemek/bpLobby/'
 description: All-in-one lobby plugin (1.18.2)
@@ -19,10 +19,6 @@ commands:
     aliases: [gracze, g, widok, see]
     default: true
     description: Players visibility changing command
-  backpack:
-    aliases: [plecak, b]
-    default: true
-    description: Players backpack command
 permissions:
   bplobby.*:
     description: Gives access to all bpLobby commands

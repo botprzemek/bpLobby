@@ -3,13 +3,12 @@ package pl.botprzemek.bpLobby.Lobby;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import pl.botprzemek.bpLobby.BpLobby;
 import pl.botprzemek.bpLobby.Command.CommandManager;
-import pl.botprzemek.bpLobby.Command.PlayerInventory;
 import pl.botprzemek.bpLobby.Event.EventManager;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
 import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
-import pl.botprzemek.bpLobby.Lobby.Utils.Startup;
+import pl.botprzemek.bpLobby.Lobby.Utils.ServerStartup;
 import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
 public class LobbyManager {
@@ -23,8 +22,6 @@ public class LobbyManager {
     private StringSerializer stringSerializer;
 
     private HideShowPlayers hideShowPlayers;
-
-    private PlayerInventory playerInventory;
 
     private BukkitAudiences adventure;
 
@@ -50,9 +47,7 @@ public class LobbyManager {
 
         this.serverSelector = new ServerSelector(this, "server-selector");
 
-        this.playerInventory = new PlayerInventory(this);
-
-        new Startup(this);
+        new ServerStartup(this);
 
         new CommandManager(this);
 
@@ -101,12 +96,6 @@ public class LobbyManager {
     public StringSerializer getStringSerializer() {
 
         return stringSerializer;
-
-    }
-
-    public PlayerInventory getPlayerInventory() {
-
-        return playerInventory;
 
     }
 

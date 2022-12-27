@@ -6,15 +6,18 @@ import org.bukkit.GameRule;
 import org.bukkit.World;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
-public class Startup {
+public class ServerStartup {
 
-    public Startup(LobbyManager lobbyManager) {
+    public ServerStartup(LobbyManager lobbyManager) {
 
-        World world = lobbyManager.getInstance().getServer().getWorld("world");
+        World world = lobbyManager.getConfigManager().getLobbyConfig().getLobbyWorld();
 
+        world.setSpawnLocation(lobbyManager.getConfigManager().getLobbyConfig().getLobbyLocation());
+
+        world.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
+        world.setGameRule(GameRule.DISABLE_ELYTRA_MOVEMENT_CHECK, true);
         world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
         world.setGameRule(GameRule.COMMAND_BLOCK_OUTPUT, false);
-        world.setGameRule(GameRule.DISABLE_ELYTRA_MOVEMENT_CHECK, true);
         world.setGameRule(GameRule.SPECTATORS_GENERATE_CHUNKS, false);
         world.setGameRule(GameRule.DO_FIRE_TICK, false);
         world.setGameRule(GameRule.DO_MOB_SPAWNING, false);

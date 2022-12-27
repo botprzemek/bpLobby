@@ -1,0 +1,20 @@
+# Spawn location
+
+spawn:
+  world: "world"
+  x: 0.5
+  y: 100
+  z: 0.5
+  yaw: 180
+  pitch: -5
+
+# Height limit (For void teleportation)
+
+limit: 75
+
+# Player teleporting sound
+
+sound:
+  name: block_portal_travel
+  volume: 0.1
+  pitch: 2

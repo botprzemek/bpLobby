@@ -1,19 +1,13 @@
 # Welcome GUI
 
 welcome:
-  title: "<white>ꐟ"
+  title: "<white>%oraxen_welcome_gui%"
   size: 0
-
-# BackpackGUI
-
-backpack:
-  title: "<white>ꐟ"
-  size: 27
 
 # Server selector GUI
 
 server-selector:
-  title: "<white>ꐟ"
+  title: "<white>%oraxen_server_gui%"
   size: 27
   items:
     0:
