@@ -1,6 +1,5 @@
 package pl.botprzemek.bpLobby.Event;
 
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +8,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pl.botprzemek.bpLobby.Lobby.Config.LobbyConfig;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
+import pl.botprzemek.bpLobby.Lobby.Utils.EventCustomization;
 import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
 import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
@@ -22,6 +22,8 @@ public class JoinQuitEvent implements Listener {
 
     private LobbyConfig lobbyConfig;
 
+    private EventCustomization eventCustomization;
+
     public JoinQuitEvent(LobbyManager lobbyManager) {
 
         this.stringSerializer = lobbyManager.getStringSerializer();
@@ -31,6 +33,8 @@ public class JoinQuitEvent implements Listener {
         this.serverSelector = lobbyManager.getServerSelector();
 
         this.lobbyConfig = lobbyManager.getConfigManager().getLobbyConfig();
+
+        this.eventCustomization = lobbyManager.getEventCustomization();
 
     }
 
@@ -43,9 +47,9 @@ public class JoinQuitEvent implements Listener {
 
         hideShowPlayers.hidePlayers(player);
 
-        player.playSound(player, Sound.valueOf(lobbyConfig.getLobbySound().getString("name").toUpperCase()), (float) lobbyConfig.getLobbySound().getDouble("volume"), (float) lobbyConfig.getLobbySound().getDouble("pitch"));
-
         serverSelector.createInventory(player.getUniqueId());
+
+        eventCustomization.createCustomElements(player);
 
     }
 

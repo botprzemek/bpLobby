@@ -6,10 +6,7 @@ import pl.botprzemek.bpLobby.Command.CommandManager;
 import pl.botprzemek.bpLobby.Event.EventManager;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
-import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
-import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
-import pl.botprzemek.bpLobby.Lobby.Utils.ServerStartup;
-import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Utils.*;
 
 public class LobbyManager {
 
@@ -26,6 +23,8 @@ public class LobbyManager {
     private BukkitAudiences adventure;
 
     private ServerSelector serverSelector;
+
+    private EventCustomization eventCustomization;
 
     public LobbyManager(BpLobby instance) {
 
@@ -46,6 +45,8 @@ public class LobbyManager {
         this.hideShowPlayers = new HideShowPlayers(instance);
 
         this.serverSelector = new ServerSelector(this, "server-selector");
+
+        this.eventCustomization = new EventCustomization(this);
 
         new ServerStartup(this);
 
@@ -102,6 +103,12 @@ public class LobbyManager {
     public ServerSelector getServerSelector() {
 
         return serverSelector;
+
+    }
+
+    public EventCustomization getEventCustomization() {
+
+        return eventCustomization;
 
     }
 

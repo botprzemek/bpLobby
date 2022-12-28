@@ -1,7 +1,6 @@
 package pl.botprzemek.bpLobby.Event;
 
 import org.bukkit.GameMode;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,14 +8,19 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import pl.botprzemek.bpLobby.Lobby.Config.LobbyConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
+import pl.botprzemek.bpLobby.Lobby.Utils.EventCustomization;
 
 public class PlayerFallingEvent implements Listener {
 
     private LobbyConfig lobbyConfig;
 
+    private EventCustomization eventCustomization;
+
     public PlayerFallingEvent(LobbyManager lobbyManager) {
 
         this.lobbyConfig = lobbyManager.getConfigManager().getLobbyConfig();
+
+        this.eventCustomization = lobbyManager.getEventCustomization();
 
     }
 
@@ -31,8 +35,7 @@ public class PlayerFallingEvent implements Listener {
 
         player.teleport(lobbyConfig.getLobbyLocation());
 
-        player.playSound(player, Sound.valueOf(lobbyConfig.getLobbySound().getString("name").toUpperCase()), (float) lobbyConfig.getLobbySound().getDouble("volume"), (float) lobbyConfig.getLobbySound().getDouble("pitch"));
-
+        eventCustomization.createCustomElements(player);
 
     }
 
@@ -41,8 +44,7 @@ public class PlayerFallingEvent implements Listener {
 
         event.setRespawnLocation(lobbyConfig.getLobbyLocation());
 
-        event.getPlayer().playSound(event.getPlayer(), Sound.valueOf(lobbyConfig.getLobbySound().getString("name").toUpperCase()), (float) lobbyConfig.getLobbySound().getDouble("volume"), (float) lobbyConfig.getLobbySound().getDouble("pitch"));
-
+        eventCustomization.createCustomElements(event.getPlayer());
 
     }
 
