@@ -27,21 +27,22 @@ public class StringSerializer {
 
     }
 
-    public String serializeTextFromPath(String path, String playerName, String message) {
+    public String serializeTextFromPath(String path, Player player, String message) {
+
+        String originalMessage = messageConfig.getMessage(path)
+                .replace("%message%", message);
 
         return LegacyComponentSerializer.legacySection()
-                .serialize(mm.deserialize(messageConfig.getMessage(path)
-                .replace("%player_name%", playerName)
-                .replace("%prefix%", messageConfig.getMessage("prefix"))
-                .replace("%message%", message)));
+                .serialize(mm.deserialize(PlaceholderAPI.setPlaceholders(player, originalMessage.replace("%prefix%", messageConfig.getMessage("prefix")))));
 
     }
 
     public String serializePlainTextWithPapi(Player player, String string) {
 
         return LegacyComponentSerializer.legacySection()
-                .serialize(mm.deserialize(PlaceholderAPI
-                                          .setPlaceholders(player, string)));
+                .serialize(mm.deserialize(PlaceholderAPI.
+                        setPlaceholders(player, string)
+                        .replace("%prefix%", messageConfig.getMessage("prefix"))));
 
     }
 

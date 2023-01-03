@@ -52,7 +52,9 @@ public class ReloadCommand implements CommandExecutor {
 
         for (Player player : Bukkit.getOnlinePlayers()) serverSelector.createInventory(player.getUniqueId());
 
-        sender.sendMessage(stringSerializer.serializeText(configManager.getMessageConfig().getMessage("reload")));
+        if (sender instanceof Player) sender.sendMessage(stringSerializer.serializePlainTextWithPapi((Player) sender, configManager.getMessageConfig().getMessage("reload")));
+
+        else sender.sendMessage(stringSerializer.serializeText(configManager.getMessageConfig().getMessage("reload")));
 
         return true;
 

@@ -29,7 +29,9 @@ public class EventCustomization {
 
         Location playerlocation = player.getLocation();
 
-        player.playSound(playerlocation, Sound.valueOf(lobbyConfig.getLobbySound().getString("name").toUpperCase()), (float) lobbyConfig.getLobbySound().getDouble("volume"), (float) lobbyConfig.getLobbySound().getDouble("pitch"));
+        player.playSound(playerlocation,
+                Sound.valueOf(lobbyConfig.getLobbySound().getString("name").toUpperCase()),
+                (float) lobbyConfig.getLobbySound().getDouble("volume"), (float) lobbyConfig.getLobbySound().getDouble("pitch"));
 
         ConfigurationSection particle = lobbyConfig.getConfigurationSection("particle");
 
@@ -54,7 +56,7 @@ public class EventCustomization {
                     Location particleLoc = new Location(location.getWorld(), location.getX(), location.getY()+particle.getDouble("y-offset"), location.getZ());
                     particleLoc.setX(location.getX() + Math.cos(d) * size);
                     particleLoc.setZ(location.getZ() + Math.sin(d) * size);
-                    location.getWorld().spawnParticle(Particle.valueOf(particle.getString("name").toUpperCase()), particleLoc, particle.getInt("amount"), dustTransition);
+                    player.spawnParticle(Particle.valueOf(particle.getString("name").toUpperCase()), particleLoc, particle.getInt("amount"), dustTransition);
                 }
                 if (t > particle.getInt("time")) {
                     this.cancel();

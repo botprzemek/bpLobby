@@ -1,10 +1,10 @@
 name: bpLobby
-version: '0.4'
-authors: [botprzemek]
-website: 'https://www.github.com/botprzemek/bpLobby/'
+version: 0.5
+author: botprzemek
+website: https://www.github.com/botprzemek/bpLobby/
 description: All-in-one lobby plugin (1.18.2)
 main: pl.botprzemek.bpLobby.BpLobby
-api-version: '1.18'
+api-version: 1.18
 softdepend: [PlaceholderAPI, Oraxen]
 commands:
   bplobby:

@@ -19,6 +19,18 @@ public class InventoryConfig extends Config {
 
     }
 
+    public int getItemSlot(String name) {
+
+        return getConfigurationSection(name).getInt("slot");
+
+    }
+
+    public String getItemID(String name) {
+
+        return getConfigurationSection(name).getString("id");
+
+    }
+
     public String getInventoryTitle(Player player, StringSerializer stringSerializer, String inventoryName) {
 
         return stringSerializer.serializePlainTextWithPapi(player, getConfigurationSection(inventoryName).getString("title"));
@@ -44,6 +56,26 @@ public class InventoryConfig extends Config {
             ConfigurationSection itemConfig = itemsConfig.getConfigurationSection(key);
 
             inventoryData.add(new Button(itemConfig.getInt("slot"), itemConfig.getString("id"), itemConfig.getString("action")));
+
+        }
+
+        return inventoryData;
+
+    }
+
+    public List<String> getServerNames(String inventoryName) {
+
+        List<String> inventoryData = new ArrayList<>();
+
+        ConfigurationSection itemsConfig = getConfigurationSection(inventoryName + ".items");
+
+        if (itemsConfig == null) return null;
+
+        for (String key : itemsConfig.getKeys(false)) {
+
+            ConfigurationSection itemConfig = itemsConfig.getConfigurationSection(key);
+
+            inventoryData.add(itemConfig.getString("action"));
 
         }
 

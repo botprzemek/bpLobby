@@ -9,6 +9,9 @@ welcome:
 server-selector:
   title: "<white>%oraxen_server_gui%"
   size: 27
+  selector:
+    slot: 4
+    id: "example_sword"
   items:
     0:
       slot: 14

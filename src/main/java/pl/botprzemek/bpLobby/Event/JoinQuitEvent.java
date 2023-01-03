@@ -1,11 +1,12 @@
 package pl.botprzemek.bpLobby.Event;
 
+import io.th0rgal.oraxen.api.OraxenItems;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import pl.botprzemek.bpLobby.Lobby.Config.LobbyConfig;
+import pl.botprzemek.bpLobby.Lobby.Config.InventoryConfig;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.EventCustomization;
@@ -20,7 +21,7 @@ public class JoinQuitEvent implements Listener {
 
     private ServerSelector serverSelector;
 
-    private LobbyConfig lobbyConfig;
+    private InventoryConfig inventoryConfig;
 
     private EventCustomization eventCustomization;
 
@@ -32,7 +33,7 @@ public class JoinQuitEvent implements Listener {
 
         this.serverSelector = lobbyManager.getServerSelector();
 
-        this.lobbyConfig = lobbyManager.getConfigManager().getLobbyConfig();
+        this.inventoryConfig = lobbyManager.getConfigManager().getInventoryConfig();
 
         this.eventCustomization = lobbyManager.getEventCustomization();
 
@@ -50,6 +51,8 @@ public class JoinQuitEvent implements Listener {
         serverSelector.createInventory(player.getUniqueId());
 
         eventCustomization.createCustomElements(player);
+
+        player.getInventory().setItem(inventoryConfig.getItemSlot("item"), OraxenItems.getItemById(inventoryConfig.getItemID("item")).build());
 
     }
 

@@ -82,6 +82,12 @@ public class ServerSelector {
 
     }
 
+    public List<String> getServerSelectorNames() {
+
+        return inventoryConfig.getServerNames(serverSelectorName);
+
+    }
+
     public ItemStack getInventoryItem(int slot) {
 
         List<Button> items = inventoryConfig.getInventoryItems(serverSelectorName);
