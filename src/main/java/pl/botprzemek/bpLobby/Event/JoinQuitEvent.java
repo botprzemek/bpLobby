@@ -1,6 +1,7 @@
 package pl.botprzemek.bpLobby.Event;
 
 import io.th0rgal.oraxen.api.OraxenItems;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,7 +53,9 @@ public class JoinQuitEvent implements Listener {
 
         eventCustomization.createCustomElements(player);
 
-        player.getInventory().setItem(inventoryConfig.getItemSlot("item"), OraxenItems.getItemById(inventoryConfig.getItemID("item")).build());
+        if (player.getGameMode().equals(GameMode.SURVIVAL)) player.getInventory().clear();
+
+        if (player.hasPermission("bplobby.server")) player.getInventory().setItem(inventoryConfig.getItemSlot("item"), OraxenItems.getItemById(inventoryConfig.getItemID("item")).build());
 
     }
 

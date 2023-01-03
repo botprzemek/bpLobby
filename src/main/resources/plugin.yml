@@ -9,20 +9,20 @@ softdepend: [PlaceholderAPI, Oraxen]
 commands:
   bplobby:
     aliases: [bpl]
-    default: true
+    default: op
     description: Reloading command for bpLobby plugin
   server:
     aliases: [serwer, s, servers]
-    default: true
+    default: op
     description: Server changing command
   players:
     aliases: [gracze, g, widok, see]
-    default: true
+    default: op
     description: Players visibility changing command
 permissions:
   bplobby.*:
     description: Gives access to all bpLobby commands
-    default: true
+    default: op
     children:
       bplobby.server: true
       bplobby.players: true

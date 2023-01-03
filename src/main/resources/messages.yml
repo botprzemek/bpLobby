@@ -23,8 +23,18 @@ chat:
 # Server selector
 
 server:
-  success: "%prefix% You have been <gradient:#ff80f6:#ffcc70><bold>sent</bold></gradient> to the <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
-  error: "%prefix% There was an <gradient:#ff80f6:#ffcc70><bold>error</bold></gradient> while connecting to <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
+  success:
+    message: "%prefix% You have been <gradient:#ff80f6:#ffcc70><bold>sent</bold></gradient> to the <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
+    sound: "block_note_block_bell"
+  error:
+    message: "%prefix% There was an <gradient:#ff80f6:#ffcc70><bold>error</bold></gradient> while connecting to <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
+    sound: "block_note_block_bit"
+  not-found:
+    message: "%prefix% Server you have requested is not <gradient:#ff80f6:#ffcc70><bold>available!</bold></gradient>"
+    sound: "block_note_block_bit"
+  usage:
+    message:  "%prefix% Usage: /servers <gradient:#ff80f6:#ffcc70><bold>(server)!</bold></gradient>"
+    sound: "block_note_block_bit"
 
 # Players command message
 
