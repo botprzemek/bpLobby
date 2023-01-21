@@ -1,54 +1,38 @@
 package pl.botprzemek.bpLobby.Lobby;
 
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import pl.botprzemek.bpLobby.BpLobby;
 import pl.botprzemek.bpLobby.Command.CommandManager;
 import pl.botprzemek.bpLobby.Event.EventManager;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
-import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.Utils.*;
 
 public class LobbyManager {
 
-    private BpLobby instance;
+    private final BpLobby instance;
 
-    private ConfigManager configManager;
+    private final ConfigManager configManager;
 
-    private BungeeChannel bungeeChannel;
+    private final BungeeChannel bungeeChannel;
 
-    private StringSerializer stringSerializer;
+    private final MessageManager messageManager;
 
-    private HideShowPlayers hideShowPlayers;
+    private final PluginManager pluginManager;
 
-    private BukkitAudiences adventure;
-
-    private ServerSelector serverSelector;
-
-    private EventCustomization eventCustomization;
+//    private final ServerSelector serverSelector;
 
     public LobbyManager(BpLobby instance) {
 
         this.instance = instance;
 
-        instance.getServer().getMessenger().registerOutgoingPluginChannel(instance, "BungeeCord");
+        configManager = new ConfigManager(this);
 
-        this.configManager = new ConfigManager(this);
+        messageManager = new MessageManager(this);
 
-        configManager.loadConfigs();
+//        serverSelector = new ServerSelector(this);
 
-        this.adventure = BukkitAudiences.create(instance);
+        bungeeChannel = new BungeeChannel(this);
 
-        this.stringSerializer = new StringSerializer(this);
-
-        this.bungeeChannel = new BungeeChannel(this);
-
-        this.hideShowPlayers = new HideShowPlayers(instance);
-
-        this.serverSelector = new ServerSelector(this, "server-selector");
-
-        this.eventCustomization = new EventCustomization(this);
-
-        new ServerStartup(this);
+        pluginManager = new PluginManager(this);
 
         new CommandManager(this);
 
@@ -58,9 +42,9 @@ public class LobbyManager {
 
     public void cleanUp() {
 
-        if (adventure != null) adventure.close();
-
         instance.getServer().getMessenger().unregisterOutgoingPluginChannel(instance);
+
+        configManager.saveConfigs();
 
     }
 
@@ -82,34 +66,22 @@ public class LobbyManager {
 
     }
 
-    public BukkitAudiences getAdventure() {
+    public MessageManager getMessageManager() {
 
-        return adventure;
-
-    }
-
-    public HideShowPlayers getHideShowPlayers() {
-
-        return hideShowPlayers;
+        return messageManager;
 
     }
 
-    public StringSerializer getStringSerializer() {
+    public PluginManager getPluginManager() {
 
-        return stringSerializer;
-
-    }
-
-    public ServerSelector getServerSelector() {
-
-        return serverSelector;
+        return pluginManager;
 
     }
 
-    public EventCustomization getEventCustomization() {
-
-        return eventCustomization;
-
-    }
+//    public ServerSelector getServerSelector() {
+//
+//        return serverSelector;
+//
+//    }
 
 }

@@ -6,21 +6,16 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import pl.botprzemek.bpLobby.Lobby.Config.LobbyConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.EventCustomization;
+import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
 
 public class PlayerFallingEvent implements Listener {
 
-    private LobbyConfig lobbyConfig;
-
-    private EventCustomization eventCustomization;
+    private final PluginManager pluginManager;
 
     public PlayerFallingEvent(LobbyManager lobbyManager) {
 
-        this.lobbyConfig = lobbyManager.getConfigManager().getLobbyConfig();
-
-        this.eventCustomization = lobbyManager.getEventCustomization();
+        pluginManager = lobbyManager.getPluginManager();
 
     }
 
@@ -29,22 +24,26 @@ public class PlayerFallingEvent implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.getLocation().getY() > lobbyConfig.getLobbyLimit()) return;
+        if (player.hasPermission("bplobby.bypass")) return;
 
-        if (!player.getGameMode().equals(GameMode.SURVIVAL)) return;
+        if (player.getLocation().getY() > pluginManager.getLimit()) return;
 
-        player.teleport(lobbyConfig.getLobbyLocation());
+        player.teleport(pluginManager.getSpawnLocation());
 
-        eventCustomization.createCustomElements(player);
+        pluginManager.createCustomElements(player);
 
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerRespawnEvent event) {
 
-        event.setRespawnLocation(lobbyConfig.getLobbyLocation());
+        Player player = event.getPlayer();
 
-        eventCustomization.createCustomElements(event.getPlayer());
+        event.setRespawnLocation(pluginManager.getSpawnLocation());
+
+        pluginManager.createCustomElements(player);
+
+        pluginManager.setPlayerSelector(player);
 
     }
 

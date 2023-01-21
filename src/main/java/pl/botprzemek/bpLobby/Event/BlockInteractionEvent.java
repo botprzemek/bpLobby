@@ -3,89 +3,183 @@ package pl.botprzemek.bpLobby.Event;
 import io.th0rgal.oraxen.api.events.OraxenFurnitureBreakEvent;
 import io.th0rgal.oraxen.api.events.OraxenFurniturePlaceEvent;
 import org.bukkit.GameMode;
+import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByBlockEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.*;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
+import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
+
+import java.util.Objects;
 
 public class BlockInteractionEvent implements Listener {
 
-    private LobbyManager lobbyManager;
+    private final PluginManager pluginManager;
 
     public BlockInteractionEvent(LobbyManager lobbyManager) {
 
-        this.lobbyManager = lobbyManager;
+        pluginManager = lobbyManager.getPluginManager();
+
+    }
+
+
+    @EventHandler
+    public void onPlayerBlockDestroyEvent(HangingBreakByEntityEvent event) {
+
+        if (!(event.getRemover() instanceof Player player)) {
+
+            event.setCancelled(true);
+
+            return;
+
+        }
+
+        if (player.hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
 
     }
 
     @EventHandler
-    public void onBlockDestroy(BlockBreakEvent event) {
+    public void onPlayerBlockDestroyEvent(HangingPlaceEvent event) {
 
-        if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
+        Player player = event.getPlayer();
 
-    }
+        if (player == null) return;
 
-    @EventHandler
-    public void onBlockPlace(BlockPlaceEvent event) {
+        if (player.hasPermission("bplobby.bypass")) return;
 
-        if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
-
-    }
-
-    @EventHandler
-    public void onItemFrameDestroy(HangingBreakEvent event) {
-
-        if (!(event.getEntity() instanceof Player player)) return;
-
-        if (player.getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
+        event.setCancelled(true);
 
     }
 
     @EventHandler
-    public void onItemFrameDestroyByPlayer(HangingBreakByEntityEvent event) {
+    public void onPlayerDamageOthersEvent(EntityDamageByEntityEvent event) {
 
-        if (!(event.getRemover() instanceof Player player)) return;
+        if (event.getDamager() instanceof Player player) {
 
-        if (player.getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
+            if (player.hasPermission("bplobby.bypass")) return;
 
-    }
+            event.setCancelled(true);
 
-    @EventHandler
-    public void onItemFramePlace(HangingPlaceEvent event) {
+        }
 
-        if (!(event.getEntity() instanceof ItemFrame)) return;
-
-        if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
+        event.setCancelled(true);
 
     }
 
     @EventHandler
-    public void onItemFrameEdit(PlayerInteractEntityEvent event) {
+    public void onPlayerDamagedEvent(EntityDamageEvent event) {
 
-        if (!(event.getRightClicked() instanceof ItemFrame)) return;
+        if (event.getEntity() instanceof Player player) {
 
-        if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
+            if (player.hasPermission("bplobby.bypass")) return;
+
+            event.setCancelled(true);
+
+        }
+
+        event.setCancelled(true);
+
+    }
+
+    @EventHandler
+    public void onPlayerDamagedByBlockEvent(EntityDamageByBlockEvent event) {
+
+        event.setCancelled(true);
+
+    }
+
+    @EventHandler
+    public void onPlayerInteractEvent(PlayerInteractEvent event) {
+
+        if (event.getPlayer().hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
+
+    }
+
+    @EventHandler
+    public void onPlayerInteractEvent(PlayerInteractEntityEvent event) {
+
+        if (event.getPlayer().hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
+
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+
+        Player player = event.getPlayer();
+
+        if (player.getBedSpawnLocation() == null) event.setRespawnLocation(pluginManager.getSpawnLocation());
+
+    }
+
+    @EventHandler
+    public void onPlayerBlockPlace(BlockPlaceEvent event) {
+
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
+
+    }
+
+    @EventHandler
+    public void onPlayerWaterFill(PlayerBucketFillEvent event) {
+
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
+
+    }
+
+    @EventHandler
+    public void onPlayerWaterEmpty(PlayerBucketEmptyEvent event) {
+
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
 
     }
 
     @EventHandler
     public void onOraxenBlocksBreak(OraxenFurnitureBreakEvent event) {
 
-        if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
 
     }
 
     @EventHandler
     public void onOraxenBlocksPlace(OraxenFurniturePlaceEvent event) {
 
-        if (event.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) event.setCancelled(true);
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("bplobby.bypass")) return;
+
+        event.setCancelled(true);
 
     }
 

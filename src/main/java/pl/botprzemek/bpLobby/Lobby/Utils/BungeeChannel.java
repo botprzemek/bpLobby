@@ -2,27 +2,23 @@ package pl.botprzemek.bpLobby.Lobby.Utils;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.Lobby.Config.MessageConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
 public class BungeeChannel {
 
-    private BpLobby instance;
+    private final BpLobby instance;
 
-    private StringSerializer stringSerializer;
-
-    private MessageConfig messageConfig;
+    private final MessageManager messageManager;
 
     public BungeeChannel(LobbyManager lobbyManager) {
 
-        this.instance = lobbyManager.getInstance();
+        instance = lobbyManager.getInstance();
 
-        this.stringSerializer = lobbyManager.getStringSerializer();
+        instance.getServer().getMessenger().registerOutgoingPluginChannel(instance, "BungeeCord");
 
-        this.messageConfig = lobbyManager.getConfigManager().getMessageConfig();
+        messageManager = lobbyManager.getMessageManager();
 
     }
 
@@ -35,9 +31,9 @@ public class BungeeChannel {
             out.writeUTF("Connect");
             out.writeUTF(server.toLowerCase());
 
-            player.sendMessage(stringSerializer.serializeServer("server.success.message", server));
+            messageManager.sendCommandMessage(player, "server.success", server);
 
-            player.playSound(player, Sound.valueOf(messageConfig.getString("server.success.sound").toUpperCase()), 1, 1);
+            messageManager.playPlayerSound(player, "activate");
 
             player.sendPluginMessage(instance, "BungeeCord", out.toByteArray());
 
@@ -45,9 +41,9 @@ public class BungeeChannel {
 
         catch (Exception error) {
 
-            player.sendMessage(stringSerializer.serializeServer("server.error.message", server));
+            messageManager.sendCommandMessage(player, "server.error", server);
 
-            player.playSound(player, Sound.valueOf(messageConfig.getString("server.error.sound").toUpperCase()), 1, 1);
+            messageManager.playPlayerSound(player, "error");
 
         }
     }

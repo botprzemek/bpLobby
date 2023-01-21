@@ -19,5 +19,7 @@ public class EventManager {
 
         instance.getServer().getPluginManager().registerEvents(new PlayerFallingEvent(lobbyManager), instance);
 
+        instance.getServer().getPluginManager().registerEvents(new KickWithReasonEvent(lobbyManager), instance);
+
     }
 }

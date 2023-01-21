@@ -21,4 +21,10 @@ public final class BpLobby extends JavaPlugin {
 
     }
 
+    public LobbyManager getLobbyManager() {
+
+        return lobbyManager;
+
+    }
+
 }

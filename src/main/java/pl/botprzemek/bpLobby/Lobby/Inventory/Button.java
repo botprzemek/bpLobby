@@ -2,11 +2,11 @@ package pl.botprzemek.bpLobby.Lobby.Inventory;
 
 public class Button {
 
-    private int slot;
+    private final int slot;
 
-    private String itemID;
+    private final String itemID;
 
-    private String action;
+    private final String action;
 
     public Button(int slot, String itemID, String action) {
 
@@ -24,21 +24,9 @@ public class Button {
 
     }
 
-    public void setSlot(int slot) {
-
-        this.slot = slot;
-
-    }
-
     public String getItemID() {
 
         return itemID;
-
-    }
-
-    public void setItemID(String itemID) {
-
-        this.itemID = itemID;
 
     }
 
@@ -48,9 +36,4 @@ public class Button {
 
     }
 
-    public void setAction(String action) {
-
-        this.action = action;
-
-    }
 }

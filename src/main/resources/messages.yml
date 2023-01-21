@@ -1,43 +1,38 @@
-# Prefix for messages
+# Prefix for all of the messages (%prefix%)
 
-prefix: "<gradient:#ff80f6:#ffcc70>♦ <bold>bpLobby</bold> ♦</gradient>"
+prefix: "<gradient:#FFE04A:#FFA400>★ <bold>ʙʜɪᴠᴇ.ᴘʟ</bold> ★</gradient>"
 
-# Join Message
+# Command messages
 
-join: "%prefix% %player_name% joined the <gradient:#ff80f6:#ffcc70><bold>server!</bold></gradient>"
+commands:
+  reload:
+    success: "%prefix% Konfiguracja <gradient:#FFE04A:#FFA400><bold>przeładowana!</bold></gradient>"
+    failed: "%prefix% Wystąpił <gradient:#FFE04A:#FFA400><bold>błąd</bold></gradient> przy przeładowywaniu <gradient:#FFE04A:#FFA400><bold>konfiguracji!</bold></gradient>"
+  server:
+    success: "%prefix% Zostałeś/aś przeniesiony/a na <gradient:#FFE04A:#FFA400><bold><bold>%value%!</bold></gradient>"
+    error: "%prefix% Wystąpił <gradient:#FFE04A:#FFA400><bold>błąd</bold></gradient> przy przenoszeniu na <gradient:#FFE04A:#FFA400><bold>%value%!</bold></gradient>"
+    invalid: "%prefix% Serwer, który wpisałeś/aś nie <gradient:#FFE04A:#FFA400><bold>istnieje!</bold></gradient>"
+    not-found: "%prefix% Serwer, który wpisałeś/aś nie jest <gradient:#FFE04A:#FFA400><bold>dostępny!</bold></gradient>"
+  vanish:
+    show: "%prefix% Teraz widzisz innych <gradient:#FFE04A:#FFA400><bold>graczy!</bold></gradient>"
+    hide: "%prefix% Ukryłeś/aś innych <gradient:#FFE04A:#FFA400><bold>graczy!</bold></gradient>"
 
-# Quit Message
+# Event messages
 
-quit: "%prefix% %player_name% left the <gradient:#ff80f6:#ffcc70><bold>server!</bold></gradient>"
+events:
+  connect:
+    join: "%prefix% %player_name% dołączył/a <gradient:#FFE04A:#FFA400><bold>do gry! (%value% gracz/y)</bold></gradient>"
+    quit: "%prefix% %player_name% nas <gradient:#FFE04A:#FFA400><bold>opuścił/a!</bold></gradient>"
+  disconnect:
+    timeout: "<gradient:#FFE04A:#FFA400>★ <bold>ʙʜɪᴠᴇ.ᴘʟ</bold> ★</gradient>\n\nMinął czas na <gradient:#FFE04A:#FFA400><bold>wybór trybu!</bold></gradient>\nPołącz się <gradient:#FFE04A:#FFA400><bold>ponownie!</bold></gradient>\n\n<gradient:#FFE04A:#FFA400>★ <bold>ᴅᴄ.ʙʜɪᴠᴇ.ᴘʟ</bold> ★</gradient>"
+  chat:
+    success: "<color:#FFE04A>★<reset>%luckperms_prefix%<gradient:#FFE04A:#FFA400><bold>%player_name%</bold> ★</gradient><reset> %value%"
+    failed: "%prefix% Nie masz <gradient:#FFE04A:#FFA400><bold>dostępu</bold></gradient> do wysyłania <gradient:#FFE04A:#FFA400><bold>wiadomości!</bold></gradient>"
 
-# Reload message
+# Sounds
 
-reload: "%prefix% Configuration <gradient:#ff80f6:#ffcc70><bold>reloaded!</bold></gradient>"
-
-# Chat message
-
-chat:
-  permission: "<gradient:#ff80f6:#ffcc70>♦ <bold>%player_name%</bold> ♦</gradient> %message%"
-  no-permission: "%prefix% You don't have <gradient:#ff80f6:#ffcc70><bold>permission</bold></gradient> to send <gradient:#ff80f6:#ffcc70><bold>messages!</bold></gradient>"
-
-# Server selector
-
-server:
-  success:
-    message: "%prefix% You have been <gradient:#ff80f6:#ffcc70><bold>sent</bold></gradient> to the <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
-    sound: "block_note_block_bell"
-  error:
-    message: "%prefix% There was an <gradient:#ff80f6:#ffcc70><bold>error</bold></gradient> while connecting to <gradient:#ff80f6:#ffcc70><bold>%server%!</bold></gradient>"
-    sound: "block_note_block_bit"
-  not-found:
-    message: "%prefix% Server you have requested is not <gradient:#ff80f6:#ffcc70><bold>available!</bold></gradient>"
-    sound: "block_note_block_bit"
-  usage:
-    message:  "%prefix% Usage: /servers <gradient:#ff80f6:#ffcc70><bold>(server)!</bold></gradient>"
-    sound: "block_note_block_bit"
-
-# Players command message
-
-players:
-  shown: "%prefix% Players are now <gradient:#ff80f6:#ffcc70><bold>visible!</bold></gradient>"
-  hidden: "%prefix% Players are now <gradient:#ff80f6:#ffcc70><bold>hidden!</bold></gradient>"
+sounds:
+  success: "ui_toast_challenge_complete"
+  activate: "block_note_block_pling"
+  step: "block_note_block_xylophone"
+  error: "block_note_block_bit"
