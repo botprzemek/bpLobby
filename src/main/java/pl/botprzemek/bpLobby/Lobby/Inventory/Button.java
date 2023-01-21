@@ -4,15 +4,15 @@ public class Button {
 
     private final int slot;
 
-    private final String itemID;
+    private final String itemId;
 
     private final String action;
 
-    public Button(int slot, String itemID, String action) {
+    public Button(int slot, String itemId, String action) {
 
         this.slot = slot;
 
-        this.itemID = itemID;
+        this.itemId = itemId;
 
         this.action = action;
 
@@ -24,9 +24,9 @@ public class Button {
 
     }
 
-    public String getItemID() {
+    public String getItemId() {
 
-        return itemID;
+        return itemId;
 
     }
 

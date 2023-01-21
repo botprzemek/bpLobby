@@ -24,7 +24,7 @@ public class ChatEvent implements Listener {
 
         if (player.hasPermission("bplobby.chat")) {
 
-            event.setFormat(messageManager.getMessageString(player, "event.chat.success", event.getMessage()));
+            event.setFormat(messageManager.getStringMessage(player, "events.chat.success", event.getMessage()));
 
             return;
 

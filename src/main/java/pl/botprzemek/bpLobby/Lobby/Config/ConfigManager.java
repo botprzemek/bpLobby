@@ -2,7 +2,6 @@ package pl.botprzemek.bpLobby.Lobby.Config;
 
 
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.Lobby.Config.Configs.InventoryConfig;
 import pl.botprzemek.bpLobby.Lobby.Config.Configs.MessageConfig;
 import pl.botprzemek.bpLobby.Lobby.Config.Configs.PluginConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;

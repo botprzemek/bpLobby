@@ -5,11 +5,14 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby.Lobby.Config.Configs.MessageConfig;
+import pl.botprzemek.bpLobby.Lobby.Config.Configs.PluginConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
 public class MessageManager {
 
     private final MessageConfig messageConfig;
+
+    private final PluginConfig pluginConfig;
 
     private final BukkitAudiences adventure;
 
@@ -17,7 +20,9 @@ public class MessageManager {
 
     public MessageManager(LobbyManager lobbyManager) {
 
-        this.messageConfig = lobbyManager.getConfigManager().getMessageConfig();
+        messageConfig = lobbyManager.getConfigManager().getMessageConfig();
+
+        pluginConfig = lobbyManager.getConfigManager().getPluginConfig();
 
         adventure = BukkitAudiences.create(lobbyManager.getInstance());
 
@@ -59,7 +64,7 @@ public class MessageManager {
 
     }
 
-    public String getMessageString(Player player, String path) {
+    public String getStringMessage(Player player, String path) {
 
         String message = messageConfig.getMessage(path);
 
@@ -70,13 +75,23 @@ public class MessageManager {
 
     }
 
-    public String getMessageString(Player player, String path, String value) {
+    public String getStringMessage(Player player, String path, String value) {
 
         String message = messageConfig.getMessage(path);
 
         Component serializedMessage = stringSerializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix())
                 .replace("%value%", value));
+
+        return LegacyComponentSerializer.legacySection().serialize(serializedMessage);
+
+    }
+
+    public String getConfigStringMessage(Player player, String path) {
+
+        String message = pluginConfig.getString(path);
+
+        Component serializedMessage = stringSerializer.serializeString(player, message);
 
         return LegacyComponentSerializer.legacySection().serialize(serializedMessage);
 

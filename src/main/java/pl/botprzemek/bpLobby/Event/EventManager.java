@@ -15,7 +15,7 @@ public class EventManager {
 
         instance.getServer().getPluginManager().registerEvents(new InventoryEvent(lobbyManager), instance);
 
-        instance.getServer().getPluginManager().registerEvents(new BlockInteractionEvent(lobbyManager), instance);
+        instance.getServer().getPluginManager().registerEvents(new SpawnProtectionEvent(lobbyManager), instance);
 
         instance.getServer().getPluginManager().registerEvents(new PlayerFallingEvent(lobbyManager), instance);
 

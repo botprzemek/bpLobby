@@ -1,6 +1,5 @@
 package pl.botprzemek.bpLobby.Event;
 
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -43,7 +42,7 @@ public class PlayerFallingEvent implements Listener {
 
         pluginManager.createCustomElements(player);
 
-        pluginManager.setPlayerSelector(player);
+        pluginManager.setPlayerSelectorItem(player);
 
     }
 

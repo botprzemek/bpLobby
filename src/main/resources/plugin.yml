@@ -35,6 +35,9 @@ permissions:
   bplobby.server:
     description: Server selector command
     default: op
+  bplobby.servers:
+    description: Access for servers
+    default: op
   bplobby.players:
     description: Player hiding command
     default: op

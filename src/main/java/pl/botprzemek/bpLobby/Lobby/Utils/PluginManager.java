@@ -4,16 +4,15 @@ import io.th0rgal.oraxen.api.OraxenItems;
 import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.botprzemek.bpLobby.BpLobby;
 import pl.botprzemek.bpLobby.Lobby.Config.Configs.PluginConfig;
+import pl.botprzemek.bpLobby.Lobby.Inventory.Button;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class PluginManager {
 
@@ -29,6 +28,10 @@ public class PluginManager {
 
     private int limit;
 
+    private final HashMap<UUID, Inventory> serverSelectors;
+
+    private final List<Button> buttons;
+
     public PluginManager(LobbyManager lobbyManager) {
 
         instance = lobbyManager.getInstance();
@@ -39,9 +42,11 @@ public class PluginManager {
 
         hiddenPlayers = new ArrayList<>();
 
+        serverSelectors = new HashMap<>();
+
+        buttons = new ArrayList<>();
+
         loadConfigs();
-
-
 
     }
 
@@ -50,6 +55,8 @@ public class PluginManager {
         setSpawnLocation();
 
         setLimit();
+
+        setButtons();
 
     }
 
@@ -160,19 +167,145 @@ public class PluginManager {
         }.runTaskTimer(instance, 0, particle.getInt("speed"));
     }
 
-    public void setPlayerSelector(Player player) {
+    public void setPlayerSelectorItem(Player player) {
 
         if (!player.hasPermission("bplobby.server")) return;
 
-        ConfigurationSection serverSelectorSection = pluginConfig.getConfigurationSection("selector-item");
-
-        if (serverSelectorSection == null) return;
-
-        ItemStack item = OraxenItems.getItemById(serverSelectorSection.getString("id")).build();
+        ItemStack item = getPlayerSelectorItem();
 
         if (item == null) return;
 
-        player.getInventory().setItem(serverSelectorSection.getInt("slot"), item);
+        player.getInventory().setItem(Objects.requireNonNull(pluginConfig.getConfigurationSection("selector-item")).getInt("slot"), item);
+
+    }
+
+    public ItemStack getPlayerSelectorItem() {
+
+        ConfigurationSection serverSelectorSection = pluginConfig.getConfigurationSection("selector-item");
+
+        if (serverSelectorSection == null) return null;
+
+        return OraxenItems.getItemById(serverSelectorSection.getString("id")).build();
+
+    }
+
+    public boolean isPlayerSelectorViable(Player player) {
+
+        ConfigurationSection serverSelectorSection = pluginConfig.getConfigurationSection("selector-item");
+
+        if (serverSelectorSection == null) return false;
+
+        return player.getInventory().getItemInMainHand().isSimilar(getPlayerSelectorItem());
+
+    }
+
+    public void setButtons() {
+
+        ConfigurationSection itemsSection = pluginConfig.getConfigurationSection("selector-gui.items");
+
+        if (itemsSection == null) return;
+
+        for (String itemName : itemsSection.getKeys(false)) {
+
+            ConfigurationSection itemSection = itemsSection.getConfigurationSection(itemName);
+
+            if (itemSection == null) return;
+
+            Button button = new Button(
+                itemSection.getInt("slot"),
+                itemSection.getString("id"),
+                itemSection.getString("action")
+            );
+
+            buttons.add(button);
+
+        }
+
+    }
+
+    public List<Button> getButtons() {
+
+        return buttons;
+
+    }
+
+    public Button getButtonBySlot(int slot) {
+
+        for (Button button : buttons) {
+
+            if (slot == button.getSlot()) return button;
+
+        }
+
+        return null;
+
+    }
+
+    public Button getButtonByServerName(String serverName) {
+
+        for (Button button : buttons) {
+
+            if (serverName.equals(button.getAction())) return button;
+
+        }
+
+        return null;
+
+    }
+
+    public void setInventory(Player player) {
+
+        Inventory inventory = setInventoryItems(player);
+
+        serverSelectors.put(player.getUniqueId(), inventory);
+
+    }
+
+    public Inventory getInventory(Player player) {
+
+        return serverSelectors.get(player.getUniqueId());
+
+    }
+
+    public void removeInventory(Player player) {
+
+        serverSelectors.remove(player.getUniqueId());
+
+    }
+
+    public boolean isInventorySelector(Player player, Inventory inventory) {
+
+        return serverSelectors.get(player.getUniqueId()).equals(inventory);
+
+    }
+
+    public Inventory setInventoryItems(Player player) {
+
+        ConfigurationSection inventorySection = pluginConfig.getConfigurationSection("selector-gui");
+
+        if (inventorySection == null) return null;
+
+        Inventory inventory = Bukkit.createInventory(player, inventorySection.getInt("size"), messageManager.getConfigStringMessage(player, "selector-gui.title"));
+
+        List<Button> items = getButtons();
+
+        if (items == null) {
+
+            serverSelectors.put(player.getUniqueId(), inventory);
+
+            return inventory;
+
+        }
+
+        for (Button item : items) inventory.setItem(item.getSlot(), OraxenItems.getItemById(item.getItemId()).build());
+
+        return inventory;
+
+    }
+
+    public boolean isServerViable(String serverName) {
+
+        return getButtons().contains(getButtonByServerName(serverName));
 
     }
 

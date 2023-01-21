@@ -23,7 +23,7 @@ public class KickWithReasonEvent implements Listener {
 
         if (!event.getReason().equals("You have been idle for too long!")) return;
 
-        event.setReason(messageManager.getMessageString(event.getPlayer(), "events.disconnect.timeout"));
+        event.setReason(messageManager.getStringMessage(event.getPlayer(), "events.disconnect.timeout"));
 
     }
 

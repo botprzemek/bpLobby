@@ -21,8 +21,8 @@ commands:
 
 events:
   connect:
-    join: "%prefix% %player_name% dołączył/a <gradient:#FFE04A:#FFA400><bold>do gry! (%value% gracz/y)</bold></gradient>"
-    quit: "%prefix% %player_name% nas <gradient:#FFE04A:#FFA400><bold>opuścił/a!</bold></gradient>"
+    join: "%prefix% %player_name% dołączył/a do <gradient:#FFE04A:#FFA400><bold>Lobby! (%value% gracz/y)</bold></gradient>"
+    quit: "%prefix% %player_name% opuścił/a <gradient:#FFE04A:#FFA400><bold>Lobby! (%value% gracz/y)</bold></gradient>"
   disconnect:
     timeout: "<gradient:#FFE04A:#FFA400>★ <bold>ʙʜɪᴠᴇ.ᴘʟ</bold> ★</gradient>\n\nMinął czas na <gradient:#FFE04A:#FFA400><bold>wybór trybu!</bold></gradient>\nPołącz się <gradient:#FFE04A:#FFA400><bold>ponownie!</bold></gradient>\n\n<gradient:#FFE04A:#FFA400>★ <bold>ᴅᴄ.ʙʜɪᴠᴇ.ᴘʟ</bold> ★</gradient>"
   chat:

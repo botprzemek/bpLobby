@@ -6,10 +6,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-// import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
+import pl.botprzemek.bpLobby.Lobby.Inventory.Button;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
 import pl.botprzemek.bpLobby.Lobby.Utils.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class ServerCommand implements CommandExecutor, TabCompleter {
 
     private final MessageManager messageManager;
 
-//    private final ServerSelector serverSelector;
+    private final PluginManager pluginManager;
 
     public ServerCommand(LobbyManager lobbyManager) {
 
@@ -28,7 +29,7 @@ public class ServerCommand implements CommandExecutor, TabCompleter {
 
         messageManager = lobbyManager.getMessageManager();
 
-//        serverSelector = lobbyManager.getServerSelector();
+        pluginManager = lobbyManager.getPluginManager();
 
     }
 
@@ -40,7 +41,7 @@ public class ServerCommand implements CommandExecutor, TabCompleter {
         switch (args.length) {
             case 0 -> {
 
-//                player.openInventory(serverSelector.getInventory(player));
+                player.openInventory(pluginManager.getInventory(player));
 
                 messageManager.playPlayerSound(player, "activate");
 
@@ -61,17 +62,17 @@ public class ServerCommand implements CommandExecutor, TabCompleter {
 
                 }
 
-//                if (!serverSelector.getServerSelectorNames().contains(serverName)) {
-//
-//                    messageManager.sendCommandMessage(player, "server.invalid", serverName);
-//
-//                    messageManager.playPlayerSound(player, "error");
-//
-//                    return false;
-//
-//                }
+                if (!pluginManager.isServerViable(serverName.toLowerCase())) {
 
-                bungeeChannel.sendPlayerToServer(player,  serverName.toLowerCase());
+                    messageManager.sendCommandMessage(player, "server.invalid", serverName);
+
+                    messageManager.playPlayerSound(player, "error");
+
+                    return false;
+
+                }
+
+                bungeeChannel.sendPlayerToServer(player, serverName);
 
                 messageManager.playPlayerSound(player, "activate");
 
@@ -89,13 +90,13 @@ public class ServerCommand implements CommandExecutor, TabCompleter {
 
         List<String> servers = new ArrayList<>();
 
-        if (!(sender instanceof Player player)) return null;
+        for (Button button : pluginManager.getButtons()) {
 
-//        for (String serverName : serverSelector.getServerSelectorNames()) {
-//
-//            if (player.hasPermission("bplobby.servers." + serverName.toLowerCase())) servers.add(serverName);
-//
-//        }
+            String serverName = button.getAction().substring(0, 1).toUpperCase() + button.getAction().substring(1).toLowerCase();
+
+            if (sender.hasPermission("bplobby.servers." + serverName.toLowerCase())) servers.add(serverName);
+
+        }
 
         return servers;
 

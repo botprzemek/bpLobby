@@ -30,15 +30,19 @@ public class JoinQuitEvent implements Listener {
 
         Player player = event.getPlayer();
 
-        event.setJoinMessage(messageManager.getMessageString(player, "events.connect.join", String.valueOf(Bukkit.getOnlinePlayers().size())));
+        event.setJoinMessage(messageManager.getStringMessage(player, "events.connect.join", String.valueOf(Bukkit.getOnlinePlayers().size())));
 
         player.teleport(pluginManager.getSpawnLocation());
 
         if (player.getGameMode().equals(GameMode.SURVIVAL)) player.getInventory().clear();
 
+        player.getInventory().setHeldItemSlot(4);
+
         pluginManager.setNewHiddenPlayer(player);
 
-        pluginManager.setPlayerSelector(player);
+        pluginManager.setPlayerSelectorItem(player);
+
+        pluginManager.setInventory(player);
 
     }
 
@@ -47,9 +51,11 @@ public class JoinQuitEvent implements Listener {
 
         Player player = event.getPlayer();
 
-        event.setQuitMessage(messageManager.getMessageString(player, "events.connect.quit"));
+        event.setQuitMessage(messageManager.getStringMessage(player, "events.connect.quit", String.valueOf(Bukkit.getOnlinePlayers().size() - 1)));
 
         pluginManager.clearHiddenPlayer(player);
+
+        pluginManager.removeInventory(player);
 
     }
 
