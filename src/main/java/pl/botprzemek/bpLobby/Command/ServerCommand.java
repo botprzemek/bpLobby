@@ -6,11 +6,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import pl.botprzemek.bpLobby.Lobby.Inventory.Button;
+import pl.botprzemek.bpLobby.Lobby.Utils.Button;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
-import pl.botprzemek.bpLobby.Lobby.Utils.MessageManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 import java.util.ArrayList;
 import java.util.List;

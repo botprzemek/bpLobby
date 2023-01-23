@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
 
 public class KickWithReasonEvent implements Listener {
 

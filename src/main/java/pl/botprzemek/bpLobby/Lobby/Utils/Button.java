@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.Lobby.Inventory;
+package pl.botprzemek.bpLobby.Lobby.Utils;
 
 public class Button {
 

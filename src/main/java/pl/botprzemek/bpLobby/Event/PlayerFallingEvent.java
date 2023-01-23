@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 public class PlayerFallingEvent implements Listener {
 

@@ -6,9 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.MessageManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 public class PlayersCommand implements CommandExecutor {
 

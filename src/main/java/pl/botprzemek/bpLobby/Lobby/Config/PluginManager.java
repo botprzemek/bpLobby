@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.Lobby.Utils;
+package pl.botprzemek.bpLobby.Lobby.Config;
 
 import io.th0rgal.oraxen.api.OraxenItems;
 import org.bukkit.*;
@@ -8,8 +8,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.Lobby.Config.Configs.PluginConfig;
-import pl.botprzemek.bpLobby.Lobby.Inventory.Button;
+import pl.botprzemek.bpLobby.Lobby.Utils.Button;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
 import java.util.*;
@@ -52,11 +51,17 @@ public class PluginManager {
 
     public void loadConfigs() {
 
+        if (buttons.size() != 0) clearButtons();
+
+        if (serverSelectors.size() != 0) clearInventories();
+
         setSpawnLocation();
 
         setLimit();
 
         setButtons();
+
+        for (Player player : Bukkit.getOnlinePlayers()) setInventory(player);
 
     }
 
@@ -195,7 +200,23 @@ public class PluginManager {
 
         if (serverSelectorSection == null) return false;
 
-        return player.getInventory().getItemInMainHand().isSimilar(getPlayerSelectorItem());
+        ItemStack heldItem = player.getInventory().getItemInMainHand();
+
+        ItemStack selectorItem = getPlayerSelectorItem();
+
+        if (selectorItem == null) return false;
+
+        return heldItem.isSimilar(selectorItem);
+
+    }
+
+    public boolean isClickedSelectorViable(ItemStack item) {
+
+        ConfigurationSection serverSelectorSection = pluginConfig.getConfigurationSection("selector-item");
+
+        if (serverSelectorSection == null) return false;
+
+        return item.isSimilar(getPlayerSelectorItem());
 
     }
 
@@ -273,6 +294,18 @@ public class PluginManager {
 
     }
 
+    public void clearInventories() {
+
+        serverSelectors.clear();
+
+    }
+
+    public void clearButtons() {
+
+        buttons.clear();
+
+    }
+
     public boolean isInventorySelector(Player player, Inventory inventory) {
 
         return serverSelectors.get(player.getUniqueId()).equals(inventory);
@@ -294,6 +327,14 @@ public class PluginManager {
             serverSelectors.put(player.getUniqueId(), inventory);
 
             return inventory;
+
+        }
+
+        String filling = inventorySection.getString("filling");
+
+        if (filling != null) {
+
+            for (int i = 0; i < inventorySection.getInt("size"); i++) inventory.setItem(i, OraxenItems.getItemById(filling).build());
 
         }
 

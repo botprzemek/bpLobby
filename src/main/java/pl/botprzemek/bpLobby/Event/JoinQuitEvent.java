@@ -8,8 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.MessageManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 public class JoinQuitEvent implements Listener {
 
@@ -31,8 +31,6 @@ public class JoinQuitEvent implements Listener {
         Player player = event.getPlayer();
 
         event.setJoinMessage(messageManager.getStringMessage(player, "events.connect.join", String.valueOf(Bukkit.getOnlinePlayers().size())));
-
-        player.teleport(pluginManager.getSpawnLocation());
 
         if (player.getGameMode().equals(GameMode.SURVIVAL)) player.getInventory().clear();
 

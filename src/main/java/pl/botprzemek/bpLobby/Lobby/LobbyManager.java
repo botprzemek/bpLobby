@@ -4,6 +4,8 @@ import pl.botprzemek.bpLobby.BpLobby;
 import pl.botprzemek.bpLobby.Command.CommandManager;
 import pl.botprzemek.bpLobby.Event.EventManager;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.*;
 
 public class LobbyManager {

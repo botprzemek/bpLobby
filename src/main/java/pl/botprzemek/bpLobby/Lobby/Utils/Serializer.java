@@ -5,11 +5,11 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 
-public class StringSerializer {
+public class Serializer {
 
     private final MiniMessage mm;
 
-    public StringSerializer() {
+    public Serializer() {
 
         mm = MiniMessage.miniMessage();
 

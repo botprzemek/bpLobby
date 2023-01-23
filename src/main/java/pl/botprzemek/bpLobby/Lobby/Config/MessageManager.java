@@ -1,12 +1,11 @@
-package pl.botprzemek.bpLobby.Lobby.Utils;
+package pl.botprzemek.bpLobby.Lobby.Config;
 
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.Lobby.Config.Configs.MessageConfig;
-import pl.botprzemek.bpLobby.Lobby.Config.Configs.PluginConfig;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
+import pl.botprzemek.bpLobby.Lobby.Utils.Serializer;
 
 public class MessageManager {
 
@@ -16,7 +15,7 @@ public class MessageManager {
 
     private final BukkitAudiences adventure;
 
-    private final StringSerializer stringSerializer;
+    private final Serializer serializer;
 
     public MessageManager(LobbyManager lobbyManager) {
 
@@ -26,7 +25,7 @@ public class MessageManager {
 
         adventure = BukkitAudiences.create(lobbyManager.getInstance());
 
-        stringSerializer = new StringSerializer();
+        serializer = new Serializer();
 
     }
 
@@ -34,7 +33,7 @@ public class MessageManager {
 
         String message = messageConfig.getCommandMessage(path);
 
-        Component serializedMessage = stringSerializer.serializeString(player, message
+        Component serializedMessage = serializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix()));
 
         adventure.player(player).sendMessage(serializedMessage);
@@ -45,7 +44,7 @@ public class MessageManager {
 
         String message = messageConfig.getCommandMessage(path);
 
-        Component serializedMessage = stringSerializer.serializeString(player, message
+        Component serializedMessage = serializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix())
                 .replace("%value%", value));
 
@@ -57,7 +56,7 @@ public class MessageManager {
 
         String message = messageConfig.getEventMessage(path);
 
-        Component serializedMessage = stringSerializer.serializeString(player, message
+        Component serializedMessage = serializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix()));
 
         adventure.player(player).sendMessage(serializedMessage);
@@ -68,7 +67,7 @@ public class MessageManager {
 
         String message = messageConfig.getMessage(path);
 
-        Component serializedMessage = stringSerializer.serializeString(player, message
+        Component serializedMessage = serializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix()));
 
         return LegacyComponentSerializer.legacySection().serialize(serializedMessage);
@@ -79,7 +78,7 @@ public class MessageManager {
 
         String message = messageConfig.getMessage(path);
 
-        Component serializedMessage = stringSerializer.serializeString(player, message
+        Component serializedMessage = serializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix())
                 .replace("%value%", value));
 
@@ -91,7 +90,7 @@ public class MessageManager {
 
         String message = pluginConfig.getString(path);
 
-        Component serializedMessage = stringSerializer.serializeString(player, message);
+        Component serializedMessage = serializer.serializeString(player, message);
 
         return LegacyComponentSerializer.legacySection().serialize(serializedMessage);
 

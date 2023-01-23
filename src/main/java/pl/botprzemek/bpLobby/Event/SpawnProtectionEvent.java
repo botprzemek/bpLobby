@@ -14,7 +14,7 @@ import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.player.*;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 public class SpawnProtectionEvent implements Listener {
 

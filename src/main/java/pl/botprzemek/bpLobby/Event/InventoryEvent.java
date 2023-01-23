@@ -11,11 +11,11 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pl.botprzemek.bpLobby.Lobby.Inventory.Button;
+import pl.botprzemek.bpLobby.Lobby.Utils.Button;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.BungeeChannel;
-import pl.botprzemek.bpLobby.Lobby.Utils.MessageManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.PluginManager;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 public class InventoryEvent implements Listener {
 
@@ -36,7 +36,7 @@ public class InventoryEvent implements Listener {
     }
 
     @EventHandler
-    public void inventoryDrag(InventoryDragEvent event) {
+    public void onInventoryDrag(InventoryDragEvent event) {
 
         Player player = (Player) event.getWhoClicked();
 
@@ -49,11 +49,23 @@ public class InventoryEvent implements Listener {
     @EventHandler
     public void onPlayerInteraction(InventoryClickEvent event) {
 
-        Player player = (Player) event.getWhoClicked();
+        if (!(event.getWhoClicked() instanceof Player player)) return;
 
         Inventory inventory = event.getClickedInventory();
 
         if (inventory == null) return;
+
+        if (event.getCurrentItem() == null) return;
+
+        if (pluginManager.isClickedSelectorViable(event.getCurrentItem())) {
+
+            messageManager.playPlayerSound(player, "error");
+
+            event.setCancelled(true);
+
+            return;
+
+        }
 
         if (!pluginManager.isInventorySelector(player, inventory)) return;
 
