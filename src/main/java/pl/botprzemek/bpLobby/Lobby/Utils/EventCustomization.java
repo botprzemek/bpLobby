@@ -13,16 +13,13 @@ import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 
 public class EventCustomization {
 
-    private BpLobby instance;
+    private final BpLobby instance;
 
-    private LobbyConfig lobbyConfig;
+    private final LobbyConfig lobbyConfig;
 
     public EventCustomization(LobbyManager lobbyManager) {
-
         this.instance = lobbyManager.getInstance();
-
         this.lobbyConfig = lobbyManager.getConfigManager().getLobbyConfig();
-
     }
 
     public void createCustomElements(Player player) {

@@ -7,7 +7,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import pl.botprzemek.bpLobby.Lobby.Config.InventoryConfig;
+import pl.botprzemek.bpLobby.Lobby.Config.LobbyConfig;
 import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
 import pl.botprzemek.bpLobby.Lobby.Utils.EventCustomization;
@@ -16,15 +18,17 @@ import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
 
 public class JoinQuitEvent implements Listener {
 
-    private StringSerializer stringSerializer;
+    private final StringSerializer stringSerializer;
 
-    private HideShowPlayers hideShowPlayers;
+    private final HideShowPlayers hideShowPlayers;
 
-    private ServerSelector serverSelector;
+    private final ServerSelector serverSelector;
 
-    private InventoryConfig inventoryConfig;
+    private final InventoryConfig inventoryConfig;
 
-    private EventCustomization eventCustomization;
+    private final EventCustomization eventCustomization;
+
+    private final LobbyConfig lobbyConfig;
 
     public JoinQuitEvent(LobbyManager lobbyManager) {
 
@@ -35,6 +39,8 @@ public class JoinQuitEvent implements Listener {
         this.serverSelector = lobbyManager.getServerSelector();
 
         this.inventoryConfig = lobbyManager.getConfigManager().getInventoryConfig();
+
+        this.lobbyConfig = lobbyManager.getConfigManager().getLobbyConfig();
 
         this.eventCustomization = lobbyManager.getEventCustomization();
 
@@ -67,6 +73,15 @@ public class JoinQuitEvent implements Listener {
         event.setQuitMessage(stringSerializer.serializeJoinQuit(player, "quit"));
 
         serverSelector.removeInventory(player.getUniqueId());
+
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerRespawnEvent event) {
+
+        event.setRespawnLocation(lobbyConfig.getLobbyLocation());
+
+        eventCustomization.createCustomElements(event.getPlayer());
 
     }
 
