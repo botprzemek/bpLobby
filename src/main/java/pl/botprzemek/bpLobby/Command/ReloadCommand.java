@@ -13,50 +13,57 @@
 
 package pl.botprzemek.bpLobby.Command;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import pl.botprzemek.bpLobby.Lobby.Config.ConfigManager;
-import pl.botprzemek.bpLobby.Lobby.Inventory.ServerSelector;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 public class ReloadCommand implements CommandExecutor {
 
-    private ConfigManager configManager;
+    private final ConfigManager configManager;
 
-    private ServerSelector serverSelector;
+    private final MessageManager messageManager;
 
-    private StringSerializer stringSerializer;
+    private final PluginManager pluginManager;
 
     public ReloadCommand(LobbyManager lobbyManager) {
 
-        this.configManager = lobbyManager.getConfigManager();
+        configManager = lobbyManager.getConfigManager();
 
-        this.serverSelector = lobbyManager.getServerSelector();
+        messageManager = lobbyManager.getMessageManager();
 
-        this.stringSerializer = lobbyManager.getStringSerializer();
+        pluginManager = lobbyManager.getPluginManager();
 
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 
+        try {
 
+            configManager.loadConfigs();
+            pluginManager.loadConfigs();
 
-        for (Player player : Bukkit.getOnlinePlayers()) serverSelector.removeInventory(player.getUniqueId());
+            if (sender instanceof Player player) messageManager.sendCommandMessage(player, "reload.success");
 
-        configManager.loadConfigs();
+            return true;
 
-        for (Player player : Bukkit.getOnlinePlayers()) serverSelector.createInventory(player.getUniqueId());
+        }
 
-        if (sender instanceof Player) sender.sendMessage(stringSerializer.serializePlainTextWithPapi((Player) sender, configManager.getMessageConfig().getMessage("reload")));
+        catch (Exception error) {
 
-        else sender.sendMessage(stringSerializer.serializeText(configManager.getMessageConfig().getMessage("reload")));
+            messageManager.sendCommandMessage((Player) sender, "reload.failed");
 
-        return true;
+            error.printStackTrace();
+
+            return false;
+
+        }
 
     }
 }

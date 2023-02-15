@@ -6,45 +6,43 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.HideShowPlayers;
-import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
+import pl.botprzemek.bpLobby.Lobby.Config.PluginManager;
 
 public class PlayersCommand implements CommandExecutor {
 
-    private StringSerializer stringSerializer;
+    private final MessageManager messageManager;
 
-    private HideShowPlayers hideShowPlayers;
+    private final PluginManager pluginManager;
 
     public PlayersCommand(LobbyManager lobbyManager) {
 
-        this.stringSerializer = lobbyManager.getStringSerializer();
+        this.messageManager = lobbyManager.getMessageManager();
 
-        this.hideShowPlayers = lobbyManager.getHideShowPlayers();
+        this.pluginManager = lobbyManager.getPluginManager();
 
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        if (!(sender instanceof Player)) return false;
+        if (!(sender instanceof Player player)) return false;
 
-        Player player = (Player) sender;
-
-        boolean invisible = hideShowPlayers.getHiddenPlayers().get(player.getUniqueId());
+        boolean invisible = pluginManager.isHiddenPlayer(player);
 
         if (invisible) {
 
-            hideShowPlayers.showPlayers(player);
+            pluginManager.clearHiddenPlayer(player);
 
-            player.sendMessage(stringSerializer.serializeJoinQuit(player, "players.shown"));
+            messageManager.sendCommandMessage(player, "vanish.show");
 
         }
 
         else {
 
-            hideShowPlayers.hidePlayers(player);
+            pluginManager.setHiddenPlayer(player);
 
-            player.sendMessage(stringSerializer.serializeJoinQuit(player, "players.hidden"));
+            messageManager.sendCommandMessage(player, "vanish.hide");
 
         }
 

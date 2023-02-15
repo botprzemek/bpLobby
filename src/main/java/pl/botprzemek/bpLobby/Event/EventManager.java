@@ -15,9 +15,11 @@ public class EventManager {
 
         instance.getServer().getPluginManager().registerEvents(new InventoryEvent(lobbyManager), instance);
 
-        instance.getServer().getPluginManager().registerEvents(new BlockInteractionEvent(lobbyManager), instance);
+        instance.getServer().getPluginManager().registerEvents(new SpawnProtectionEvent(lobbyManager), instance);
 
         if (lobbyManager.getConfigManager().getLobbyConfig().getLobbyLimit() != 0) instance.getServer().getPluginManager().registerEvents(new PlayerFallingEvent(lobbyManager), instance);
+
+        instance.getServer().getPluginManager().registerEvents(new KickWithReasonEvent(lobbyManager), instance);
 
     }
 }

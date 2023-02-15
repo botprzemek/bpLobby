@@ -1,0 +1,41 @@
+# Spawn location
+
+spawn:
+  world: "world" # Spawn world
+  x: 0.5 # X Coordinate of spawn
+  y: 52 # Y Coordinate of spawn
+  z: 0.5 # Z Coordinate of spawn
+  yaw: 0 # Rotation of player
+  pitch: -5 # Face axis of player
+  limit: 40 # Height limit
+
+# Server selector item
+
+selector-item:
+  slot: 4 # Center of inventory
+  id: "example_efficient_pickaxe" # Oraxen ID
+
+# Server selector GUI
+
+selector-gui:
+  title: "<white>%oraxen_server_gui%" # Title, could be Oraxen GUI too
+  size: 27 # Size of GUI
+  filling: "invisible_item" # OraxenID
+  items: # Servers
+    survival:
+      slot: 13 # Slot in inventory
+      id: "example_sword" # OraxenID
+      action: "survival" # Server name
+
+# Player teleporting particles
+
+particle:
+  name: "dust_color_transition" # Particle name
+  color1: "#FFE04A" # Color 1
+  color2: "#FFA400" # Color 2
+  speed: 0.5 # Speed of particles
+  amount: 2 # Amount of particles
+  size: 1.5 # Size of particle
+  radius: 0.5 # Size of circle
+  time: 1 # Time
+  y-offset: 1.2 # Y Offset

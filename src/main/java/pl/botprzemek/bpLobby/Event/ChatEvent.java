@@ -1,35 +1,40 @@
 package pl.botprzemek.bpLobby.Event;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.StringSerializer;
+import pl.botprzemek.bpLobby.Lobby.Config.MessageManager;
 
 public class ChatEvent implements Listener {
 
-    private final StringSerializer stringSerializer;
+    private final MessageManager messageManager;
 
     public ChatEvent(LobbyManager lobbyManager) {
 
-        this.stringSerializer = lobbyManager.getStringSerializer();
+        messageManager = lobbyManager.getMessageManager();
 
     }
 
     @EventHandler
     public void onChatEvent(AsyncPlayerChatEvent event) {
 
-        if (!(event.getPlayer().hasPermission("bplobby.chat"))) {
+        Player player = event.getPlayer();
 
-            event.setCancelled(true);
+        if (player.hasPermission("bplobby.chat")) {
 
-            event.getPlayer().sendMessage(stringSerializer.serializeTextFromPath("chat.no-permission", event.getPlayer(), event.getMessage()));
+            event.setFormat(messageManager.getStringMessage(player, "events.chat.success", event.getMessage()));
 
             return;
 
         }
 
-        event.setFormat(stringSerializer.serializeTextFromPath("chat.permission", event.getPlayer(), event.getMessage()));
+        event.setCancelled(true);
+
+        messageManager.sendEventMessage(player, "chat.failed");
+
+        messageManager.playPlayerSound(player, "error");
 
     }
 }
