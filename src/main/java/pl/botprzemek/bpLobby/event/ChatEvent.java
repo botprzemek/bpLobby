@@ -1,5 +1,6 @@
 package pl.botprzemek.bpLobby.event;
 
+import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,24 +9,22 @@ import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
 
 public class ChatEvent implements Listener {
+    @Inject private MessageManager messageManager;
 
-    private final MessageManager messageManager;
-
-    public ChatEvent(LobbyManager lobbyManager) {
-
-        messageManager = lobbyManager.getMessageManager();
-
-    }
+//    private final MessageManager messageManager;
+//
+//    public ChatEvent(LobbyManager lobbyManager) {
+//
+//        messageManager = lobbyManager.getMessageManager();
+//
+//    }
 
     @EventHandler
     public void onChatEvent(AsyncPlayerChatEvent event) {
-
         Player player = event.getPlayer();
 
         if (player.hasPermission("bplobby.chat")) {
-
             event.setFormat(messageManager.getStringMessage(player, "events.chat.success", event.getMessage()));
-
             return;
 
         }
