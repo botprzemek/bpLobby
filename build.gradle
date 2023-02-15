@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.22'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
@@ -25,6 +26,7 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.11.2'
     compileOnly 'com.github.oraxen:oraxen:-SNAPSHOT'
 
+    implementation 'eu.okaeri:okaeri-configs-yaml-bukkit:5.0.0-beta.3'
     implementation 'eu.okaeri:okaeri-configs-serdes-bukkit:5.0.0-beta.3'
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
     implementation 'dev.rollczi.litecommands:bukkit:2.8.3'
@@ -41,6 +43,7 @@ jar {
 }
 
 shadowJar {
+    relocate 'eu.okaeri:okaeri-configs-yaml-bukkit:5.0.0-beta.3', 'pl.botprzemek.lobby.okaeri-configs-yaml-bukkit'
     relocate 'eu.okaeri:okaeri-injector:2.1.0', 'pl.botprzemek.lobby.okaeri-injector'
     relocate 'eu.okaeri:okaeri-configs-serdes-bukkit:5.0.0-beta.3', 'pl.botprzemek.lobby.okaeri-serdes-bukkit'
     relocate 'dev.rollczi.litecommands:bukkit:2.8.3', 'pl.botprzemek.lobby.litecommands-bukkit'
