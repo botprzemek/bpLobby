@@ -1,7 +1,7 @@
-package pl.botprzemek.bpLobby.Lobby.Config;
+package pl.botprzemek.bpLobby.lobby.Config;
 
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.Lobby.Utils.Config;
+import pl.botprzemek.bpLobby.lobby.Utils.Config;
 
 public class PluginConfig extends Config {
 

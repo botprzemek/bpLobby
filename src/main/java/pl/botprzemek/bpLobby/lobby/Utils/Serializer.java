@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.Lobby.Utils;
+package pl.botprzemek.bpLobby.lobby.Utils;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;

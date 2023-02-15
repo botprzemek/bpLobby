@@ -1,11 +1,11 @@
-package pl.botprzemek.bpLobby.Lobby.Config;
+package pl.botprzemek.bpLobby.lobby.Config;
 
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.Serializer;
+import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.Utils.Serializer;
 
 public class MessageManager {
 

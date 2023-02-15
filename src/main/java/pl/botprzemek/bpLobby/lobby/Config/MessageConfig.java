@@ -1,9 +1,9 @@
-package pl.botprzemek.bpLobby.Lobby.Config;
+package pl.botprzemek.bpLobby.lobby.Config;
 
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.Lobby.Utils.Config;
+import pl.botprzemek.bpLobby.lobby.Utils.Config;
 
 public class MessageConfig extends Config {
 

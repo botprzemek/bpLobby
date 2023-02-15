@@ -1,9 +1,9 @@
-package pl.botprzemek.bpLobby.Lobby.Config;
+package pl.botprzemek.bpLobby.lobby.Config;
 
 
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.Lobby.LobbyManager;
-import pl.botprzemek.bpLobby.Lobby.Utils.Config;
+import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.Utils.Config;
 
 import java.util.ArrayList;
 import java.util.List;

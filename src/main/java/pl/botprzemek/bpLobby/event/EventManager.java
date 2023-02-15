@@ -1,7 +1,7 @@
-package pl.botprzemek.bpLobby.Event;
+package pl.botprzemek.bpLobby.event;
 
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.Lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.LobbyManager;
 
 public class EventManager {
 
