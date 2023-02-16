@@ -1,12 +1,11 @@
-package pl.botprzemek.bpLobby.event;
+package pl.botprzemek.bpLobby.listener;
 
 import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
-import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.config.MessageManager;
 
 public class ChatEvent implements Listener {
     @Inject private MessageManager messageManager;

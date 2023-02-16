@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.event;
+package pl.botprzemek.bpLobby.listener;
 
 import io.th0rgal.oraxen.api.events.OraxenFurnitureBreakEvent;
 import io.th0rgal.oraxen.api.events.OraxenFurniturePlaceEvent;
@@ -13,8 +13,8 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.player.*;
-import pl.botprzemek.bpLobby.lobby.Config.PluginManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.config.PluginManager;
 
 public class SpawnProtectionEvent implements Listener {
 

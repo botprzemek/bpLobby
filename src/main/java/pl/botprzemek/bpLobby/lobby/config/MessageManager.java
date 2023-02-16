@@ -1,13 +1,11 @@
-package pl.botprzemek.bpLobby.lobby.Config;
+package pl.botprzemek.bpLobby.lobby.config;
 
 import eu.okaeri.injector.annotation.Inject;
-import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby.configuration.MessagesConfiguration;
-import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.lobby.Utils.Serializer;
+import pl.botprzemek.bpLobby.lobby.util.Serializer;
 
 public class MessageManager {
     @Inject private Serializer serializer;
@@ -52,7 +50,7 @@ public class MessageManager {
 
     public String getStringMessage(Player player, String path) {
 
-        String message = messageConfig.getMessage(path);
+        String message = messagesConfiguration.Co
 
         Component serializedMessage = serializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix()));

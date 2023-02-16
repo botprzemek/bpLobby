@@ -1,28 +1,25 @@
 package pl.botprzemek.bpLobby.lobby;
 
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.event.EventManager;
-import pl.botprzemek.bpLobby.lobby.Config.ConfigManager;
-import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
-import pl.botprzemek.bpLobby.lobby.Config.PluginManager;
-import pl.botprzemek.bpLobby.lobby.Utils.BungeeChannel;
+import pl.botprzemek.bpLobby.lobby.config.ConfigManager;
+import pl.botprzemek.bpLobby.lobby.config.MessageManager;
+import pl.botprzemek.bpLobby.lobby.config.PluginManager;
+import pl.botprzemek.bpLobby.lobby.util.BungeeChannel;
 
 public class LobbyManager {
-    private final BpLobby instance;
-    private final ConfigManager configManager;
-    private final BungeeChannel bungeeChannel;
-    private final MessageManager messageManager;
-    private final PluginManager pluginManager;
+//    private final BpLobby instance;
+//    private final BungeeChannel bungeeChannel;
+//    private final MessageManager messageManager;
+//    private final PluginManager pluginManager;
 
-    public LobbyManager(BpLobby instance) {
-        this.instance = instance;
-        configManager = new ConfigManager(this);
-        messageManager = new MessageManager(this);
-        bungeeChannel = new BungeeChannel(this);
-        pluginManager = new PluginManager(this);
 
-        new EventManager(this);
-    }
+//    public LobbyManager(BpLobby instance) {
+//        messageManager = new MessageManager();
+//        bungeeChannel = new BungeeChannel(this);
+//        pluginManager = new PluginManager(this);
+//
+//        new EventManager(this);
+//    }
 
     public void cleanUp() {
         instance.getServer().getMessenger().unregisterOutgoingPluginChannel(instance);

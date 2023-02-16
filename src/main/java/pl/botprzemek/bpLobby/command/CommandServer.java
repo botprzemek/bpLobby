@@ -5,10 +5,10 @@ import dev.rollczi.litecommands.command.execute.Execute;
 import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
-import pl.botprzemek.bpLobby.lobby.Config.PluginManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.lobby.Utils.BungeeChannel;
+import pl.botprzemek.bpLobby.lobby.config.MessageManager;
+import pl.botprzemek.bpLobby.lobby.config.PluginManager;
+import pl.botprzemek.bpLobby.lobby.util.BungeeChannel;
 
 @Route(name = "serwer", aliases = "server")
 @Permission("bplobby.command.server")

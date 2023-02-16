@@ -5,10 +5,10 @@ import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
 import dev.rollczi.litecommands.platform.LiteSender;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.lobby.Config.ConfigManager;
-import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
-import pl.botprzemek.bpLobby.lobby.Config.PluginManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.config.ConfigManager;
+import pl.botprzemek.bpLobby.lobby.config.MessageManager;
+import pl.botprzemek.bpLobby.lobby.config.PluginManager;
 
 @Route(name = "bplobby", aliases = "bpl")
 @Permission("bplobby.command.reload")

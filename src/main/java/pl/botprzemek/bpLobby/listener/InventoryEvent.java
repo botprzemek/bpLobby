@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.event;
+package pl.botprzemek.bpLobby.listener;
 
 import io.th0rgal.oraxen.api.OraxenItems;
 import org.bukkit.entity.Player;
@@ -11,11 +11,11 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
-import pl.botprzemek.bpLobby.lobby.Config.PluginManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.lobby.Utils.BungeeChannel;
-import pl.botprzemek.bpLobby.lobby.Utils.Button;
+import pl.botprzemek.bpLobby.lobby.config.MessageManager;
+import pl.botprzemek.bpLobby.lobby.config.PluginManager;
+import pl.botprzemek.bpLobby.lobby.util.BungeeChannel;
+import pl.botprzemek.bpLobby.lobby.util.Button;
 
 public class InventoryEvent implements Listener {
 

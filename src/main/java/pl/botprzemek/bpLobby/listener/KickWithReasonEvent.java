@@ -1,10 +1,10 @@
-package pl.botprzemek.bpLobby.event;
+package pl.botprzemek.bpLobby.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
-import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.config.MessageManager;
 
 public class KickWithReasonEvent implements Listener {
 

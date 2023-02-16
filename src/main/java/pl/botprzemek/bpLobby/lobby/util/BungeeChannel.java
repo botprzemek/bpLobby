@@ -1,11 +1,11 @@
-package pl.botprzemek.bpLobby.lobby.Utils;
+package pl.botprzemek.bpLobby.lobby.util;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.lobby.Config.MessageManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.config.MessageManager;
 
 public class BungeeChannel {
 

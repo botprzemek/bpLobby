@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.lobby.Utils;
+package pl.botprzemek.bpLobby.lobby.util;
 
 import eu.okaeri.injector.annotation.Inject;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -10,13 +10,15 @@ import org.bukkit.plugin.Plugin;
 
 public class Serializer {
     @Inject private Plugin plugin;
+    @Inject private BukkitAudiences audiences;
 
     private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
     public Component serializeString(Player player,  String message) {
         return this.miniMessage.deserialize(PlaceholderAPI.setPlaceholders(player, message));
     }
+
     public void sendMessage(Player player, Component serializedMessage) {
-        BukkitAudiences.create(this.plugin).player(player).sendMessage(serializedMessage);
+        this.audiences.player(player).sendMessage(serializedMessage);
     }
 }

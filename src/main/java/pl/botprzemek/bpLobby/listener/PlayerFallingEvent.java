@@ -1,12 +1,12 @@
-package pl.botprzemek.bpLobby.event;
+package pl.botprzemek.bpLobby.listener;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import pl.botprzemek.bpLobby.lobby.Config.PluginManager;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
+import pl.botprzemek.bpLobby.lobby.config.PluginManager;
 
 public class PlayerFallingEvent implements Listener {
     private final PluginManager pluginManager;

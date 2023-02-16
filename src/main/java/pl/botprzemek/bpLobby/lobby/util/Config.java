@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.lobby.Utils;
+package pl.botprzemek.bpLobby.lobby.util;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
