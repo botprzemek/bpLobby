@@ -1,21 +1,21 @@
-package pl.botprzemek.bpLobby.lobby.util;
+package pl.botprzemek.bpLobby.utils;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import pl.botprzemek.bpLobby.BpLobby;
+import pl.botprzemek.bpLobby.LobbyPlugin;
 
 import java.io.File;
 import java.io.IOException;
 
 public abstract class Config extends YamlConfiguration {
 
-    protected BpLobby instance;
+    protected LobbyPlugin instance;
 
     protected String name;
 
     protected File file;
 
-    public Config(BpLobby instance, String name) {
+    public Config(LobbyPlugin instance, String name) {
 
         this.instance = instance;
 

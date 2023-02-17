@@ -7,15 +7,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
-import pl.botprzemek.bpLobby.BpLobby;
+import pl.botprzemek.bpLobby.LobbyPlugin;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.lobby.util.Button;
+import pl.botprzemek.bpLobby.utils.Button;
 
 import java.util.*;
 
 public class PluginManager {
 
-    private final BpLobby instance;
+    private final LobbyPlugin instance;
 
     private final MessageManager messageManager;
 

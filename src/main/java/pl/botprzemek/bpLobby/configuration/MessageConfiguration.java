@@ -4,8 +4,15 @@ import eu.okaeri.configs.OkaeriConfig;
 import lombok.Getter;
 
 @Getter
-public class MessagesConfiguration extends OkaeriConfig {
+public class MessageConfiguration extends OkaeriConfig {
     private String prefix = "<gradient:#FFE04A:#FFA400>★ <bold>ʙʜɪᴠᴇ.ᴘʟ</bold> ★</gradient>";
+    private CommandsReload commandsReload = new CommandsReload();
+    private CommandsServer commandsServer = new CommandsServer();
+    private CommandsVanish commandsPlayers = new CommandsVanish();
+    private EventsConnect eventsConnect = new EventsConnect();
+    private EventsDisconnect eventsDisonnect = new EventsDisconnect();
+    private EventsChat eventsChat = new EventsChat();
+    private Sounds sounds = new Sounds();
 
     @Getter
     public class CommandsReload extends OkaeriConfig {

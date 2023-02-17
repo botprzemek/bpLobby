@@ -3,21 +3,16 @@ package pl.botprzemek.bpLobby.command;
 import dev.rollczi.litecommands.command.execute.Execute;
 import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
+import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.lobby.LobbyManager;
 import pl.botprzemek.bpLobby.lobby.config.MessageManager;
 import pl.botprzemek.bpLobby.lobby.config.PluginManager;
 
-@Route(name = "players", aliases = "widok")
-@Permission("bplobby.command.players")
+@Route(name = "vanish", aliases = "widok")
+@Permission("bplobby.command.vanish")
 public class CommandPlayers {
-    private final MessageManager messageManager;
-    private final PluginManager pluginManager;
-
-    public CommandPlayers(LobbyManager lobbyManager) {
-        this.messageManager = lobbyManager.getMessageManager();
-        this.pluginManager = lobbyManager.getPluginManager();
-    }
+    @Inject private MessageManager messageManager;
+    @Inject private PluginManager pluginManager;
 
     @Execute
     public void view(Player player) {

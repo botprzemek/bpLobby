@@ -2,12 +2,12 @@ package pl.botprzemek.bpLobby.lobby.config;
 
 import org.bukkit.Sound;
 import org.bukkit.configuration.ConfigurationSection;
-import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.lobby.util.Config;
+import pl.botprzemek.bpLobby.LobbyPlugin;
+import pl.botprzemek.bpLobby.utils.Config;
 
 public class MessageConfig extends Config {
 
-    public MessageConfig(BpLobby instance, String file) {
+    public MessageConfig(LobbyPlugin instance, String file) {
 
         super(instance, file);
 

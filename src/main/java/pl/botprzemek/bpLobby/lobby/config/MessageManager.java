@@ -1,45 +1,28 @@
 package pl.botprzemek.bpLobby.lobby.config;
 
 import eu.okaeri.injector.annotation.Inject;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.sound.Sound;
+import net.kyori.adventure.sound.SoundStop;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.configuration.MessagesConfiguration;
-import pl.botprzemek.bpLobby.lobby.util.Serializer;
+import pl.botprzemek.bpLobby.configuration.MessageConfiguration;
 
 public class MessageManager {
-    @Inject private Serializer serializer;
-    @Inject private MessagesConfiguration messagesConfiguration;
+    @Inject private Braah braah;
+    @Inject private MessageConfiguration messageConfiguration;
+    @Inject private BukkitAudiences audiences;
 
-
-//    private final MessageConfig messageConfig;
-//
-//    private final PluginConfig pluginConfig;
-//
-//    private final BukkitAudiences adventure;
-//
-//    private final Serializer serializer;
-//
-//    public MessageManager(LobbyManager lobbyManager) {
-//
-//        messageConfig = lobbyManager.getConfigManager().getMessageConfig();
-//
-//        pluginConfig = lobbyManager.getConfigManager().getPluginConfig();
-//
-//        adventure = BukkitAudiences.create(lobbyManager.getInstance());
-//
-//        serializer = new Serializer();
-//
-//    }
 
     public void sendCommandMessage(Player player, String message) {
         Component serializedMessage = this.serializer.serializeString(player, message
-                .replace("%prefix%", this.messagesConfiguration.getPrefix()));
+                .replace("%prefix%", this.messageConfiguration.getPrefix()));
         this.serializer.sendMessage(player, serializedMessage);
     }
 
     public void sendCommandMessage(Player player, String message, String... value) {
-        message = message.replace("%prefix%", this.messagesConfiguration.getPrefix());
+        message = message.replace("%prefix%", this.messageConfiguration.getPrefix());
         for (int i = 0; i < value.length; i++) {
             message.replace("%value_"+i+"%", value[i]);
         }
@@ -50,7 +33,7 @@ public class MessageManager {
 
     public String getStringMessage(Player player, String path) {
 
-        String message = messagesConfiguration.Co
+        String message = messageConfig.getMessage(path);
 
         Component serializedMessage = serializer.serializeString(player, message
                 .replace("%prefix%", messageConfig.getPrefix()));
@@ -81,10 +64,19 @@ public class MessageManager {
 
     }
 
-    public void playPlayerSound(Player player, String path) {
-
-        player.playSound(player, messageConfig.getSound(path), 1F, 1F);
-
+    public void playSound(Sound sound) {
+        this.audiences.all().playSound(sound);
     }
 
+    public void playSound(Player player, Sound sound) {
+        this.audiences.player(player).playSound(sound, Sound.Emitter.self());
+    }
+
+    public void stopSound(Player player) {
+        this.audiences.player(player).stopSound(SoundStop.all());
+    }
+
+    public void stopSound(Player player, Sound sound) {
+        this.audiences.player(player).stopSound(sound);
+    }
 }

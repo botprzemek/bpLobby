@@ -1,11 +1,11 @@
 package pl.botprzemek.bpLobby.lobby.config;
 
-import pl.botprzemek.bpLobby.BpLobby;
-import pl.botprzemek.bpLobby.lobby.util.Config;
+import pl.botprzemek.bpLobby.LobbyPlugin;
+import pl.botprzemek.bpLobby.utils.Config;
 
 public class PluginConfig extends Config {
 
-    public PluginConfig(BpLobby instance, String name) {
+    public PluginConfig(LobbyPlugin instance, String name) {
 
         super(instance, name);
 

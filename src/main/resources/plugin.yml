@@ -1,49 +1,8 @@
 name: bpLobby
-version: 0.6
+version: '{project.version}'
 author: botprzemek
 website: https://www.github.com/botprzemek/bpLobby/
 description: All-in-one lobby plugin (1.18.2)
-main: pl.botprzemek.bpLobby.BpLobby
+main: pl.botprzemek.bpLobby.LobbyPlugin
 api-version: 1.18
 softdepend: [PlaceholderAPI, Oraxen]
-commands:
-  bplobby:
-    aliases: [bpl]
-    default: op
-    description: Reloading command for bpLobby plugin
-  server:
-    aliases: [serwer, s, servers]
-    default: op
-    description: Server changing command
-  players:
-    aliases: [gracze, g, widok, see, ukryj]
-    default: op
-    description: Players visibility changing command
-permissions:
-  bplobby.*:
-    description: Gives access to all bpLobby commands
-    default: op
-    children:
-      bplobby.reload: true
-      bplobby.server: true
-      bplobby.players: true
-      bplobby.bypass: true
-      bplobby.chat: true
-  bplobby.reload:
-    description: Reloading command for lobby
-    default: op
-  bplobby.server:
-    description: Server selector command
-    default: op
-  bplobby.servers:
-    description: Access for servers
-    default: op
-  bplobby.players:
-    description: Player hiding command
-    default: op
-  bplobby.bypass:
-    description: Bypass to kicking and lobby protection
-    default: op
-  bplobby.chat:
-    description: Access to chat
-    default: op

@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.lobby.util;
+package pl.botprzemek.bpLobby.utils;
 
 import eu.okaeri.injector.annotation.Inject;
 import me.clip.placeholderapi.PlaceholderAPI;

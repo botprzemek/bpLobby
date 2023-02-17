@@ -14,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
 import pl.botprzemek.bpLobby.lobby.config.MessageManager;
 import pl.botprzemek.bpLobby.lobby.config.PluginManager;
-import pl.botprzemek.bpLobby.lobby.util.BungeeChannel;
-import pl.botprzemek.bpLobby.lobby.util.Button;
+import pl.botprzemek.bpLobby.utils.BungeeChannel;
+import pl.botprzemek.bpLobby.utils.Button;
 
 public class InventoryEvent implements Listener {
 

@@ -1,11 +1,11 @@
 package pl.botprzemek.bpLobby.listener;
 
-import pl.botprzemek.bpLobby.BpLobby;
+import pl.botprzemek.bpLobby.LobbyPlugin;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
 
 public class EventManager {
     public EventManager(LobbyManager lobbyManager) {
-        BpLobby instance = lobbyManager.getInstance();
+        LobbyPlugin instance = lobbyManager.getInstance();
         instance.getServer().getPluginManager().registerEvents(new JoinQuitEvent(lobbyManager), instance);
         instance.getServer().getPluginManager().registerEvents(new ChatEvent(), instance);
         instance.getServer().getPluginManager().registerEvents(new InventoryEvent(lobbyManager), instance);

@@ -1,9 +1,9 @@
 package pl.botprzemek.bpLobby.lobby.config;
 
 
-import pl.botprzemek.bpLobby.BpLobby;
+import pl.botprzemek.bpLobby.LobbyPlugin;
 import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.lobby.util.Config;
+import pl.botprzemek.bpLobby.utils.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class ConfigManager {
 
     public ConfigManager(LobbyManager lobbyManager) {
 
-        BpLobby instance = lobbyManager.getInstance();
+        LobbyPlugin instance = lobbyManager.getInstance();
 
         configs.add(messageConfig = new MessageConfig(instance, "messages.yml"));
 

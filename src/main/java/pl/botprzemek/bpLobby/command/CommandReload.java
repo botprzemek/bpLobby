@@ -4,30 +4,24 @@ import dev.rollczi.litecommands.command.execute.Execute;
 import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
 import dev.rollczi.litecommands.platform.LiteSender;
+import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.lobby.config.ConfigManager;
+import pl.botprzemek.bpLobby.configuration.MessageConfiguration;
+import pl.botprzemek.bpLobby.configuration.PluginConfiguration;
 import pl.botprzemek.bpLobby.lobby.config.MessageManager;
-import pl.botprzemek.bpLobby.lobby.config.PluginManager;
 
 @Route(name = "bplobby", aliases = "bpl")
 @Permission("bplobby.command.reload")
 public class CommandReload {
-    private final ConfigManager configManager;
-    private final MessageManager messageManager;
-    private final PluginManager pluginManager;
-
-    public CommandReload(LobbyManager lobbyManager) {
-        configManager = lobbyManager.getConfigManager();
-        messageManager = lobbyManager.getMessageManager();
-        pluginManager = lobbyManager.getPluginManager();
-    }
+    @Inject private MessageManager messageManager;
+    @Inject private PluginConfiguration pluginConfiguration;
+    @Inject private MessageConfiguration messageConfiguration;
 
     @Execute
     public void reload(LiteSender sender) {
         try {
-            configManager.loadConfigs();
-            pluginManager.loadConfigs();
+            messageConfiguration.load();
+            pluginConfiguration.load();
             if (sender instanceof Player player) messageManager.sendCommandMessage(player, "reload.success");
         }
         catch (Exception error) {

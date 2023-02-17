@@ -29,10 +29,7 @@ public class ChatEvent implements Listener {
         }
 
         event.setCancelled(true);
-
         messageManager.sendEventMessage(player, "chat.failed");
-
         messageManager.playPlayerSound(player, "error");
-
     }
 }
