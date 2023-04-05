@@ -1,6 +1,6 @@
-# bpLobby
-
-## _botprzemek's Lobby plugin for Spigot 1.18.2+_<br><br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/botprzemek/botprzemek/main/assets/bplobby.svg" alt="bpLobby's Title card">
+</p>
 
 OUTDATED! New build coming soon!
 
