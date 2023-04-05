@@ -1,5 +1,6 @@
-package pl.botprzemek.bpLobby.lobby.config;
+package pl.botprzemek.bpLobby.lobby;
 
+import eu.okaeri.injector.annotation.Inject;
 import io.th0rgal.oraxen.api.OraxenItems;
 import org.bukkit.*;
 import org.bukkit.configuration.ConfigurationSection;
@@ -8,46 +9,23 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.botprzemek.bpLobby.LobbyPlugin;
-import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.utils.Button;
+import pl.botprzemek.bpLobby.configuration.PluginConfiguration;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
-public class PluginManager {
-
-    private final LobbyPlugin instance;
-
-    private final MessageManager messageManager;
-
-    private final PluginConfig pluginConfig;
+public class ManagerPlugin {
+    @Inject private LobbyPlugin lobbyPlugin;
+    @Inject private ManagerMessage managerMessage;
+    @Inject private PluginConfiguration pluginConfiguration;
 
     private Location spawnLocation;
-
     private final List<UUID> hiddenPlayers;
-
     private int limit;
-
     private final HashMap<UUID, Inventory> serverSelectors;
-
     private final List<Button> buttons;
-
-    public PluginManager(LobbyManager lobbyManager) {
-
-        instance = lobbyManager.getInstance();
-
-        messageManager = lobbyManager.getMessageManager();
-
-        pluginConfig = lobbyManager.getConfigManager().getPluginConfig();
-
-        hiddenPlayers = new ArrayList<>();
-
-        serverSelectors = new HashMap<>();
-
-        buttons = new ArrayList<>();
-
-        loadConfigs();
-
-    }
 
     public void loadConfigs() {
 
@@ -136,7 +114,7 @@ public class PluginManager {
 
     public void createCustomElements(Player player) {
 
-        messageManager.playPlayerSound(player, "activate");
+        managerMessage.playPlayerSound(player, "activate");
 
         ConfigurationSection particle = pluginConfig.getConfigurationSection("particle");
 
@@ -318,7 +296,7 @@ public class PluginManager {
 
         if (inventorySection == null) return null;
 
-        Inventory inventory = Bukkit.createInventory(player, inventorySection.getInt("size"), messageManager.getConfigStringMessage(player, "selector-gui.title"));
+        Inventory inventory = Bukkit.createInventory(player, inventorySection.getInt("size"), managerMessage.getConfigStringMessage(player, "selector-gui.title"));
 
         List<Button> items = getButtons();
 
@@ -341,13 +319,9 @@ public class PluginManager {
         for (Button item : items) inventory.setItem(item.getSlot(), OraxenItems.getItemById(item.getItemId()).build());
 
         return inventory;
-
     }
 
     public boolean isServerViable(String serverName) {
-
         return getButtons().contains(getButtonByServerName(serverName));
-
     }
-
 }

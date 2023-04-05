@@ -6,16 +6,14 @@ import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
+import pl.botprzemek.bpLobby.LobbyPlugin;
 
 public class Serializer {
-    @Inject private Plugin plugin;
+    @Inject private LobbyPlugin lobbyPlugin;
     @Inject private BukkitAudiences audiences;
 
-    private final MiniMessage miniMessage = MiniMessage.miniMessage();
-
-    public Component serializeString(Player player,  String message) {
-        return this.miniMessage.deserialize(PlaceholderAPI.setPlaceholders(player, message));
+    public Component serializeString(Player player, String message) {
+        return MiniMessage.miniMessage().deserialize(PlaceholderAPI.setPlaceholders(player, message));
     }
 
     public void sendMessage(Player player, Component serializedMessage) {

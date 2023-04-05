@@ -1,5 +1,6 @@
 package pl.botprzemek.bpLobby.listener;
 
+import eu.okaeri.injector.annotation.Inject;
 import io.th0rgal.oraxen.api.events.OraxenFurnitureBreakEvent;
 import io.th0rgal.oraxen.api.events.OraxenFurniturePlaceEvent;
 import org.bukkit.entity.Player;
@@ -13,157 +14,93 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.player.*;
-import pl.botprzemek.bpLobby.lobby.LobbyManager;
-import pl.botprzemek.bpLobby.lobby.config.PluginManager;
+import pl.botprzemek.bpLobby.lobby.ManagerPlugin;
 
-public class SpawnProtectionEvent implements Listener {
-
-    private final PluginManager pluginManager;
-
-    public SpawnProtectionEvent(LobbyManager lobbyManager) {
-
-        pluginManager = lobbyManager.getPluginManager();
-
-    }
+public class ListenerSpawn implements Listener {
+    @Inject private ManagerPlugin managerPlugin;
 
     @EventHandler
     public void onPlayerBlockDestroyEvent(HangingBreakByEntityEvent event) {
-
         if (!(event.getRemover() instanceof Player player)) {
-
             event.setCancelled(true);
-
             return;
-
         }
-
         if (player.hasPermission("bplobby.bypass")) return;
-
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerBlockDestroyEvent(HangingPlaceEvent event) {
-
         Player player = event.getPlayer();
-
         if (player == null) return;
-
         if (player.hasPermission("bplobby.bypass")) return;
-
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerDamageOthersEvent(EntityDamageByEntityEvent event) {
-
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerDamagedEvent(EntityDamageEvent event) {
-
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerDrainHunger(FoodLevelChangeEvent event) {
-
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerDamagedByBlockEvent(EntityDamageByBlockEvent event) {
-
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEvent event) {
-
         if (event.getPlayer().hasPermission("bplobby.bypass")) return;
-
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEntityEvent event) {
-
         if (event.getPlayer().hasPermission("bplobby.bypass")) return;
-
         event.setCancelled(true);
-
-    }
-
-    @EventHandler
-    public void onPlayerRespawn(PlayerRespawnEvent event) {
-
-        Player player = event.getPlayer();
-
-        if (player.getBedSpawnLocation() == null) event.setRespawnLocation(pluginManager.getSpawnLocation());
-
     }
 
     @EventHandler
     public void onPlayerBlockPlace(BlockPlaceEvent event) {
-
-        Player player = event.getPlayer();
-
-        if (player.hasPermission("bplobby.bypass")) return;
-
+        if (event.getPlayer().hasPermission("bplobby.bypass")) return;
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerWaterFill(PlayerBucketFillEvent event) {
-
-        Player player = event.getPlayer();
-
-        if (player.hasPermission("bplobby.bypass")) return;
-
+        if (event.getPlayer().hasPermission("bplobby.bypass")) return;
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onPlayerWaterEmpty(PlayerBucketEmptyEvent event) {
-
-        Player player = event.getPlayer();
-
-        if (player.hasPermission("bplobby.bypass")) return;
-
+        if (event.getPlayer().hasPermission("bplobby.bypass")) return;
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onOraxenBlocksBreak(OraxenFurnitureBreakEvent event) {
-
-        Player player = event.getPlayer();
-
-        if (player.hasPermission("bplobby.bypass")) return;
-
+        if (event.getPlayer().hasPermission("bplobby.bypass")) return;
         event.setCancelled(true);
-
     }
 
     @EventHandler
     public void onOraxenBlocksPlace(OraxenFurniturePlaceEvent event) {
-
-        Player player = event.getPlayer();
-
-        if (player.hasPermission("bplobby.bypass")) return;
-
+        if (event.getPlayer().hasPermission("bplobby.bypass")) return;
         event.setCancelled(true);
-
     }
 
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        if (event.getPlayer().getBedSpawnLocation() == null) event.setRespawnLocation(managerPlugin.getSpawnLocation());
+    }
 }
