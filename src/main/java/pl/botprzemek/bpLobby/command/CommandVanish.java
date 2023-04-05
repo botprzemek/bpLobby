@@ -5,25 +5,25 @@ import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
 import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
+import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
-import pl.botprzemek.bpLobby.lobby.ManagerPlugin;
+import pl.botprzemek.bpLobby.util.HiddenPlayers;
 
 @Route(name = "vanish", aliases = "gracze")
 @Permission("bplobby.command.vanish")
 public class CommandVanish {
-    @Inject private ManagerPlugin managerPlugin;
+    @Inject private ConfigurationMessage configurationMessage;
     @Inject private ManagerMessage managerMessage;
+    @Inject private HiddenPlayers hiddenPlayers;
 
     @Execute
     public void view(Player player) {
-        boolean invisible = managerPlugin.isHiddenPlayer(player);
-        if (invisible) {
-            managerPlugin.clearHiddenPlayer(player);
-            managerMessage.sendCommandMessage(player, "vanish.show");
+        if (hiddenPlayers.getPlayer(player) == null) {
+            hiddenPlayers.hidePlayer(player);
+            managerMessage.sendMessage(player, configurationMessage.getCommandsVanish().getShow());
+            return;
         }
-        else {
-            managerPlugin.setHiddenPlayer(player);
-            managerMessage.sendCommandMessage(player, "vanish.hide");
-        }
+        hiddenPlayers.showPlayer(player);
+        managerMessage.sendMessage(player, configurationMessage.getCommandsVanish().getHide());
     }
 }

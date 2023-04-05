@@ -14,10 +14,10 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.player.*;
-import pl.botprzemek.bpLobby.lobby.ManagerPlugin;
+import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
 
 public class ListenerSpawn implements Listener {
-    @Inject private ManagerPlugin managerPlugin;
+    @Inject private ConfigurationPlugin configurationPlugin;
 
     @EventHandler
     public void onPlayerBlockDestroyEvent(HangingBreakByEntityEvent event) {
@@ -101,6 +101,19 @@ public class ListenerSpawn implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        if (event.getPlayer().getBedSpawnLocation() == null) event.setRespawnLocation(managerPlugin.getSpawnLocation());
+        if (event.getPlayer().getBedSpawnLocation() == null) event.setRespawnLocation(configurationPlugin.getSpawnLocation());
+    }
+
+    @EventHandler
+    public void onPlayerFall(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPermission("bplobby.bypass")) return;
+        if (player.getLocation().getY() > configurationPlugin.getLimit()) return;
+        player.teleport(configurationPlugin.getSpawnLocation());
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerRespawnEvent event) {
+        event.setRespawnLocation(configurationPlugin.getSpawnLocation());
     }
 }

@@ -1,57 +1,42 @@
 package pl.botprzemek.bpLobby.lobby;
 
 import eu.okaeri.injector.annotation.Inject;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.sound.SoundStop;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.configuration.MessageConfiguration;
-import pl.botprzemek.bpLobby.configuration.PluginConfiguration;
-import pl.botprzemek.bpLobby.utils.Serializer;
+import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 
 public class ManagerMessage {
-    @Inject private PluginConfiguration pluginConfiguration;
-    @Inject private MessageConfiguration messageConfiguration;
     @Inject private BukkitAudiences audiences;
-    @Inject private Serializer serializer;
+    @Inject private ConfigurationMessage configurationMessage;
 
-
-    public void sendCommandMessage(Player player, String message) {
-        Component serializedMessage = this.serializer.serializeString(player, message
-                .replace("%prefix%", this.messageConfiguration.getPrefix()));
-        this.serializer.sendMessage(player, serializedMessage);
+    private Component replacePlaceholders(String message, String... values) {
+        message = message.replace("%prefix%", this.configurationMessage.getPrefix());
+        for (int i = 0; i < values.length; i++) message = message.replace("%value_"+i+"%", values[i]);
+        return MiniMessage.miniMessage().deserialize(message);
     }
 
-    public void sendCommandMessage(Player player, String message, String... value) {
-        message = message.replace("%prefix%", this.messageConfiguration.getPrefix());
-        for (int i = 0; i < value.length; i++) message.replace("%value_"+i+"%", value[i]);
-        Component serializedMessage = serializer.serializeString(player, message);
-        this.serializer.sendMessage(player, serializedMessage);
+    public void sendMessage(CommandSender sender, String message, String... values) {
+        this.audiences.sender(sender).sendMessage(replacePlaceholders(message, values));
     }
 
-//    public String getStringMessage(Player player, String path) {
-//        String message = messageConfiguration.getMessage(path);
-//        Component serializedMessage = serializer.serializeString(player, message
-//                .replace("%prefix%", messageConfiguration.getPrefix()));
-//        return LegacyComponentSerializer.legacySection().serialize(serializedMessage);
-//    }
-
-//    public String getStringMessage(Player player, String path, String value) {
-//        String message = messageConfiguration.getMessage(path);
-//        Component serializedMessage = serializer.serializeString(player, message
-//                .replace("%prefix%", messageConfiguration.getPrefix())
-//                .replace("%value%", value));
-//        return LegacyComponentSerializer.legacySection().serialize(serializedMessage);
-//    }
-
-    public void playSound(Sound sound) {
-        this.audiences.all().playSound(sound);
+    public void sendMessage(Player player, String message, String... values) {
+        this.audiences.player(player).sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
     }
 
-    public void playSound(Player player, Sound sound) {
-        this.audiences.player(player).playSound(sound, Sound.Emitter.self());
+    public String getMessage(String message, String... values) {
+        return LegacyComponentSerializer.legacySection().serialize(replacePlaceholders(message, values));
+    }
+
+    public String getMessage(Player player, String message, String... values) {
+        return LegacyComponentSerializer.legacySection().serialize(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
     }
 
     public void playSound(Player player, String soundName) {

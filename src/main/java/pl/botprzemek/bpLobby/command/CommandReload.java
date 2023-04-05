@@ -3,29 +3,29 @@ package pl.botprzemek.bpLobby.command;
 import dev.rollczi.litecommands.command.execute.Execute;
 import dev.rollczi.litecommands.command.permission.Permission;
 import dev.rollczi.litecommands.command.route.Route;
-import dev.rollczi.litecommands.platform.LiteSender;
+import eu.okaeri.configs.exception.OkaeriException;
 import eu.okaeri.injector.annotation.Inject;
-import org.bukkit.entity.Player;
-import pl.botprzemek.bpLobby.configuration.MessageConfiguration;
-import pl.botprzemek.bpLobby.configuration.PluginConfiguration;
+import org.bukkit.command.CommandSender;
+import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
+import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 @Route(name = "bplobby", aliases = "bpl")
 @Permission("bplobby.command.reload")
 public class CommandReload {
-    @Inject private PluginConfiguration pluginConfiguration;
-    @Inject private MessageConfiguration messageConfiguration;
+    @Inject private ConfigurationPlugin configurationPlugin;
+    @Inject private ConfigurationMessage configurationMessage;
     @Inject private ManagerMessage managerMessage;
 
     @Execute
-    public void reload(LiteSender sender) {
+    public void reload(CommandSender sender) {
         try {
-            messageConfiguration.load();
-            pluginConfiguration.load();
-            if (sender instanceof Player player) managerMessage.sendCommandMessage(player, "reload.success");
+            configurationMessage.load();
+            configurationPlugin.load();
+            managerMessage.sendMessage(sender, configurationMessage.getCommandsReload().getSuccess());
         }
-        catch (Exception error) {
-            if (sender instanceof Player player) managerMessage.sendCommandMessage(player, "reload.failed");
+        catch (OkaeriException error) {
+            managerMessage.sendMessage(sender, configurationMessage.getCommandsReload().getFailed());
             error.printStackTrace();
         }
     }
