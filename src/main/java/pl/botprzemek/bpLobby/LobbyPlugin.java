@@ -6,6 +6,7 @@ import dev.rollczi.litecommands.bukkit.tools.BukkitPlayerArgument;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.bpLobby.command.CommandReload;
@@ -15,9 +16,15 @@ import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
 import pl.botprzemek.bpLobby.handler.HandlerInvalid;
 import pl.botprzemek.bpLobby.handler.HandlerUnauthorized;
+import pl.botprzemek.bpLobby.listener.ListenerChat;
+import pl.botprzemek.bpLobby.listener.ListenerJoinQuit;
+import pl.botprzemek.bpLobby.listener.ListenerKick;
+import pl.botprzemek.bpLobby.listener.ListenerSpawn;
 import pl.botprzemek.bpLobby.lobby.ManagerEvent;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 import pl.botprzemek.bpLobby.util.HiddenPlayers;
+
+import java.util.stream.Stream;
 
 public final class LobbyPlugin extends JavaPlugin {
     private final Injector injector = OkaeriInjector.create();
@@ -41,7 +48,14 @@ public final class LobbyPlugin extends JavaPlugin {
             .permissionHandler(new HandlerUnauthorized())
             .register();
 
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "lobby");
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "lobby:main");
+
+        Stream.of(
+                this.injector.createInstance(ListenerChat.class),
+                this.injector.createInstance(ListenerJoinQuit.class),
+                this.injector.createInstance(ListenerKick.class),
+                this.injector.createInstance(ListenerSpawn.class)
+        ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
         new ManagerEvent();
     }
 

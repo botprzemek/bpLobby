@@ -19,7 +19,7 @@ public class ManagerMessage {
 
     private Component replacePlaceholders(String message, String... values) {
         message = message.replace("%prefix%", this.configurationMessage.getPrefix());
-        for (int i = 0; i < values.length; i++) message = message.replace("%value_"+i+"%", values[i]);
+        for (int i = 1; i <= values.length; i++) message = message.replace("%value_"+i+"%", values[i-1]);
         return MiniMessage.miniMessage().deserialize(message);
     }
 
@@ -31,10 +31,6 @@ public class ManagerMessage {
         this.audiences.player(player).sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
     }
 
-    public String getMessage(String message, String... values) {
-        return LegacyComponentSerializer.legacySection().serialize(replacePlaceholders(message, values));
-    }
-
     public String getMessage(Player player, String message, String... values) {
         return LegacyComponentSerializer.legacySection().serialize(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
     }
@@ -43,11 +39,11 @@ public class ManagerMessage {
         this.audiences.player(player).playSound(Sound.sound(Key.key(soundName), Sound.Source.NEUTRAL, 1f, 1f), Sound.Emitter.self());
     }
 
-    public void stopSound(Player player) {
-        this.audiences.player(player).stopSound(SoundStop.all());
-    }
-
-    public void stopSound(Player player, Sound sound) {
-        this.audiences.player(player).stopSound(sound);
-    }
+//    public void stopSound(Player player) {
+//        this.audiences.player(player).stopSound(SoundStop.all());
+//    }
+//
+//    public void stopSound(Player player, Sound sound) {
+//        this.audiences.player(player).stopSound(sound);
+//    }
 }
