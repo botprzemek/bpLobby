@@ -9,9 +9,12 @@ import net.kyori.adventure.sound.SoundStop;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
+
+import java.util.Arrays;
 
 public class ManagerMessage {
     @Inject private BukkitAudiences audiences;
@@ -38,12 +41,4 @@ public class ManagerMessage {
     public void playSound(Player player, String soundName) {
         this.audiences.player(player).playSound(Sound.sound(Key.key(soundName), Sound.Source.NEUTRAL, 1f, 1f), Sound.Emitter.self());
     }
-
-//    public void stopSound(Player player) {
-//        this.audiences.player(player).stopSound(SoundStop.all());
-//    }
-//
-//    public void stopSound(Player player, Sound sound) {
-//        this.audiences.player(player).stopSound(sound);
-//    }
 }

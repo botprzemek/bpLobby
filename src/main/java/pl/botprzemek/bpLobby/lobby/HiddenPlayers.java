@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.util;
+package pl.botprzemek.bpLobby.lobby;
 
 import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.Bukkit;
@@ -31,6 +31,6 @@ public class HiddenPlayers {
     }
 
     public void removePlayer(Player player) {
-        hiddenPlayers.remove(player.getUniqueId());
+        if (hiddenPlayers.get(player.getUniqueId())) hiddenPlayers.remove(player.getUniqueId());
     }
 }

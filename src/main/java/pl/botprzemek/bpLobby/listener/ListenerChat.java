@@ -1,6 +1,7 @@
 package pl.botprzemek.bpLobby.listener;
 
 import eu.okaeri.injector.annotation.Inject;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +18,9 @@ public class ListenerChat implements Listener {
     public void onChatEvent(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         if (player.hasPermission("bplobby.chat")) {
-            managerMessage.sendMessage(player, configurationMessage.getEventsChat().getFailed(), event.getMessage());
+            String formattedMessage = managerMessage.getMessage(player, configurationMessage.getEventsChat().getSuccess(), player.getDisplayName(), event.getMessage());
+            Bukkit.getLogger().info(formattedMessage);
+            event.setFormat(formattedMessage);
             return;
         }
         event.setCancelled(true);

@@ -1,4 +1,4 @@
-package pl.botprzemek.bpLobby.util;
+package pl.botprzemek.bpLobby.lobby;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
@@ -20,7 +20,7 @@ public class BungeeChannel {
             out.writeUTF(server.toLowerCase());
             managerMessage.sendMessage(player, configurationMessage.getCommandsServer().getSuccess(), server);
             managerMessage.playSound(player,  configurationMessage.getSounds().getActivate());
-            player.sendPluginMessage(plugin, "lobby", out.toByteArray());
+            player.sendPluginMessage(plugin, "lobby:main", out.toByteArray());
         }
         catch (Exception error) {
             managerMessage.sendMessage(player, configurationMessage.getCommandsServer().getError(), server);

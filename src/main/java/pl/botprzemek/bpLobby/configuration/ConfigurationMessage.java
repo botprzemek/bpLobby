@@ -79,7 +79,7 @@ public class ConfigurationMessage extends OkaeriConfig {
 
     @Getter
     public class EventsChat extends OkaeriConfig {
-        private String success = "<color:#FFE04A>★<reset>%luckperms_prefix% %player_name% <color:#FFA400>★<reset> %value%";
+        private String success = "<color:#FFE04A>★<reset>%vault_prefix% %value_1% <color:#FFA400>★<reset> %value_2%";
         private String failed = "%prefix% Nie masz <gradient:#FFE04A:#FFA400><bold>dostępu</bold></gradient> do wysyłania <gradient:#FFE04A:#FFA400><bold>wiadomości!</bold></gradient>";
     }
 

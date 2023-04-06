@@ -7,7 +7,7 @@ import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
-import pl.botprzemek.bpLobby.util.HiddenPlayers;
+import pl.botprzemek.bpLobby.lobby.HiddenPlayers;
 
 @Route(name = "vanish", aliases = "gracze")
 @Permission("bplobby.command.vanish")

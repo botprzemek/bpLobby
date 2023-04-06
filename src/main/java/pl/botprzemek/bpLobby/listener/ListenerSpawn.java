@@ -101,7 +101,7 @@ public class ListenerSpawn implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        if (event.getPlayer().getBedSpawnLocation() == null) event.setRespawnLocation(configurationPlugin.getSpawnLocation());
+        if (event.getPlayer().getBedSpawnLocation() == null) event.setRespawnLocation(configurationPlugin.getSpawn().getLocation());
     }
 
     @EventHandler
@@ -109,11 +109,11 @@ public class ListenerSpawn implements Listener {
         Player player = event.getPlayer();
         if (player.hasPermission("bplobby.bypass")) return;
         if (player.getLocation().getY() > configurationPlugin.getLimit()) return;
-        player.teleport(configurationPlugin.getSpawnLocation());
+        player.teleport(configurationPlugin.getSpawn().getLocation());
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerRespawnEvent event) {
-        event.setRespawnLocation(configurationPlugin.getSpawnLocation());
+        event.setRespawnLocation(configurationPlugin.getSpawn().getLocation());
     }
 }

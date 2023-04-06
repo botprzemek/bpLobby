@@ -6,7 +6,7 @@
 //import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 //import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 //import pl.botprzemek.bpLobby.lobby.ManagerPlugin;
-//import pl.botprzemek.bpLobby.util.BungeeChannel;
+//import pl.botprzemek.bpLobby.lobby.BungeeChannel;
 //
 //@Route(name = "server", aliases = "serwer")
 //@Permission("bplobby.command.server")

@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
-import pl.botprzemek.bpLobby.util.HiddenPlayers;
+import pl.botprzemek.bpLobby.lobby.HiddenPlayers;
 
 public class ListenerJoinQuit implements Listener {
     @Inject private ConfigurationMessage configurationMessage;
@@ -18,7 +18,7 @@ public class ListenerJoinQuit implements Listener {
     @EventHandler
     public void onJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        event.setJoinMessage(managerMessage.getMessage(player, configurationMessage.getEventsConnect().getQuit(), player.getDisplayName()));
+        event.setJoinMessage(managerMessage.getMessage(player, configurationMessage.getEventsConnect().getJoin(), player.getDisplayName()));
     }
 
     @EventHandler

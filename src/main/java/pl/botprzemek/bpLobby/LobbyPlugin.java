@@ -20,9 +20,8 @@ import pl.botprzemek.bpLobby.listener.ListenerChat;
 import pl.botprzemek.bpLobby.listener.ListenerJoinQuit;
 import pl.botprzemek.bpLobby.listener.ListenerKick;
 import pl.botprzemek.bpLobby.listener.ListenerSpawn;
-import pl.botprzemek.bpLobby.lobby.ManagerEvent;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
-import pl.botprzemek.bpLobby.util.HiddenPlayers;
+import pl.botprzemek.bpLobby.lobby.HiddenPlayers;
 
 import java.util.stream.Stream;
 
@@ -43,7 +42,10 @@ public final class LobbyPlugin extends JavaPlugin {
         LiteBukkitFactory.builder(this.getServer(), "bpLobby")
             .argument(Player.class, new BukkitPlayerArgument<>(this.getServer(), configurationMessage.getCommandsPlayer().getOffline()))
             .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>(configurationMessage.getCommandsPlayer().getOnly()))
-            .commandInstance(new CommandVanish(), new CommandReload())
+            .commandInstance(
+                    this.injector.createInstance(CommandReload.class),
+                    this.injector.createInstance(CommandVanish.class)
+            )
             .invalidUsageHandler(new HandlerInvalid())
             .permissionHandler(new HandlerUnauthorized())
             .register();
@@ -56,7 +58,6 @@ public final class LobbyPlugin extends JavaPlugin {
                 this.injector.createInstance(ListenerKick.class),
                 this.injector.createInstance(ListenerSpawn.class)
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
-        new ManagerEvent();
     }
 
     @Override
