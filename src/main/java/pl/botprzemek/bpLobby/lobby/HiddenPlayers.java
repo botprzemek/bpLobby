@@ -11,26 +11,23 @@ import java.util.UUID;
 public class HiddenPlayers {
     @Inject private Plugin plugin;
 
-    private HashMap<UUID, Boolean> hiddenPlayers;
+    private final HashMap<UUID, Boolean> hiddenPlayers = new HashMap<>();
 
-    public HashMap<UUID, Boolean> getPlayers() {
-        return hiddenPlayers;
-    }
     public Boolean getPlayer(Player player) {
         return hiddenPlayers.get(player.getUniqueId());
     }
 
-    public void hidePlayer(Player player) {
+    public void hidePlayers(Player player) {
         for (Player target : Bukkit.getOnlinePlayers()) player.hidePlayer(plugin, target);
         hiddenPlayers.put(player.getUniqueId(), true);
     }
 
-    public void showPlayer(Player player) {
+    public void showPlayers(Player player) {
         for (Player target : Bukkit.getOnlinePlayers()) player.showPlayer(plugin, target);
         hiddenPlayers.remove(player.getUniqueId());
     }
 
     public void removePlayer(Player player) {
-        if (hiddenPlayers.get(player.getUniqueId())) hiddenPlayers.remove(player.getUniqueId());
+        if (hiddenPlayers.get(player.getUniqueId()) != null) hiddenPlayers.remove(player.getUniqueId());
     }
 }

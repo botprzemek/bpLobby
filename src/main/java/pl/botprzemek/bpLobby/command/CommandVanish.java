@@ -19,11 +19,13 @@ public class CommandVanish {
     @Execute
     public void view(Player player) {
         if (hiddenPlayers.getPlayer(player) == null) {
-            hiddenPlayers.hidePlayer(player);
-            managerMessage.sendMessage(player, configurationMessage.getCommandsVanish().getShow());
+            hiddenPlayers.hidePlayers(player);
+            managerMessage.sendMessage(player, configurationMessage.getCommandsVanish().getHide());
+            managerMessage.playSound(player, configurationMessage.getSounds().getStep());
             return;
         }
-        hiddenPlayers.showPlayer(player);
-        managerMessage.sendMessage(player, configurationMessage.getCommandsVanish().getHide());
+        hiddenPlayers.showPlayers(player);
+        managerMessage.sendMessage(player, configurationMessage.getCommandsVanish().getShow());
+        managerMessage.playSound(player, configurationMessage.getSounds().getStep());
     }
 }

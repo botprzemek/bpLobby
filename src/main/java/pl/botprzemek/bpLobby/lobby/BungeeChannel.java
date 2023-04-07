@@ -20,7 +20,7 @@ public class BungeeChannel {
             out.writeUTF(server.toLowerCase());
             managerMessage.sendMessage(player, configurationMessage.getCommandsServer().getSuccess(), server);
             managerMessage.playSound(player,  configurationMessage.getSounds().getActivate());
-            player.sendPluginMessage(plugin, "lobby:main", out.toByteArray());
+            player.sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
         }
         catch (Exception error) {
             managerMessage.sendMessage(player, configurationMessage.getCommandsServer().getError(), server);

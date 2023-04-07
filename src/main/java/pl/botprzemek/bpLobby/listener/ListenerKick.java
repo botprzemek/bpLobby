@@ -15,6 +15,6 @@ public class ListenerKick implements Listener {
     public void onPlayerKick(PlayerKickEvent event) {
         if (event.getPlayer().hasPermission("bplobby.bypass")) event.setCancelled(true);
         if (!event.getReason().equals("You have been idle for too long!")) return;
-        event.setReason(managerMessage.getMessage(event.getPlayer(), configurationMessage.getEventsDisonnect().getTimeout()));
+        event.setReason(managerMessage.getComponent(event.getPlayer(), configurationMessage.getEventsDisonnect().getTimeout()));
     }
 }

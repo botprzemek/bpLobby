@@ -10,16 +10,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.bpLobby.command.CommandReload;
+import pl.botprzemek.bpLobby.command.CommandServer;
 import pl.botprzemek.bpLobby.command.CommandVanish;
 import pl.botprzemek.bpLobby.configuration.ConfigurationFactory;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
+import pl.botprzemek.bpLobby.gui.GuiButton;
+import pl.botprzemek.bpLobby.gui.GuiInventory;
 import pl.botprzemek.bpLobby.handler.HandlerInvalid;
 import pl.botprzemek.bpLobby.handler.HandlerUnauthorized;
 import pl.botprzemek.bpLobby.listener.ListenerChat;
 import pl.botprzemek.bpLobby.listener.ListenerJoinQuit;
 import pl.botprzemek.bpLobby.listener.ListenerKick;
 import pl.botprzemek.bpLobby.listener.ListenerSpawn;
+import pl.botprzemek.bpLobby.lobby.BungeeChannel;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 import pl.botprzemek.bpLobby.lobby.HiddenPlayers;
 
@@ -29,35 +33,20 @@ public final class LobbyPlugin extends JavaPlugin {
     private final Injector injector = OkaeriInjector.create();
     private ConfigurationPlugin configurationPlugin;
     private ConfigurationMessage configurationMessage;
+    private ManagerMessage managerMessage;
 
     @Override
     public void onEnable() {
-        this.injector.registerInjectable(this);
-        this.injector.registerInjectable(this.injector);
-        this.setupConfiguration();
-        this.injector.registerInjectable(BukkitAudiences.create(this));
-        this.injector.registerInjectable(this.injector.createInstance(ManagerMessage.class));
-        this.injector.registerInjectable(this.injector.createInstance(HiddenPlayers.class));
+        injector.registerInjectable(this);
+        injector.registerInjectable(injector);
+        injector.registerInjectable(BukkitAudiences.create(this));
+        injector.registerInjectable(injector.createInstance(HiddenPlayers.class));
+        setupConfiguration();
+        setupUtils();
+        setupCommands();
+        setupEvents();
 
-        LiteBukkitFactory.builder(this.getServer(), "bpLobby")
-            .argument(Player.class, new BukkitPlayerArgument<>(this.getServer(), configurationMessage.getCommandsPlayer().getOffline()))
-            .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>(configurationMessage.getCommandsPlayer().getOnly()))
-            .commandInstance(
-                    this.injector.createInstance(CommandReload.class),
-                    this.injector.createInstance(CommandVanish.class)
-            )
-            .invalidUsageHandler(new HandlerInvalid())
-            .permissionHandler(new HandlerUnauthorized())
-            .register();
-
-        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "lobby:main");
-
-        Stream.of(
-                this.injector.createInstance(ListenerChat.class),
-                this.injector.createInstance(ListenerJoinQuit.class),
-                this.injector.createInstance(ListenerKick.class),
-                this.injector.createInstance(ListenerSpawn.class)
-        ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
     @Override
@@ -67,14 +56,44 @@ public final class LobbyPlugin extends JavaPlugin {
 
     private void setupConfiguration() {
         ConfigurationFactory configurationFactory = new ConfigurationFactory(this.getDataFolder());
-        this.configurationPlugin = configurationFactory.produce(ConfigurationPlugin.class, "config.yml");
-        this.configurationMessage = configurationFactory.produce(ConfigurationMessage.class, "messages.yml");
-        this.injector.registerInjectable(this.configurationPlugin);
-        this.injector.registerInjectable(this.configurationMessage);
+        configurationPlugin = configurationFactory.produce(ConfigurationPlugin.class, "config.yml");
+        injector.registerInjectable(configurationPlugin);
+        configurationMessage = configurationFactory.produce(ConfigurationMessage.class, "messages.yml");
+        injector.registerInjectable(configurationMessage);
+    }
+
+    private void setupUtils() {
+        managerMessage = injector.createInstance(ManagerMessage.class);
+        injector.registerInjectable(managerMessage);
+        injector.registerInjectable(injector.createInstance(BungeeChannel.class));
+        injector.registerInjectable(injector.createInstance(GuiInventory.class));
+    }
+
+    private void setupCommands() {
+        LiteBukkitFactory.builder(this.getServer(), "bpLobby")
+                .argument(Player.class, new BukkitPlayerArgument<>(this.getServer(), managerMessage.getMessage(configurationMessage.getCommandsPlayer().getOffline())))
+                .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>(managerMessage.getMessage(configurationMessage.getCommandsPlayer().getOnly())))
+                .commandInstance(
+                        injector.createInstance(CommandReload.class),
+                        injector.createInstance(CommandServer.class),
+                        injector.createInstance(CommandVanish.class)
+                )
+                .invalidUsageHandler(injector.createInstance(HandlerInvalid.class))
+                .permissionHandler(injector.createInstance(HandlerUnauthorized.class))
+                .register();
+    }
+
+    private void setupEvents() {
+        Stream.of(
+                injector.createInstance(ListenerChat.class),
+                injector.createInstance(ListenerJoinQuit.class),
+                injector.createInstance(ListenerKick.class),
+                injector.createInstance(ListenerSpawn.class)
+        ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 
     private void cleanUp() {
-        this.getServer().getMessenger().unregisterOutgoingPluginChannel(this);
+        getServer().getMessenger().unregisterOutgoingPluginChannel(this);
         configurationPlugin.save();
         configurationMessage.save();
     }

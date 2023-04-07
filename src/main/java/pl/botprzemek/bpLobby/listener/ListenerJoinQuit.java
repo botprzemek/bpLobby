@@ -7,10 +7,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
+import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 import pl.botprzemek.bpLobby.lobby.HiddenPlayers;
 
 public class ListenerJoinQuit implements Listener {
+    @Inject private ConfigurationPlugin configurationPlugin;
     @Inject private ConfigurationMessage configurationMessage;
     @Inject private ManagerMessage managerMessage;
     @Inject private HiddenPlayers hiddenPlayers;
@@ -18,13 +20,14 @@ public class ListenerJoinQuit implements Listener {
     @EventHandler
     public void onJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        event.setJoinMessage(managerMessage.getMessage(player, configurationMessage.getEventsConnect().getJoin(), player.getDisplayName()));
+        event.setJoinMessage(managerMessage.getComponent(player, configurationMessage.getEventsConnect().getJoin(), player.getDisplayName()));
+        player.teleport(configurationPlugin.getLocation());
     }
 
     @EventHandler
     public void onQuitEvent(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        event.setQuitMessage(managerMessage.getMessage(player, configurationMessage.getEventsConnect().getQuit(), player.getDisplayName()));
+        event.setQuitMessage(managerMessage.getComponent(player, configurationMessage.getEventsConnect().getQuit(), player.getDisplayName()));
         hiddenPlayers.removePlayer(player);
     }
 }
