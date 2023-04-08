@@ -2,12 +2,15 @@ package pl.botprzemek.bpLobby.configuration;
 
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
+import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import pl.botprzemek.bpLobby.gui.GuiAction;
 import pl.botprzemek.bpLobby.gui.GuiButton;
+import pl.botprzemek.bpLobby.gui.GuiInventory;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 import java.util.ArrayList;
@@ -29,8 +32,14 @@ public class ConfigurationPlugin extends OkaeriConfig {
 
     @Getter
     public class ServerGui extends OkaeriConfig {
-        private String title = "<gradient:#4fa943:#9ec52f><bold>Menu</bold></gradient>";
-        private int size = 1;
+        private GuiButton selector = GuiButton.builder()
+                .slots(Arrays.asList(4))
+                .oraxenID("book_selector")
+                .displayName("<gradient:#4fa943:#9ec52f><bold>Wybierz Serwer</bold></gradient>")
+                .lore(Arrays.asList("<gray>Kliknij, aby otworzyć", "<gray>wybór serwerów!"))
+                .build();
+        private String title = "✟ꟹ";
+        private int size = 3;
         private HashMap<Integer, GuiButton> buttons = setupServerButtons();
     }
 
@@ -51,9 +60,24 @@ public class ConfigurationPlugin extends OkaeriConfig {
 
     private HashMap<Integer, GuiButton> setupServerButtons() {
         HashMap<Integer, GuiButton> buttons = new HashMap<>();
-        List<String> lore = new ArrayList<>();
-        lore.add("Testowy przycisk");
-        buttons.put(4, GuiButton.builder().slot(4).oraxenID("food_fruits_kiwi").displayName("<gradient:#4fa943:#9ec52f><bold>Survival 1.19+</bold></gradient>").lore(lore).action("survival").build());
+        buttons.put(0, GuiButton.builder()
+                .slots(Arrays.asList(0,1,2,3,9,10,11,12))
+                .oraxenID("required_invisible_item")
+                .displayName("Kliknij, aby <gradient:#4fa943:#9ec52f><bold>dołączyć!</bold></gradient>")
+                .lore(Arrays.asList("<gray>Odkryj nasz serwer", "<gray>i jego możliwości"))
+                .action(GuiAction.builder().actionName("server").actionValue("survival").build()).build());
+        buttons.put(1, GuiButton.builder()
+                .slots(Arrays.asList(5,6,7,8,14,15,16,17))
+                .oraxenID("required_invisible_item")
+                .displayName("Kliknij, aby <gradient:#4fa943:#9ec52f><bold>dołączyć!</bold></gradient>")
+                .lore(Arrays.asList("<gray>Tymczasowo", "<gray>Puste"))
+                    .action(GuiAction.builder().actionName("server").actionValue("minigames").build()).build());
+        buttons.put(2, GuiButton.builder()
+                .slots(Arrays.asList(18,19,20,21,22,23,24,25,26))
+                .oraxenID("required_invisible_item")
+                .displayName("Kliknij, aby <gradient:#4fa943:#9ec52f><bold>dołączyć!</bold></gradient>")
+                .lore(Arrays.asList("<gray>Przejdź do linku", "<gray>na czacie!"))
+                .action(GuiAction.builder().actionName("text").actionValue("<hover:show_text:'Kliknij, aby <gradient:#4fa943:#9ec52f><bold>dołączyć!</bold></gradient>'><click:OPEN_URL:'https://dc.exotia.net/'>Link do naszego <gradient:#4fa943:#9ec52f><bold>discorda!</bold></gradient></click></hover>").build()).build());
         return buttons;
     }
 }

@@ -7,6 +7,7 @@ import eu.okaeri.injector.annotation.PostConstruct;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
+import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
 import pl.botprzemek.bpLobby.lobby.BungeeChannel;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 public class GuiInventory {
     @Inject private BungeeChannel bungeeChannel;
     @Inject private ConfigurationPlugin configurationPlugin;
+    @Inject private ConfigurationMessage configurationMessage;
     @Inject private ManagerMessage managerMessage;
 
     @Getter
@@ -24,7 +26,7 @@ public class GuiInventory {
     @PostConstruct
     public void onConstruct() {
          this.gui = createGui(
-                managerMessage.getComponent(configurationPlugin.getServerGui().getTitle()),
+                managerMessage.getComponent("<white>" + configurationPlugin.getServerGui().getTitle()),
                 configurationPlugin.getServerGui().getSize(),
                  configurationPlugin.getServerGui().getButtons());
     }
@@ -32,9 +34,10 @@ public class GuiInventory {
     public Gui createGui(Component title, Integer size, HashMap<Integer, GuiButton> buttons) {
         Gui gui = Gui.gui().title(title).rows(size).create();
         gui.disableAllInteractions();
+        gui.setOpenGuiAction(event -> managerMessage.playSound((Player) event.getPlayer(), configurationMessage.getSounds().getClick()));
         for (int key : buttons.keySet()) {
             GuiButton button = buttons.get(key);
-            gui.setItem(key, ItemBuilder.from(button.getItem(managerMessage)).asGuiItem(event -> bungeeChannel.sendPlayer((Player) event.getWhoClicked(), button.getAction())));
+            for (int slot : button.getSlots()) gui.setItem(slot, ItemBuilder.from(button.getItem(managerMessage)).asGuiItem(event -> button.getAction().runAction((Player) event.getWhoClicked(), gui, bungeeChannel, managerMessage, configurationMessage)));
         }
         return gui;
     }

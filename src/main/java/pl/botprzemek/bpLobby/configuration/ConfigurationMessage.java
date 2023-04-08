@@ -26,6 +26,8 @@ public class ConfigurationMessage extends OkaeriConfig {
     private EventsDisconnect eventsDisonnect = new EventsDisconnect();
     @Comment("Disconnect Events")
     private EventsChat eventsChat = new EventsChat();
+    @Comment("Link Events")
+    private String eventsLink = "%prefix% %value_1%";
     @Comment("Sounds")
     private Sounds sounds = new Sounds();
 

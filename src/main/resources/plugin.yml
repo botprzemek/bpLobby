@@ -1,5 +1,5 @@
 name: bpLobby
-version: '{project.version}'
+version: 0.7
 author: botprzemek
 website: https://www.github.com/botprzemek/bpLobby/
 description: All-in-one lobby plugin (1.18.2)

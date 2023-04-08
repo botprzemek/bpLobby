@@ -14,11 +14,11 @@ import java.util.List;
 @Builder
 @Getter
 public class GuiButton extends OkaeriConfig {
-    private int slot;
+    private List<Integer> slots;
     private String oraxenID;
     private String displayName;
     private List<String> lore;
-    private String action;
+    private GuiAction action;
 
     public ItemStack getItem(ManagerMessage managerMessage) {
         ItemStack item = OraxenItems.getItemById(oraxenID) != null ? OraxenItems.getItemById(oraxenID).build() : new ItemStack(Material.STONE);

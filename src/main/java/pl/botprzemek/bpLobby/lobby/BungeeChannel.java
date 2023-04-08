@@ -6,7 +6,6 @@ import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
-import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 public class BungeeChannel {
     @Inject private Plugin plugin;
@@ -19,7 +18,7 @@ public class BungeeChannel {
             out.writeUTF("Connect");
             out.writeUTF(server.toLowerCase());
             managerMessage.sendMessage(player, configurationMessage.getCommandsServer().getSuccess(), server);
-            managerMessage.playSound(player,  configurationMessage.getSounds().getActivate());
+            managerMessage.playSound(player,  configurationMessage.getSounds().getClick());
             player.sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
         }
         catch (Exception error) {
