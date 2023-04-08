@@ -34,7 +34,7 @@ public class ConfigurationPlugin extends OkaeriConfig {
     public class ServerGui extends OkaeriConfig {
         private GuiButton selector = GuiButton.builder()
                 .slots(Arrays.asList(4))
-                .oraxenID("book_selector")
+                .oraxenID("ksiazka_wybor")
                 .displayName("<gradient:#4fa943:#9ec52f><bold>Wybierz Serwer</bold></gradient>")
                 .lore(Arrays.asList("<gray>Kliknij, aby otworzyć", "<gray>wybór serwerów!"))
                 .build();

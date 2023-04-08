@@ -104,6 +104,7 @@ public class ListenerSpawn implements Listener {
 
     @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEntityEvent event) {
+        if (event.getRightClicked().hasMetadata("NPC")) return;
         if (!event.getPlayer().hasPermission("bplobby.bypass")) event.setCancelled(true);
     }
 

@@ -2,8 +2,6 @@ package pl.botprzemek.bpLobby.listener;
 
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.annotation.Inject;
-import io.th0rgal.oraxen.api.OraxenItems;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,7 +9,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
@@ -53,14 +50,7 @@ public class ListenerJoinQuit implements Listener {
         Player player = event.getPlayer();
         if (!player.hasPermission("bplobby.command.server")) return;
         if (!(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK))) return;
-        if (!checkForItem(player.getInventory().getItemInMainHand(), configurationPlugin.getServerGui().getSelector().getOraxenID())) return;
+        if (player.getInventory().getHeldItemSlot() != configurationPlugin.getServerGui().getSelector().getSlots().get(0)) return;
         injector.createInstance(GuiInventory.class).getGui().open(player);
-    }
-
-    private boolean checkForItem(ItemStack item, String oraxenID) {
-        ItemStack oraxenItem = OraxenItems.getItemById(oraxenID).build();
-        if (item.getItemMeta() == null || oraxenItem.getItemMeta() == null) return false;
-        if (item.getItemMeta().hasCustomModelData() || oraxenItem.getItemMeta().hasCustomModelData()) return false;
-        return item.getItemMeta().getCustomModelData() == oraxenItem.getItemMeta().getCustomModelData();
     }
 }

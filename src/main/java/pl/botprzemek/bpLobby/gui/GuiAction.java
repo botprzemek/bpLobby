@@ -15,16 +15,24 @@ public class GuiAction extends OkaeriConfig {
     private String actionName;
     private String actionValue;
 
-    public void runAction(Player player, Gui gui, BungeeChannel bungeeChannel, ManagerMessage managerMessage, ConfigurationMessage configurationMessage) {
-        switch (actionName) {
-            case "server" -> {
+    public enum ActionType {
+        SERVER {
+            public void runAction(Player player, Gui gui, BungeeChannel bungeeChannel, ManagerMessage managerMessage, ConfigurationMessage configurationMessage, String actionValue) {
                 bungeeChannel.sendPlayer(player, actionValue);
             }
-            case "text" -> {
+        },
+        TEXT {
+            public void runAction(Player player, Gui gui, BungeeChannel bungeeChannel, ManagerMessage managerMessage, ConfigurationMessage configurationMessage, String actionValue) {
                 managerMessage.sendMessage(player, configurationMessage.getEventsLink(), actionValue);
                 managerMessage.playSound(player, configurationMessage.getSounds().getClick());
             }
-        }
+        };
+
+        public abstract void runAction(Player player, Gui gui, BungeeChannel bungeeChannel, ManagerMessage managerMessage, ConfigurationMessage configurationMessage, String actionValue);
+    }
+
+    public void runAction(Player player, Gui gui, BungeeChannel bungeeChannel, ManagerMessage managerMessage, ConfigurationMessage configurationMessage) {
+        ActionType.valueOf(actionName.toUpperCase()).runAction(player, gui, bungeeChannel, managerMessage, configurationMessage, actionValue);
         gui.close(player);
     }
 }
