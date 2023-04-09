@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class HiddenPlayers {
-    @Inject private Plugin plugin;
-
     private final HashMap<UUID, Boolean> hiddenPlayers = new HashMap<>();
+    @Inject
+    private Plugin plugin;
 
     public Boolean getPlayer(Player player) {
         return hiddenPlayers.get(player.getUniqueId());

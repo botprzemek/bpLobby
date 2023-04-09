@@ -9,8 +9,10 @@ import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 public class HandlerUnauthorized implements PermissionHandler<CommandSender> {
-    @Inject private ConfigurationMessage configurationMessage;
-    @Inject private ManagerMessage managerMessage;
+    @Inject
+    private ConfigurationMessage configurationMessage;
+    @Inject
+    private ManagerMessage managerMessage;
 
     @Override
     public void handle(CommandSender sender, LiteInvocation invocation, RequiredPermissions requiredPermissions) {

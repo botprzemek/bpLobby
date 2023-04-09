@@ -21,7 +21,8 @@ import org.bukkit.event.world.WorldLoadEvent;
 import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
 
 public class ListenerSpawn implements Listener {
-    @Inject private ConfigurationPlugin configurationPlugin;
+    @Inject
+    private ConfigurationPlugin configurationPlugin;
 
     @EventHandler
     public void onWorldLoad(WorldLoadEvent event) {
@@ -36,7 +37,7 @@ public class ListenerSpawn implements Listener {
         world.setGameRule(GameRule.DISABLE_RAIDS, true);
         world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
         world.setGameRule(GameRule.DO_FIRE_TICK, false);
-        world.setGameRule(GameRule.DO_INSOMNIA, false);;
+        world.setGameRule(GameRule.DO_INSOMNIA, false);
         world.setGameRule(GameRule.DO_IMMEDIATE_RESPAWN, true);
         world.setGameRule(GameRule.DO_MOB_SPAWNING, false);
         world.setGameRule(GameRule.DO_MOB_LOOT, false);
@@ -56,7 +57,7 @@ public class ListenerSpawn implements Listener {
         world.setGameRule(GameRule.REDUCED_DEBUG_INFO, true);
         world.setGameRule(GameRule.RANDOM_TICK_SPEED, 0);
         world.setGameRule(GameRule.SEND_COMMAND_FEEDBACK, false);
-        world.setGameRule(GameRule.SPAWN_RADIUS, 0);;
+        world.setGameRule(GameRule.SPAWN_RADIUS, 0);
         world.setGameRule(GameRule.SPECTATORS_GENERATE_CHUNKS, false);
         world.setGameRule(GameRule.SHOW_DEATH_MESSAGES, false);
         world.setGameRule(GameRule.UNIVERSAL_ANGER, false);
@@ -150,7 +151,8 @@ public class ListenerSpawn implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        if (event.getPlayer().getBedSpawnLocation() == null) event.setRespawnLocation(configurationPlugin.getLocation());
+        if (event.getPlayer().getBedSpawnLocation() == null)
+            event.setRespawnLocation(configurationPlugin.getLocation());
     }
 
     @EventHandler

@@ -15,12 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerMessage {
-    @Inject private BukkitAudiences audiences;
-    @Inject private ConfigurationMessage configurationMessage;
+    @Inject
+    private BukkitAudiences audiences;
+    @Inject
+    private ConfigurationMessage configurationMessage;
 
     private Component replacePlaceholders(String message, String... values) {
         message = message.replace("%prefix%", this.configurationMessage.getPrefix());
-        for (int i = 1; i <= values.length; i++) message = message.replace("%value_"+i+"%", values[i-1]);
+        for (int i = 1; i <= values.length; i++) message = message.replace("%value_" + i + "%", values[i - 1]);
         return MiniMessage.miniMessage().deserialize(message.replace("&", "").replace("§f", ""));
     }
 
@@ -38,7 +40,8 @@ public class ManagerMessage {
 
     public List<String> getMessages(List<String> messages) {
         List<String> serializedMessages = new ArrayList<>();
-        for (String message : messages) serializedMessages.add(LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<white>" + message)));
+        for (String message : messages)
+            serializedMessages.add(LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<white>" + message)));
         return serializedMessages;
     }
 

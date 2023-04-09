@@ -6,15 +6,18 @@ import dev.rollczi.litecommands.command.route.Route;
 import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
-import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 import pl.botprzemek.bpLobby.lobby.HiddenPlayers;
+import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 @Route(name = "vanish", aliases = "gracze")
 @Permission("bplobby.command.vanish")
 public class CommandVanish {
-    @Inject private ConfigurationMessage configurationMessage;
-    @Inject private ManagerMessage managerMessage;
-    @Inject private HiddenPlayers hiddenPlayers;
+    @Inject
+    private ConfigurationMessage configurationMessage;
+    @Inject
+    private ManagerMessage managerMessage;
+    @Inject
+    private HiddenPlayers hiddenPlayers;
 
     @Execute
     public void view(Player player) {

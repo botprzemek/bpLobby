@@ -11,8 +11,10 @@ import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 import java.util.List;
 
 public class HandlerInvalid implements InvalidUsageHandler<CommandSender> {
-    @Inject private ConfigurationMessage configurationMessage;
-    @Inject private ManagerMessage managerMessage;
+    @Inject
+    private ConfigurationMessage configurationMessage;
+    @Inject
+    private ManagerMessage managerMessage;
 
     @Override
     public void handle(CommandSender sender, LiteInvocation invocation, Schematic schematic) {

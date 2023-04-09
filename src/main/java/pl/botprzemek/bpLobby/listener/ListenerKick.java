@@ -8,8 +8,10 @@ import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 public class ListenerKick implements Listener {
-    @Inject private ConfigurationMessage configurationMessage;
-    @Inject private ManagerMessage managerMessage;
+    @Inject
+    private ConfigurationMessage configurationMessage;
+    @Inject
+    private ManagerMessage managerMessage;
 
     @EventHandler
     public void onPlayerKick(PlayerKickEvent event) {

@@ -7,8 +7,6 @@ import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
-import org.bukkit.GameRule;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.botprzemek.bpLobby.command.CommandReload;
@@ -17,7 +15,6 @@ import pl.botprzemek.bpLobby.command.CommandVanish;
 import pl.botprzemek.bpLobby.configuration.ConfigurationFactory;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
-import pl.botprzemek.bpLobby.gui.GuiInventory;
 import pl.botprzemek.bpLobby.handler.HandlerInvalid;
 import pl.botprzemek.bpLobby.handler.HandlerUnauthorized;
 import pl.botprzemek.bpLobby.listener.ListenerChat;
@@ -25,8 +22,8 @@ import pl.botprzemek.bpLobby.listener.ListenerJoinQuit;
 import pl.botprzemek.bpLobby.listener.ListenerKick;
 import pl.botprzemek.bpLobby.listener.ListenerSpawn;
 import pl.botprzemek.bpLobby.lobby.BungeeChannel;
-import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 import pl.botprzemek.bpLobby.lobby.HiddenPlayers;
+import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 import java.util.stream.Stream;
 
@@ -67,7 +64,6 @@ public final class LobbyPlugin extends JavaPlugin {
         managerMessage = injector.createInstance(ManagerMessage.class);
         injector.registerInjectable(managerMessage);
         injector.registerInjectable(injector.createInstance(BungeeChannel.class));
-        injector.registerInjectable(injector.createInstance(GuiInventory.class));
     }
 
     private void setupCommands() {

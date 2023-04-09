@@ -11,9 +11,12 @@ import pl.botprzemek.bpLobby.configuration.ConfigurationPlugin;
 import pl.botprzemek.bpLobby.lobby.ManagerMessage;
 
 public class ListenerChat implements Listener {
-    @Inject private ConfigurationPlugin configurationPlugin;
-    @Inject private ConfigurationMessage configurationMessage;
-    @Inject private ManagerMessage managerMessage;
+    @Inject
+    private ConfigurationPlugin configurationPlugin;
+    @Inject
+    private ConfigurationMessage configurationMessage;
+    @Inject
+    private ManagerMessage managerMessage;
 
     @EventHandler
     public void onChatEvent(AsyncPlayerChatEvent event) {

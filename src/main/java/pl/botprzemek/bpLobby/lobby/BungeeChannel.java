@@ -8,9 +8,12 @@ import org.bukkit.plugin.Plugin;
 import pl.botprzemek.bpLobby.configuration.ConfigurationMessage;
 
 public class BungeeChannel {
-    @Inject private Plugin plugin;
-    @Inject private ConfigurationMessage configurationMessage;
-    @Inject private ManagerMessage managerMessage;
+    @Inject
+    private Plugin plugin;
+    @Inject
+    private ConfigurationMessage configurationMessage;
+    @Inject
+    private ManagerMessage managerMessage;
 
     public void sendPlayer(Player player, String server) {
         try {
@@ -18,10 +21,9 @@ public class BungeeChannel {
             out.writeUTF("Connect");
             out.writeUTF(server.toLowerCase());
             managerMessage.sendMessage(player, configurationMessage.getCommandsServer().getSuccess(), server);
-            managerMessage.playSound(player,  configurationMessage.getSounds().getClick());
+            managerMessage.playSound(player, configurationMessage.getSounds().getClick());
             player.sendPluginMessage(plugin, "BungeeCord", out.toByteArray());
-        }
-        catch (Exception error) {
+        } catch (Exception error) {
             managerMessage.sendMessage(player, configurationMessage.getCommandsServer().getError(), server);
             managerMessage.playSound(player, configurationMessage.getSounds().getError());
         }
