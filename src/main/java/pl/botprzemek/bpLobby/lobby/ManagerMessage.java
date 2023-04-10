@@ -40,6 +40,7 @@ public class ManagerMessage {
 
     public List<String> getMessages(List<String> messages) {
         List<String> serializedMessages = new ArrayList<>();
+        if (messages == null) return serializedMessages;
         for (String message : messages)
             serializedMessages.add(LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<white>" + message)));
         return serializedMessages;
